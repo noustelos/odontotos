@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Odontotos Railway | Vouraikos Gorge</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+
+<body>
+
+<!-- HERO SECTION -->
+<!-- cinematic portrait video from the Vouraikos gorge -->
+<section class="hero-split">
+<div class="hero-text">
+<h1>Odontotos Railway</h1>
+
+<p>
+Ride one of Europe's most scenic railways through
+the Vouraikos Gorge UNESCO Global Geopark.
+</p>
+
+<div class="hero-buttons">
+<a class="button primary" href="#">Explore the Journey</a>
+<a class="button secondary" href="#">View the Route</a>
+</div>
+</div>
+
+<div class="hero-video">
+<video autoplay muted loop playsinline preload="metadata" poster="assets/images/hero-poster.jpg" aria-label="Odontotos Railway cinematic hero video">
+<source src="assets/video/hero-video.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+</div>
+</section>
+
+<p class="scroll-indicator">Scroll to start the journey</p>
+
+<!-- EXPERIENCE SECTION -->
+<!-- three cinematic cards introducing the journey -->
+<section>
+<div class="section-intro">
+<h2>The Experience</h2>
+<p>From the coast to alpine villages, the Odontotos line unfolds like a living travel documentary.</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>The Train</h3>
+<p>A historic rack railway connecting the coast of Diakopto with the mountain town of Kalavryta.</p>
+</div>
+
+<div class="card">
+<h3>The Gorge</h3>
+<p>The Vouraikos canyon is one of the most dramatic landscapes in Greece.</p>
+</div>
+
+<div class="card">
+<h3>The Route</h3>
+<p>The train climbs from sea level deep into the mountains following the river.</p>
+</div>
+
+</div>
+</section>
+
+<!-- UNESCO GORGE SECTION -->
+<!-- large cinematic photography with minimal overlay text -->
+<section class="image-section">
+<img src="vouraikos.jpg">
+<div class="image-caption">
+<h2>UNESCO Vouraikos Gorge</h2>
+<p>Vertical cliffs, river bends and stone bridges shape one of Greece's most immersive rail landscapes.</p>
+</div>
+</section>
+
+<!-- RAILWAY HISTORY SECTION -->
+<!-- timeline storytelling for key milestones -->
+<section>
+<div class="section-intro">
+<h2>The Railway Story</h2>
+</div>
+
+<div class="timeline">
+
+<article class="timeline-item">
+<h3>1896</h3>
+<p>Construction of the mountain railway begins, carving a technical wonder through the gorge.</p>
+</article>
+
+<article class="timeline-item">
+<h3>1897</h3>
+<p>The first trains run between Diakopto and Kalavryta, opening a new era of travel and trade.</p>
+</article>
+
+<article class="timeline-item">
+<h3>Today</h3>
+<p>The Odontotos remains one of Europe's most scenic rack-rail experiences for visitors worldwide.</p>
+</article>
+
+</div>
+</section>
+
+<!-- DIAKOPTO SECTION -->
+<!-- starting point cards with cinematic spacing -->
+<section class="diakopto-section">
+<div class="section-intro">
+<h2>Starting Point: Diakopto</h2>
+<p>Where sea breeze meets mountain rail, Diakopto is the gateway to the Odontotos experience.</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Railway Station</h3>
+<p>The historic station where the journey begins.</p>
+</div>
+
+<div class="card">
+<h3>Railway Museum</h3>
+<p>A small exhibition dedicated to the history of the line.</p>
+</div>
+
+<div class="card">
+<h3>Seafront</h3>
+<p>Relax by the sea before or after your train ride.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- ROUTE MAP SECTION -->
+<!-- interactive map area for station storytelling -->
+<section class="map-section">
+<div class="section-intro">
+
+<h2>Railway Route</h2>
+<p>Track the full line from Diakopto to Kalavryta, including stations and key mountain passages.</p>
+
+</div>
+
+
+<div id="map" class="map"></div>
+<p class="map-note">Interactive route map powered by Leaflet with custom train markers and station popups.</p>
+
+</section>
+
+<!-- VISITOR INFO SECTION -->
+<!-- practical details in editorial card layout -->
+<section class="info-section">
+
+<div class="section-intro">
+
+<h2>Visitor Info</h2>
+<p>Plan your trip with quick essentials before boarding the Odontotos.</p>
+
+</div>
+
+<div class="info-grid">
+
+<article class="info-card">
+<h3>Duration</h3>
+<p>Approximately 1 hour through Vouraikos Gorge.</p>
+</article>
+
+<article class="info-card">
+<h3>Route</h3>
+<p>Diakopto to Kalavryta with scenic intermediate stops.</p>
+</article>
+
+<article class="info-card">
+<h3>Best Season</h3>
+<p>Spring and Autumn for vivid colors and comfortable weather.</p>
+</article>
+
+</div>
+
+</section>
+
+<!-- FINAL CTA SECTION -->
+<!-- conversion block inviting users to explore diakopto -->
+<section class="final-cta">
+
+<h2>Discover Diakopto</h2>
+
+<p>Explore beaches, local flavors, and authentic mountain-to-sea moments before or after your rail journey.</p>
+
+<a class="button" href="#">Visit DiscoverDiakopto</a>
+<a class="button button-secondary" href="#">Plan Your Journey</a>
+
+</section>
+
+<footer>
+
+<p>Odontotos Railway – Vouraikos Gorge</p>
+<p>Created by WebHostPro | all rights resereved 2026</p>
+</footer>
+
+<script src="map.js"></script>
+
+</body>
+</html>

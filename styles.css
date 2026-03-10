@@ -1,0 +1,475 @@
+/* =====================================================
+CINEMATIC TOURISM LANDING PAGE
+Project: Odontotos Railway / Vouraikos Gorge
+===================================================== */
+
+:root {
+    --forest: #1f3d2b;
+    --river: #2c6e8f;
+    --sand: #e9e2d3;
+    --stone: #6b6e6a;
+    --train: #9e3b2c;
+    --text-dark: #2b2b2b;
+    --text-light: #ffffff;
+    --max-content: 1200px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    color: var(--text-dark);
+    background: #fff;
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+    font-family: "Playfair Display", serif;
+}
+
+section {
+    padding: 80px 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.section-intro {
+    max-width: 720px;
+    margin-bottom: 34px;
+}
+
+.section-intro h2 {
+    font-size: clamp(1.9rem, 4.8vw, 2.75rem);
+    line-height: 1.15;
+    margin: 0 0 10px;
+    color: var(--forest);
+}
+
+.section-intro p {
+    margin: 0;
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    color: #47524d;
+}
+
+/* HERO SPLIT */
+.hero-split {
+    min-height: 90vh;
+    max-width: var(--max-content);
+    margin: 0 auto;
+    padding: clamp(24px, 4vw, 56px) 20px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+    gap: clamp(24px, 4vw, 56px);
+    align-items: center;
+}
+
+.hero-text {
+    max-width: 520px;
+    display: grid;
+    gap: 24px;
+    align-content: center;
+}
+
+.hero-text h1 {
+    font-size: clamp(2.4rem, 7vw, 4.8rem);
+    line-height: 1.05;
+    color: var(--forest);
+}
+
+.hero-text p {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.65;
+    color: #3f4a44;
+    max-width: 48ch;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.hero-buttons .button {
+    margin: 0;
+}
+
+.hero-buttons .button.primary {
+    background: var(--train);
+    color: #fff;
+}
+
+.hero-buttons .button.secondary {
+    background: transparent;
+    color: var(--forest);
+    border: 1px solid rgba(31, 61, 43, 0.4);
+}
+
+.hero-video {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    justify-self: end;
+}
+
+.hero-video::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 8px;
+    background: linear-gradient(270deg, rgba(255, 255, 255, 0) 62%, rgba(255, 255, 255, 0.75) 100%);
+}
+
+.hero-video video {
+    width: 100%;
+    height: 90vh;
+    max-height: 90vh;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    box-shadow: 0 18px 38px rgba(24, 31, 26, 0.24);
+}
+
+.scroll-indicator {
+    text-align: center;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #5a6760;
+    margin: 10px 0 26px;
+}
+
+/* BUTTONS */
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px;
+    background: var(--train);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.button-secondary {
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(2px);
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: linear-gradient(180deg, #ffffff 0%, #f4f1ea 100%);
+    padding: 28px;
+    border-radius: 12px;
+    border: 1px solid #e8dfcf;
+    box-shadow: 0 12px 30px rgba(24, 31, 26, 0.09);
+    transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.card h3 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.3rem, 2vw, 1.65rem);
+    margin: 0 0 10px;
+    color: var(--forest);
+}
+
+.card p {
+    margin: 0;
+    color: #3d4943;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 34px rgba(24, 31, 26, 0.14);
+}
+
+/* UNESCO IMAGE SECTION */
+.image-section {
+    max-width: none;
+    padding: 0 0 8px;
+    position: relative;
+}
+
+.image-section img {
+    width: 100%;
+    display: block;
+    height: 68vh;
+    object-fit: cover;
+    filter: saturate(1.05) contrast(1.04);
+}
+
+.image-caption {
+    position: absolute;
+    left: min(7vw, 80px);
+    bottom: clamp(18px, 5vw, 60px);
+    padding: clamp(14px, 2vw, 22px) clamp(16px, 2.2vw, 28px);
+    background: rgba(15, 28, 22, 0.62);
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    backdrop-filter: blur(2px);
+    max-width: min(620px, 90%);
+}
+
+.image-caption h2 {
+    margin: 0 0 8px;
+    font-size: clamp(1.65rem, 3vw, 2.5rem);
+    color: #ffffff;
+}
+
+.image-caption p {
+    margin: 0;
+    color: #f7f3e8;
+}
+
+/* TIMELINE */
+.timeline {
+    position: relative;
+    padding-left: 28px;
+    display: grid;
+    gap: 18px;
+    max-width: 800px;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 2px;
+    width: 3px;
+    background: linear-gradient(180deg, var(--train) 0%, var(--river) 100%);
+}
+
+.timeline-item {
+    position: relative;
+    padding: 16px 18px;
+    background: #ffffff;
+    border: 1px solid #ece2d4;
+    box-shadow: 0 8px 24px rgba(20, 25, 21, 0.08);
+    border-radius: 10px;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -34px;
+    top: 22px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--train);
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 0 2px rgba(158, 59, 44, 0.25);
+}
+
+.timeline-item h3 {
+    margin: 0 0 6px;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--train);
+}
+
+.timeline-item p {
+    margin: 0;
+    color: #3f4a44;
+}
+
+/* OTHER SECTIONS */
+.diakopto-section,
+.map-section,
+.info-section,
+.final-cta {
+    position: relative;
+}
+
+.diakopto-section {
+    background: linear-gradient(180deg, #f7f6f3 0%, #ffffff 100%);
+    border-radius: 14px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.map-section {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.map {
+    height: clamp(360px, 56vh, 560px);
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid #e5ddcf;
+    box-shadow: 0 14px 32px rgba(20, 27, 22, 0.12);
+}
+
+.map-note {
+    margin: 14px 0 0;
+    font-size: 0.96rem;
+    color: #4a5851;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.info-card {
+    background: #ffffff;
+    border: 1px solid #e8dfcf;
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: 0 8px 22px rgba(20, 25, 21, 0.08);
+}
+
+.info-card h3 {
+    margin: 0 0 6px;
+    font-family: "Playfair Display", serif;
+    font-size: 1.15rem;
+    color: var(--forest);
+}
+
+.info-card p {
+    margin: 0;
+    color: #3e4b44;
+}
+
+.final-cta {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding: clamp(54px, 8vw, 100px) 20px;
+    text-align: center;
+    background: linear-gradient(130deg, rgba(31, 61, 43, 0.96) 0%, rgba(44, 110, 143, 0.9) 100%), url("vouraikos.jpg") center / cover;
+    color: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.final-cta h2 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.final-cta p {
+    margin: 12px auto 26px;
+    max-width: 60ch;
+    color: #f5f2e8;
+}
+
+.final-cta .button {
+    margin: 0;
+}
+
+.final-cta .button-secondary {
+    margin-left: 10px;
+}
+
+footer {
+    background: var(--forest);
+    color: #fff;
+    text-align: center;
+    padding: 40px;
+}
+
+/* REVEAL ANIMATIONS */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 800ms ease, transform 800ms ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 767px) {
+    .hero-split {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding-top: 18px;
+        min-height: auto;
+    }
+
+    .hero-video {
+        order: 1;
+        justify-self: center;
+        width: min(100%, 420px);
+    }
+
+    .hero-video video {
+        height: 70vh;
+        max-height: 70vh;
+    }
+
+    .hero-text {
+        order: 2;
+        max-width: none;
+        text-align: left;
+    }
+
+    .hero-buttons {
+        order: 3;
+    }
+
+    section {
+        padding: 62px 18px;
+    }
+
+    .cards {
+        gap: 18px;
+    }
+
+    .image-section img {
+        height: 60vh;
+    }
+
+    .image-caption {
+        left: 16px;
+        right: 16px;
+        max-width: none;
+    }
+
+    .diakopto-section,
+    .map-section,
+    .info-section,
+    .final-cta {
+        border-radius: 0;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .final-cta .button-secondary {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
