@@ -514,6 +514,59 @@ section {
     box-shadow: 0 14px 32px rgba(20, 27, 22, 0.12);
 }
 
+.map-toolbar {
+    margin-top: 12px;
+}
+
+.map-reset-btn {
+    border: 1px solid rgba(31, 61, 43, 0.35);
+    background: #fff;
+    color: var(--forest);
+    padding: 9px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 180ms ease, transform 180ms ease;
+}
+
+.map-reset-btn:hover {
+    background: #f2f6f3;
+    transform: translateY(-1px);
+}
+
+.poi-marker {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    display: block;
+    box-shadow: 0 0 0 2px rgba(21, 29, 24, 0.3);
+}
+
+.poi-fuel {
+    background: #c94f3d;
+}
+
+.poi-bakery {
+    background: #c18a3a;
+}
+
+.poi-atm {
+    background: #2f7f60;
+}
+
+.poi-pharmacy {
+    background: #4a78d1;
+}
+
+.poi-cafe {
+    background: #8f5a3a;
+}
+
+.poi-taxi {
+    background: #d2b32f;
+}
+
 .map-note {
     margin: 14px 0 0;
     font-size: 0.96rem;
@@ -683,6 +736,10 @@ footer {
     .map {
         height: 46vh;
         min-height: 300px;
+    }
+
+    .map-reset-btn {
+        width: 100%;
     }
 
     .info-grid {

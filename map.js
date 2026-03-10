@@ -37,7 +37,20 @@ var i18n = {
         diakopto_card3_text: "Χαλάρωσε δίπλα στη θάλασσα πριν ή μετά το ταξίδι.",
         map_title: "Σιδηροδρομική Διαδρομή",
         map_intro: "Δες όλη τη γραμμή από το Διακοπτό έως τα Καλάβρυτα, με στάσεις και σημεία ενδιαφέροντος.",
+        map_reset_btn: "Επιστροφή στην αρχική προβολή",
         map_note: "Διαδραστικός χάρτης με Leaflet, εικονίδια τρένου και popups σταθμών.",
+        poi_fuel_name: "Βενζινάδικο",
+        poi_fuel_text: "Σημείο ανεφοδιασμού κοντά στη διαδρομή.",
+        poi_bakery_name: "Φούρνος",
+        poi_bakery_text: "Στάση για καφέ και τοπικά αρτοσκευάσματα.",
+        poi_atm_name: "ΑΤΜ",
+        poi_atm_text: "Ανάληψη μετρητών κοντά στη γραμμή.",
+        poi_pharmacy_name: "Φαρμακείο",
+        poi_pharmacy_text: "Φαρμακείο κοντά στη διαδρομή.",
+        poi_cafe_puerto_name: "Cafe Puerto",
+        poi_cafe_puerto_text: "Καφέ για στάση πριν ή μετά το ταξίδι.",
+        poi_taxi_name: "Στάση Ταξί",
+        poi_taxi_text: "Σημείο εξυπηρέτησης ταξί κοντά στον σταθμό.",
         visitor_title: "Πληροφορίες Επισκέπτη",
         visitor_intro: "Οργάνωσε την εκδρομή σου με τα βασικά στοιχεία πριν επιβιβαστείς.",
         visitor_card1_title: "Διάρκεια",
@@ -97,7 +110,20 @@ var i18n = {
         diakopto_card3_text: "Relax by the sea before or after your train ride.",
         map_title: "Railway Route",
         map_intro: "Follow the full line from Diakopto to Kalavryta with stations and mountain highlights.",
+        map_reset_btn: "Reset to initial map view",
         map_note: "Interactive Leaflet map with train icons and station popups.",
+        poi_fuel_name: "Fuel Station",
+        poi_fuel_text: "Refueling point close to the route.",
+        poi_bakery_name: "Bakery",
+        poi_bakery_text: "Stop for coffee and local baked goods.",
+        poi_atm_name: "ATM",
+        poi_atm_text: "Cash withdrawal point near the line.",
+        poi_pharmacy_name: "Pharmacy",
+        poi_pharmacy_text: "Pharmacy near the route.",
+        poi_cafe_puerto_name: "Cafe Puerto",
+        poi_cafe_puerto_text: "Cafe stop before or after the trip.",
+        poi_taxi_name: "Taxi Station",
+        poi_taxi_text: "Taxi service point near the station.",
         visitor_title: "Visitor Info",
         visitor_intro: "Plan your trip with key details before boarding the Odontotos.",
         visitor_card1_title: "Duration",
@@ -127,6 +153,7 @@ var mapState = {
     map: null,
     markers: [],
     stations: [],
+    initialBounds: null,
 };
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -175,9 +202,63 @@ function initMap() {
         iconSize: [32, 32],
     });
 
+    function getPoiIcon(type) {
+        return L.divIcon({
+            className: "",
+            html: '<span class="poi-marker poi-' + type + '"></span>',
+            iconSize: [20, 20],
+            iconAnchor: [10, 10],
+            popupAnchor: [0, -10],
+        });
+    }
+
     mapState.stations.forEach(function (station) {
         var marker = L.marker(station.coords, { icon: trainIcon }).addTo(mapState.map);
         mapState.markers.push({ marker: marker, station: station });
+    });
+
+    var poiStops = [
+        {
+            nameKey: "poi_fuel_name",
+            textKey: "poi_fuel_text",
+            type: "fuel",
+            coords: [38.188, 22.216],
+        },
+        {
+            nameKey: "poi_bakery_name",
+            textKey: "poi_bakery_text",
+            type: "bakery",
+            coords: [38.125, 22.233],
+        },
+        {
+            nameKey: "poi_atm_name",
+            textKey: "poi_atm_text",
+            type: "atm",
+            coords: [38.019, 22.168],
+        },
+        {
+            nameKey: "poi_pharmacy_name",
+            textKey: "poi_pharmacy_text",
+            type: "pharmacy",
+            coords: [38.174, 22.225],
+        },
+        {
+            nameKey: "poi_cafe_puerto_name",
+            textKey: "poi_cafe_puerto_text",
+            type: "cafe",
+            coords: [38.192, 22.206],
+        },
+        {
+            nameKey: "poi_taxi_name",
+            textKey: "poi_taxi_text",
+            type: "taxi",
+            coords: [37.973, 22.114],
+        },
+    ];
+
+    poiStops.forEach(function (poi) {
+        var poiMarker = L.marker(poi.coords, { icon: getPoiIcon(poi.type) }).addTo(mapState.map);
+        mapState.markers.push({ marker: poiMarker, station: poi });
     });
 
     var route = [
@@ -192,7 +273,19 @@ function initMap() {
         weight: 4,
     }).addTo(mapState.map);
 
-    mapState.map.fitBounds(line.getBounds(), { padding: [20, 20] });
+    mapState.initialBounds = line.getBounds();
+    mapState.map.fitBounds(mapState.initialBounds, { padding: [20, 20] });
+
+    var resetMapButton = document.getElementById("reset-map-view");
+    if (resetMapButton) {
+        resetMapButton.addEventListener("click", function () {
+            if (mapState.initialBounds) {
+                mapState.map.fitBounds(mapState.initialBounds, { padding: [20, 20] });
+            } else {
+                mapState.map.setView([38.18, 22.2], 11);
+            }
+        });
+    }
 }
 
 function initRevealAnimations() {
