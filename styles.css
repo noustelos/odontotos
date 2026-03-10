@@ -30,7 +30,7 @@ body {
 
 .lang-switcher {
     position: fixed;
-    top: 14px;
+    top: max(10px, env(safe-area-inset-top));
     right: 14px;
     z-index: 50;
     display: inline-flex;
@@ -40,6 +40,11 @@ body {
     background: rgba(255, 255, 255, 0.82);
     border: 1px solid rgba(31, 61, 43, 0.18);
     backdrop-filter: blur(4px);
+}
+
+html,
+body {
+    overflow-x: hidden;
 }
 
 .lang-btn {
@@ -232,6 +237,74 @@ section {
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 18px 34px rgba(24, 31, 26, 0.14);
+}
+
+/* CINEMATIC SLIDESHOW */
+.cinematic-slideshow {
+    padding-top: 52px;
+    padding-bottom: 36px;
+}
+
+.slideshow-frame {
+    position: relative;
+    width: 100%;
+    height: clamp(360px, 62vh, 680px);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #111;
+    box-shadow: 0 20px 44px rgba(16, 20, 17, 0.24);
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1.03);
+    transition: opacity 700ms ease, transform 1300ms ease;
+}
+
+.slide.is-active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.slideshow-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(17, 17, 17, 0) 58%, rgba(17, 17, 17, 0.26) 100%);
+}
+
+.slide-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    cursor: pointer;
+    color: #fff;
+    background: rgba(19, 27, 22, 0.55);
+    backdrop-filter: blur(2px);
+    font-size: 1.35rem;
+}
+
+.slide-nav.prev {
+    left: 14px;
+}
+
+.slide-nav.next {
+    right: 14px;
+}
+
+.slide-nav:hover {
+    background: rgba(19, 27, 22, 0.8);
 }
 
 /* UNESCO IMAGE SECTION */
@@ -464,12 +537,26 @@ footer {
         order: 3;
     }
 
+    .hero-buttons .button {
+        width: 100%;
+        text-align: center;
+    }
+
     section {
         padding: 62px 18px;
     }
 
     .cards {
         gap: 18px;
+    }
+
+    .slideshow-frame {
+        height: 48vh;
+    }
+
+    .slide-nav {
+        width: 38px;
+        height: 38px;
     }
 
     .image-section img {
@@ -489,18 +576,50 @@ footer {
         border-radius: 0;
     }
 
+    .map {
+        height: 46vh;
+        min-height: 300px;
+    }
+
     .info-grid {
         grid-template-columns: 1fr;
+    }
+
+    .final-cta .button {
+        display: block;
+        width: min(100%, 320px);
+        margin: 0 auto;
+        text-align: center;
     }
 
     .final-cta .button-secondary {
         margin-left: 0;
         margin-top: 10px;
     }
+
+    .lang-switcher {
+        top: max(8px, env(safe-area-inset-top));
+        right: 8px;
+        padding: 5px;
+    }
+
+    .lang-btn {
+        padding: 6px 10px;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
     .info-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
     }
 }

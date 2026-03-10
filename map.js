@@ -16,6 +16,8 @@ var i18n = {
         experience_card2_text: "Το φαράγγι του Βουραϊκού είναι ένα από τα πιο δραματικά και επιβλητικά τοπία της Ελλάδας.",
         experience_card3_title: "Η Διαδρομή",
         experience_card3_text: "Η αμαξοστοιχία ανεβαίνει από τη θάλασσα στα βουνά, ακολουθώντας το ποτάμι και τις χαράδρες.",
+        slideshow_title: "Κινηματογραφική Διαδρομή",
+        slideshow_intro: "Μια οπτική διαδρομή στο τοπίο του Βουραϊκού πριν συνεχίσεις στην εμπειρία του φαραγγιού.",
         unesco_title: "UNESCO Φαράγγι Βουραϊκού",
         unesco_text: "Απόκρημνοι βράχοι, καμπές του ποταμού και πέτρινα γεφύρια συνθέτουν ένα από τα πιο καθηλωτικά σιδηροδρομικά τοπία.",
         history_title: "Η Ιστορία του Σιδηροδρόμου",
@@ -74,6 +76,8 @@ var i18n = {
         experience_card2_text: "The Vouraikos canyon is one of the most dramatic landscapes in Greece.",
         experience_card3_title: "The Route",
         experience_card3_text: "The train climbs from sea level deep into the mountains following the river.",
+        slideshow_title: "Cinematic Journey",
+        slideshow_intro: "A visual passage through the Vouraikos landscape before you continue into the gorge experience.",
         unesco_title: "UNESCO Vouraikos Gorge",
         unesco_text: "Vertical cliffs, river bends and stone bridges shape one of Greece's most immersive rail landscapes.",
         history_title: "The Railway Story",
@@ -127,9 +131,51 @@ var mapState = {
 
 document.addEventListener("DOMContentLoaded", function () {
     initMap();
+    initSlideshow();
     initRevealAnimations();
     initI18n();
 });
+
+function initSlideshow() {
+    var slides = document.querySelectorAll(".slideshow-frame .slide");
+    if (!slides.length) {
+        return;
+    }
+
+    var currentIndex = 0;
+    var prevButton = document.querySelector(".slide-nav.prev");
+    var nextButton = document.querySelector(".slide-nav.next");
+
+    function showSlide(index) {
+        slides.forEach(function (slide, i) {
+            if (i === index) {
+                slide.classList.add("is-active");
+            } else {
+                slide.classList.remove("is-active");
+            }
+        });
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(currentIndex);
+    }
+
+    if (nextButton) {
+        nextButton.addEventListener("click", nextSlide);
+    }
+
+    if (prevButton) {
+        prevButton.addEventListener("click", prevSlide);
+    }
+
+    setInterval(nextSlide, 4500);
+}
 
 function initMap() {
     var mapElement = document.getElementById("map");
