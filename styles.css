@@ -241,73 +241,101 @@ section {
 
 /* CINEMATIC SLIDESHOW */
 .cinematic-slideshow {
+    max-width: 1280px;
     padding-top: 52px;
     padding-bottom: 36px;
 }
 
-.slideshow-frame {
+.simple-slideshow {
     position: relative;
-    width: 100%;
-    height: clamp(360px, 62vh, 680px);
+    width: min(100%, 1280px);
+    aspect-ratio: 16 / 9;
+    height: auto;
+    max-height: 720px;
+    margin: 0 auto;
     border-radius: 14px;
     overflow: hidden;
-    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
     box-shadow: 0 20px 44px rgba(16, 20, 17, 0.24);
 }
 
-.slide {
+.simple-slideshow-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.simple-slideshow-track img {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transform: scale(1.03);
-    transition: opacity 1800ms ease, transform 6200ms ease;
-    will-change: transform, opacity;
-    z-index: 1;
+    animation: simpleCrossFade 54s infinite;
+    will-change: opacity;
 }
 
-.slide.is-active {
-    opacity: 1;
-    transform: scale(1.09);
-    z-index: 2;
+.simple-slideshow-track img:nth-child(1) {
+    animation-delay: 0s;
 }
 
-.slideshow-frame::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(180deg, rgba(17, 17, 17, 0) 58%, rgba(17, 17, 17, 0.26) 100%);
+.simple-slideshow-track img:nth-child(2) {
+    animation-delay: 6s;
 }
 
-.slide-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
-    border: none;
-    width: 44px;
-    height: 44px;
-    border-radius: 999px;
-    cursor: pointer;
-    color: #fff;
-    background: rgba(19, 27, 22, 0.55);
-    backdrop-filter: blur(2px);
-    font-size: 1.35rem;
+.simple-slideshow-track img:nth-child(3) {
+    animation-delay: 12s;
 }
 
-.slide-nav.prev {
-    left: 14px;
+.simple-slideshow-track img:nth-child(4) {
+    animation-delay: 18s;
 }
 
-.slide-nav.next {
-    right: 14px;
+.simple-slideshow-track img:nth-child(5) {
+    animation-delay: 24s;
 }
 
-.slide-nav:hover {
-    background: rgba(19, 27, 22, 0.8);
+.simple-slideshow-track img:nth-child(6) {
+    animation-delay: 30s;
+}
+
+.simple-slideshow-track img:nth-child(7) {
+    animation-delay: 36s;
+}
+
+.simple-slideshow-track img:nth-child(8) {
+    animation-delay: 42s;
+}
+
+.simple-slideshow-track img:nth-child(9) {
+    animation-delay: 48s;
+}
+
+@keyframes simpleCrossFade {
+    0% {
+        opacity: 0;
+    }
+
+    3.704% {
+        opacity: 0.86;
+    }
+
+    7.407% {
+        opacity: 0.86;
+    }
+
+    11.111% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 /* UNESCO IMAGE SECTION */
@@ -555,13 +583,9 @@ footer {
         gap: 18px;
     }
 
-    .slideshow-frame {
-        height: 48vh;
-    }
-
-    .slide-nav {
-        width: 38px;
-        height: 38px;
+    .simple-slideshow {
+        width: 100%;
+        max-height: none;
     }
 
     .image-section img {
@@ -628,5 +652,47 @@ footer {
         animation: none !important;
         transition: none !important;
         scroll-behavior: auto !important;
+    }
+
+    .simple-slideshow-track img {
+        animation-name: simpleCrossFade !important;
+        animation-duration: 54s !important;
+        animation-iteration-count: infinite !important;
+    }
+
+    .simple-slideshow-track img:nth-child(1) {
+        animation-delay: 0s !important;
+    }
+
+    .simple-slideshow-track img:nth-child(2) {
+        animation-delay: 6s !important;
+    }
+
+    .simple-slideshow-track img:nth-child(3) {
+        animation-delay: 12s !important;
+    }
+
+    .simple-slideshow-track img:nth-child(4) {
+        animation-delay: 18s !important;
+    }
+
+    .simple-slideshow-track img:nth-child(5) {
+        animation-delay: 24s !important;
+    }
+
+    .simple-slideshow-track img:nth-child(6) {
+        animation-delay: 30s !important;
+    }
+
+    .simple-slideshow-track img:nth-child(7) {
+        animation-delay: 36s !important;
+    }
+
+    .simple-slideshow-track img:nth-child(8) {
+        animation-delay: 42s !important;
+    }
+
+    .simple-slideshow-track img:nth-child(9) {
+        animation-delay: 48s !important;
     }
 }

@@ -131,91 +131,9 @@ var mapState = {
 
 document.addEventListener("DOMContentLoaded", function () {
     initMap();
-    initSlideshow();
     initRevealAnimations();
     initI18n();
 });
-
-function initSlideshow() {
-    var slides = document.querySelectorAll(".slideshow-frame .slide");
-    if (!slides.length) {
-        return;
-    }
-
-    var currentIndex = 0;
-    var frame = document.querySelector(".slideshow-frame");
-    var prevButton = document.querySelector(".slide-nav.prev");
-    var nextButton = document.querySelector(".slide-nav.next");
-    var autoplayDelay = 5200;
-    var autoplayTimer = null;
-
-    function showSlide(index) {
-        if (index === currentIndex) {
-            return;
-        }
-
-        slides[currentIndex].classList.remove("is-active");
-        slides[index].classList.add("is-active");
-        currentIndex = index;
-    }
-
-    function nextSlide() {
-        var nextIndex = (currentIndex + 1) % slides.length;
-        showSlide(nextIndex);
-    }
-
-    function prevSlide() {
-        var prevIndex = (currentIndex - 1 + slides.length) % slides.length;
-        showSlide(prevIndex);
-    }
-
-    function resetAutoplay() {
-        if (autoplayTimer) {
-            clearInterval(autoplayTimer);
-        }
-        autoplayTimer = setInterval(nextSlide, autoplayDelay);
-    }
-
-    function stopAutoplay() {
-        if (autoplayTimer) {
-            clearInterval(autoplayTimer);
-            autoplayTimer = null;
-        }
-    }
-
-    if (nextButton) {
-        nextButton.addEventListener("click", function () {
-            nextSlide();
-            resetAutoplay();
-        });
-    }
-
-    if (prevButton) {
-        prevButton.addEventListener("click", function () {
-            prevSlide();
-            resetAutoplay();
-        });
-    }
-
-    if (frame) {
-        frame.addEventListener("mouseenter", stopAutoplay);
-        frame.addEventListener("mouseleave", resetAutoplay);
-        frame.addEventListener("focusin", stopAutoplay);
-        frame.addEventListener("focusout", resetAutoplay);
-        frame.addEventListener("touchstart", stopAutoplay, { passive: true });
-        frame.addEventListener("touchend", resetAutoplay, { passive: true });
-    }
-
-    document.addEventListener("visibilitychange", function () {
-        if (document.hidden) {
-            stopAutoplay();
-        } else {
-            resetAutoplay();
-        }
-    });
-
-    resetAutoplay();
-}
 
 function initMap() {
     var mapElement = document.getElementById("map");
