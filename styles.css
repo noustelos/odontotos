@@ -28,6 +28,37 @@ body {
     line-height: 1.6;
 }
 
+.lang-switcher {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    z-index: 50;
+    display: inline-flex;
+    gap: 6px;
+    padding: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(31, 61, 43, 0.18);
+    backdrop-filter: blur(4px);
+}
+
+.lang-btn {
+    border: none;
+    border-radius: 999px;
+    padding: 7px 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    color: var(--forest);
+    background: transparent;
+}
+
+.lang-btn.is-active {
+    color: #fff;
+    background: var(--forest);
+}
+
 h1,
 h2,
 h3 {

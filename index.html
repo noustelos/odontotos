@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Odontotos Railway | Vouraikos Gorge</title>
+<title>Οδοντωτός Σιδηρόδρομος | Φαράγγι Βουραϊκού</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -17,56 +17,61 @@
 
 <body>
 
+<div class="lang-switcher" role="group" aria-label="Language switcher">
+<button class="lang-btn is-active" data-lang="el" type="button">ΕΛ</button>
+<button class="lang-btn" data-lang="en" type="button">EN</button>
+</div>
+
 <!-- HERO SECTION -->
 <!-- cinematic portrait video from the Vouraikos gorge -->
 <section class="hero-split">
 <div class="hero-text">
-<h1>Odontotos Railway</h1>
+<h1 data-i18n="hero_title">Οδοντωτός Σιδηρόδρομος</h1>
 
-<p>
-Ride one of Europe's most scenic railways through
-the Vouraikos Gorge UNESCO Global Geopark.
+<p data-i18n="hero_text">
+Ζήστε μία από τις πιο εντυπωσιακές σιδηροδρομικές διαδρομές της Ευρώπης
+μέσα από το Φαράγγι του Βουραϊκού UNESCO Global Geopark.
 </p>
 
 <div class="hero-buttons">
-<a class="button primary" href="#">Explore the Journey</a>
-<a class="button secondary" href="#">View the Route</a>
+<a class="button primary" href="#" data-i18n="hero_btn_explore">Εξερεύνησε τη Διαδρομή</a>
+<a class="button secondary" href="#" data-i18n="hero_btn_route">Δες τη Χάραξη</a>
 </div>
 </div>
 
 <div class="hero-video">
-<video autoplay muted loop playsinline preload="metadata" poster="assets/images/hero-poster.jpg" aria-label="Odontotos Railway cinematic hero video">
+<video autoplay muted loop playsinline preload="metadata" poster="assets/images/hero-poster.jpg" aria-label="Cinematic hero video του Οδοντωτού">
 <source src="assets/video/hero-video.mp4" type="video/mp4">
-Your browser does not support the video tag.
+Ο περιηγητής σας δεν υποστηρίζει αναπαραγωγή βίντεο.
 </video>
 </div>
 </section>
 
-<p class="scroll-indicator">Scroll to start the journey</p>
+<p class="scroll-indicator" data-i18n="scroll_indicator">Κύλισε για να ξεκινήσει το ταξίδι</p>
 
 <!-- EXPERIENCE SECTION -->
 <!-- three cinematic cards introducing the journey -->
 <section>
 <div class="section-intro">
-<h2>The Experience</h2>
-<p>From the coast to alpine villages, the Odontotos line unfolds like a living travel documentary.</p>
+<h2 data-i18n="experience_title">Η Εμπειρία</h2>
+<p data-i18n="experience_intro">Από την ακτή ως τα αλπικά χωριά, η γραμμή του Οδοντωτού ξεδιπλώνεται σαν κινηματογραφικό οδοιπορικό.</p>
 </div>
 
 <div class="cards">
 
 <div class="card">
-<h3>The Train</h3>
-<p>A historic rack railway connecting the coast of Diakopto with the mountain town of Kalavryta.</p>
+<h3 data-i18n="experience_card1_title">Το Τρένο</h3>
+<p data-i18n="experience_card1_text">Ιστορικός οδοντωτός σιδηρόδρομος που ενώνει το παραθαλάσσιο Διακοπτό με τα ορεινά Καλάβρυτα.</p>
 </div>
 
 <div class="card">
-<h3>The Gorge</h3>
-<p>The Vouraikos canyon is one of the most dramatic landscapes in Greece.</p>
+<h3 data-i18n="experience_card2_title">Το Φαράγγι</h3>
+<p data-i18n="experience_card2_text">Το φαράγγι του Βουραϊκού είναι ένα από τα πιο δραματικά και επιβλητικά τοπία της Ελλάδας.</p>
 </div>
 
 <div class="card">
-<h3>The Route</h3>
-<p>The train climbs from sea level deep into the mountains following the river.</p>
+<h3 data-i18n="experience_card3_title">Η Διαδρομή</h3>
+<p data-i18n="experience_card3_text">Η αμαξοστοιχία ανεβαίνει από τη θάλασσα στα βουνά, ακολουθώντας το ποτάμι και τις χαράδρες.</p>
 </div>
 
 </div>
@@ -75,10 +80,10 @@ Your browser does not support the video tag.
 <!-- UNESCO GORGE SECTION -->
 <!-- large cinematic photography with minimal overlay text -->
 <section class="image-section">
-<img src="vouraikos.jpg">
+<img src="vouraikos.jpg" alt="Φαράγγι Βουραϊκού">
 <div class="image-caption">
-<h2>UNESCO Vouraikos Gorge</h2>
-<p>Vertical cliffs, river bends and stone bridges shape one of Greece's most immersive rail landscapes.</p>
+<h2 data-i18n="unesco_title">UNESCO Φαράγγι Βουραϊκού</h2>
+<p data-i18n="unesco_text">Απόκρημνοι βράχοι, καμπές του ποταμού και πέτρινα γεφύρια συνθέτουν ένα από τα πιο καθηλωτικά σιδηροδρομικά τοπία.</p>
 </div>
 </section>
 
@@ -86,24 +91,24 @@ Your browser does not support the video tag.
 <!-- timeline storytelling for key milestones -->
 <section>
 <div class="section-intro">
-<h2>The Railway Story</h2>
+<h2 data-i18n="history_title">Η Ιστορία του Σιδηροδρόμου</h2>
 </div>
 
 <div class="timeline">
 
 <article class="timeline-item">
-<h3>1896</h3>
-<p>Construction of the mountain railway begins, carving a technical wonder through the gorge.</p>
+<h3 data-i18n="history_1896_title">1896</h3>
+<p data-i18n="history_1896_text">Ξεκινά η κατασκευή της γραμμής, ένα τεχνικό έργο-σταθμός μέσα στο φαράγγι.</p>
 </article>
 
 <article class="timeline-item">
-<h3>1897</h3>
-<p>The first trains run between Diakopto and Kalavryta, opening a new era of travel and trade.</p>
+<h3 data-i18n="history_1897_title">1897</h3>
+<p data-i18n="history_1897_text">Πραγματοποιούνται τα πρώτα δρομολόγια ανάμεσα σε Διακοπτό και Καλάβρυτα.</p>
 </article>
 
 <article class="timeline-item">
-<h3>Today</h3>
-<p>The Odontotos remains one of Europe's most scenic rack-rail experiences for visitors worldwide.</p>
+<h3 data-i18n="history_today_title">Σήμερα</h3>
+<p data-i18n="history_today_text">Ο Οδοντωτός παραμένει μία από τις πιο εντυπωσιακές ορεινές σιδηροδρομικές εμπειρίες της Ευρώπης.</p>
 </article>
 
 </div>
@@ -113,25 +118,25 @@ Your browser does not support the video tag.
 <!-- starting point cards with cinematic spacing -->
 <section class="diakopto-section">
 <div class="section-intro">
-<h2>Starting Point: Diakopto</h2>
-<p>Where sea breeze meets mountain rail, Diakopto is the gateway to the Odontotos experience.</p>
+<h2 data-i18n="diakopto_title">Αφετηρία: Διακοπτό</h2>
+<p data-i18n="diakopto_intro">Εκεί όπου η θάλασσα συναντά το βουνό, το Διακοπτό γίνεται η πύλη για το ταξίδι του Οδοντωτού.</p>
 </div>
 
 <div class="cards">
 
 <div class="card">
-<h3>Railway Station</h3>
-<p>The historic station where the journey begins.</p>
+<h3 data-i18n="diakopto_card1_title">Σιδηροδρομικός Σταθμός</h3>
+<p data-i18n="diakopto_card1_text">Ο ιστορικός σταθμός από όπου ξεκινά η διαδρομή.</p>
 </div>
 
 <div class="card">
-<h3>Railway Museum</h3>
-<p>A small exhibition dedicated to the history of the line.</p>
+<h3 data-i18n="diakopto_card2_title">Σιδηροδρομικό Μουσείο</h3>
+<p data-i18n="diakopto_card2_text">Μικρή έκθεση αφιερωμένη στην ιστορία της γραμμής.</p>
 </div>
 
 <div class="card">
-<h3>Seafront</h3>
-<p>Relax by the sea before or after your train ride.</p>
+<h3 data-i18n="diakopto_card3_title">Παραλιακό Μέτωπο</h3>
+<p data-i18n="diakopto_card3_text">Χαλάρωσε δίπλα στη θάλασσα πριν ή μετά το ταξίδι.</p>
 </div>
 
 </div>
@@ -143,14 +148,14 @@ Your browser does not support the video tag.
 <section class="map-section">
 <div class="section-intro">
 
-<h2>Railway Route</h2>
-<p>Track the full line from Diakopto to Kalavryta, including stations and key mountain passages.</p>
+<h2 data-i18n="map_title">Σιδηροδρομική Διαδρομή</h2>
+<p data-i18n="map_intro">Δες όλη τη γραμμή από το Διακοπτό έως τα Καλάβρυτα, με στάσεις και σημεία ενδιαφέροντος.</p>
 
 </div>
 
 
 <div id="map" class="map"></div>
-<p class="map-note">Interactive route map powered by Leaflet with custom train markers and station popups.</p>
+<p class="map-note" data-i18n="map_note">Διαδραστικός χάρτης με Leaflet, εικονίδια τρένου και popups σταθμών.</p>
 
 </section>
 
@@ -160,26 +165,26 @@ Your browser does not support the video tag.
 
 <div class="section-intro">
 
-<h2>Visitor Info</h2>
-<p>Plan your trip with quick essentials before boarding the Odontotos.</p>
+<h2 data-i18n="visitor_title">Πληροφορίες Επισκέπτη</h2>
+<p data-i18n="visitor_intro">Οργάνωσε την εκδρομή σου με τα βασικά στοιχεία πριν επιβιβαστείς.</p>
 
 </div>
 
 <div class="info-grid">
 
 <article class="info-card">
-<h3>Duration</h3>
-<p>Approximately 1 hour through Vouraikos Gorge.</p>
+<h3 data-i18n="visitor_card1_title">Διάρκεια</h3>
+<p data-i18n="visitor_card1_text">Περίπου 1 ώρα μέσα στο φαράγγι του Βουραϊκού.</p>
 </article>
 
 <article class="info-card">
-<h3>Route</h3>
-<p>Diakopto to Kalavryta with scenic intermediate stops.</p>
+<h3 data-i18n="visitor_card2_title">Διαδρομή</h3>
+<p data-i18n="visitor_card2_text">Διακοπτό - Καλάβρυτα με ενδιάμεσες στάσεις.</p>
 </article>
 
 <article class="info-card">
-<h3>Best Season</h3>
-<p>Spring and Autumn for vivid colors and comfortable weather.</p>
+<h3 data-i18n="visitor_card3_title">Καλύτερη Εποχή</h3>
+<p data-i18n="visitor_card3_text">Άνοιξη και Φθινόπωρο για ιδανικό καιρό και χρώματα.</p>
 </article>
 
 </div>
@@ -190,19 +195,19 @@ Your browser does not support the video tag.
 <!-- conversion block inviting users to explore diakopto -->
 <section class="final-cta">
 
-<h2>Discover Diakopto</h2>
+<h2 data-i18n="cta_title">Ανακάλυψε το Διακοπτό</h2>
 
-<p>Explore beaches, local flavors, and authentic mountain-to-sea moments before or after your rail journey.</p>
+<p data-i18n="cta_text">Εξερεύνησε παραλίες, τοπικές γεύσεις και αυθεντικές εμπειρίες πριν ή μετά το ταξίδι με τον Οδοντωτό.</p>
 
-<a class="button" href="#">Visit DiscoverDiakopto</a>
-<a class="button button-secondary" href="#">Plan Your Journey</a>
+<a class="button" href="#" data-i18n="cta_btn_visit">Επίσκεψη στο DiscoverDiakopto</a>
+<a class="button button-secondary" href="#" data-i18n="cta_btn_plan">Σχεδίασε το Ταξίδι σου</a>
 
 </section>
 
 <footer>
 
-<p>Odontotos Railway – Vouraikos Gorge</p>
-<p>Created by WebHostPro | all rights resereved 2026</p>
+<p data-i18n="footer_title">Οδοντωτός Σιδηρόδρομος - Φαράγγι Βουραϊκού</p>
+<p data-i18n="footer_credit">Δημιουργία από WebHostPro | με επιφύλαξη παντός δικαιώματος 2026</p>
 </footer>
 
 <script src="map.js"></script>
