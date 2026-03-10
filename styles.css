@@ -263,12 +263,15 @@ section {
     object-fit: cover;
     opacity: 0;
     transform: scale(1.03);
-    transition: opacity 700ms ease, transform 1300ms ease;
+    transition: opacity 1800ms ease, transform 6200ms ease;
+    will-change: transform, opacity;
+    z-index: 1;
 }
 
 .slide.is-active {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1.09);
+    z-index: 2;
 }
 
 .slideshow-frame::after {
@@ -324,13 +327,15 @@ section {
 
 .image-caption {
     position: absolute;
-    left: min(7vw, 80px);
+    left: 50%;
+    transform: translateX(-50%);
     bottom: clamp(18px, 5vw, 60px);
     padding: clamp(14px, 2vw, 22px) clamp(16px, 2.2vw, 28px);
     background: rgba(15, 28, 22, 0.62);
     border: 1px solid rgba(255, 255, 255, 0.34);
     backdrop-filter: blur(2px);
-    max-width: min(620px, 90%);
+    width: min(900px, 90%);
+    text-align: center;
 }
 
 .image-caption h2 {
@@ -566,7 +571,9 @@ footer {
     .image-caption {
         left: 16px;
         right: 16px;
+        transform: none;
         max-width: none;
+        width: auto;
     }
 
     .diakopto-section,

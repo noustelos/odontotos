@@ -18,7 +18,7 @@ var i18n = {
         experience_card3_text: "Η αμαξοστοιχία ανεβαίνει από τη θάλασσα στα βουνά, ακολουθώντας το ποτάμι και τις χαράδρες.",
         slideshow_title: "Κινηματογραφική Διαδρομή",
         slideshow_intro: "Μια οπτική διαδρομή στο τοπίο του Βουραϊκού πριν συνεχίσεις στην εμπειρία του φαραγγιού.",
-        unesco_title: "UNESCO Φαράγγι Βουραϊκού",
+        unesco_title: "VOURAIKOS UNESCO GLOBAL GEOPARK",
         unesco_text: "Απόκρημνοι βράχοι, καμπές του ποταμού και πέτρινα γεφύρια συνθέτουν ένα από τα πιο καθηλωτικά σιδηροδρομικά τοπία.",
         history_title: "Η Ιστορία του Σιδηροδρόμου",
         history_1896_title: "1896",
@@ -78,7 +78,7 @@ var i18n = {
         experience_card3_text: "The train climbs from sea level deep into the mountains following the river.",
         slideshow_title: "Cinematic Journey",
         slideshow_intro: "A visual passage through the Vouraikos landscape before you continue into the gorge experience.",
-        unesco_title: "UNESCO Vouraikos Gorge",
+        unesco_title: "VOURAIKOS UNESCO GLOBAL GEOPARK",
         unesco_text: "Vertical cliffs, river bends and stone bridges shape one of Greece's most immersive rail landscapes.",
         history_title: "The Railway Story",
         history_1896_title: "1896",
@@ -143,38 +143,78 @@ function initSlideshow() {
     }
 
     var currentIndex = 0;
+    var frame = document.querySelector(".slideshow-frame");
     var prevButton = document.querySelector(".slide-nav.prev");
     var nextButton = document.querySelector(".slide-nav.next");
+    var autoplayDelay = 5200;
+    var autoplayTimer = null;
 
     function showSlide(index) {
-        slides.forEach(function (slide, i) {
-            if (i === index) {
-                slide.classList.add("is-active");
-            } else {
-                slide.classList.remove("is-active");
-            }
-        });
+        if (index === currentIndex) {
+            return;
+        }
+
+        slides[currentIndex].classList.remove("is-active");
+        slides[index].classList.add("is-active");
+        currentIndex = index;
     }
 
     function nextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        showSlide(currentIndex);
+        var nextIndex = (currentIndex + 1) % slides.length;
+        showSlide(nextIndex);
     }
 
     function prevSlide() {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        showSlide(currentIndex);
+        var prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(prevIndex);
+    }
+
+    function resetAutoplay() {
+        if (autoplayTimer) {
+            clearInterval(autoplayTimer);
+        }
+        autoplayTimer = setInterval(nextSlide, autoplayDelay);
+    }
+
+    function stopAutoplay() {
+        if (autoplayTimer) {
+            clearInterval(autoplayTimer);
+            autoplayTimer = null;
+        }
     }
 
     if (nextButton) {
-        nextButton.addEventListener("click", nextSlide);
+        nextButton.addEventListener("click", function () {
+            nextSlide();
+            resetAutoplay();
+        });
     }
 
     if (prevButton) {
-        prevButton.addEventListener("click", prevSlide);
+        prevButton.addEventListener("click", function () {
+            prevSlide();
+            resetAutoplay();
+        });
     }
 
-    setInterval(nextSlide, 4500);
+    if (frame) {
+        frame.addEventListener("mouseenter", stopAutoplay);
+        frame.addEventListener("mouseleave", resetAutoplay);
+        frame.addEventListener("focusin", stopAutoplay);
+        frame.addEventListener("focusout", resetAutoplay);
+        frame.addEventListener("touchstart", stopAutoplay, { passive: true });
+        frame.addEventListener("touchend", resetAutoplay, { passive: true });
+    }
+
+    document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+            stopAutoplay();
+        } else {
+            resetAutoplay();
+        }
+    });
+
+    resetAutoplay();
 }
 
 function initMap() {
