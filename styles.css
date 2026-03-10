@@ -26,6 +26,7 @@ body {
     color: var(--text-dark);
     background: #fff;
     line-height: 1.6;
+    touch-action: pan-y;
 }
 
 .lang-switcher {
@@ -153,6 +154,7 @@ section {
     width: 100%;
     max-width: 420px;
     justify-self: end;
+    touch-action: pan-y;
 }
 
 .hero-video::before {
@@ -172,6 +174,7 @@ section {
     border-radius: 8px;
     display: block;
     box-shadow: 0 18px 38px rgba(24, 31, 26, 0.24);
+    pointer-events: none;
 }
 
 .scroll-indicator {
@@ -395,6 +398,7 @@ section {
     overflow: hidden;
     box-shadow: 0 16px 34px rgba(20, 25, 21, 0.22);
     background: #000;
+    touch-action: pan-y;
 }
 
 .history-video::before {
@@ -412,6 +416,7 @@ section {
     height: min(66vh, 640px);
     object-fit: cover;
     display: block;
+    pointer-events: none;
 }
 
 .history-content {
