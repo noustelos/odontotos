@@ -261,20 +261,48 @@ function initMap() {
         mapState.markers.push({ marker: poiMarker, station: poi });
     });
 
-    var route = [
+    var fallbackRoute = [
         [38.192, 22.201],
         [38.191, 22.262],
         [38.083, 22.207],
         [37.972, 22.111],
     ];
 
-    var line = L.polyline(route, {
-        color: "#9e3b2c",
-        weight: 4,
-    }).addTo(mapState.map);
+    function setInitialMapBounds(bounds) {
+        if (bounds && bounds.isValid && bounds.isValid()) {
+            mapState.initialBounds = bounds;
+            mapState.map.fitBounds(bounds, { padding: [20, 20] });
+        }
+    }
 
-    mapState.initialBounds = line.getBounds();
-    mapState.map.fitBounds(mapState.initialBounds, { padding: [20, 20] });
+    function drawFallbackRoute() {
+        var line = L.polyline(fallbackRoute, {
+            color: "#9e3b2c",
+            weight: 4,
+        }).addTo(mapState.map);
+        setInitialMapBounds(line.getBounds());
+    }
+
+    fetch("assets/map/odontotos-route.geojson")
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error("Failed to load route GeoJSON");
+            }
+            return response.json();
+        })
+        .then(function (geojsonData) {
+            var routeLayer = L.geoJSON(geojsonData, {
+                style: {
+                    color: "#9e3b2c",
+                    weight: 4,
+                },
+            }).addTo(mapState.map);
+
+            setInitialMapBounds(routeLayer.getBounds());
+        })
+        .catch(function () {
+            drawFallbackRoute();
+        });
 
     var resetMapButton = document.getElementById("reset-map-view");
     if (resetMapButton) {
