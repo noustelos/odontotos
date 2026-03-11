@@ -152,7 +152,6 @@ var i18n = {
 var mapState = {
     map: null,
     markers: [],
-    stations: [],
     initialBounds: null,
 };
 
@@ -173,93 +172,6 @@ function initMap() {
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "© OpenStreetMap",
     }).addTo(mapState.map);
-
-    mapState.stations = [
-        {
-            nameKey: "station_diakopto_name",
-            textKey: "station_diakopto_text",
-            coords: [38.192, 22.201],
-        },
-        {
-            nameKey: "station_niamata_name",
-            textKey: "station_niamata_text",
-            coords: [38.191, 22.262],
-        },
-        {
-            nameKey: "station_zachlorou_name",
-            textKey: "station_zachlorou_text",
-            coords: [38.083, 22.207],
-        },
-        {
-            nameKey: "station_kalavryta_name",
-            textKey: "station_kalavryta_text",
-            coords: [37.972, 22.111],
-        },
-    ];
-
-    var trainIcon = L.icon({
-        iconUrl: "assets/icons/train-icon.png",
-        iconSize: [32, 32],
-    });
-
-    function getPoiIcon(type) {
-        return L.divIcon({
-            className: "",
-            html: '<span class="poi-marker poi-' + type + '"></span>',
-            iconSize: [20, 20],
-            iconAnchor: [10, 10],
-            popupAnchor: [0, -10],
-        });
-    }
-
-    mapState.stations.forEach(function (station) {
-        var marker = L.marker(station.coords, { icon: trainIcon }).addTo(mapState.map);
-        mapState.markers.push({ marker: marker, station: station });
-    });
-
-    var poiStops = [
-        {
-            nameKey: "poi_fuel_name",
-            textKey: "poi_fuel_text",
-            type: "fuel",
-            coords: [38.188, 22.216],
-        },
-        {
-            nameKey: "poi_bakery_name",
-            textKey: "poi_bakery_text",
-            type: "bakery",
-            coords: [38.125, 22.233],
-        },
-        {
-            nameKey: "poi_atm_name",
-            textKey: "poi_atm_text",
-            type: "atm",
-            coords: [38.019, 22.168],
-        },
-        {
-            nameKey: "poi_pharmacy_name",
-            textKey: "poi_pharmacy_text",
-            type: "pharmacy",
-            coords: [38.174, 22.225],
-        },
-        {
-            nameKey: "poi_cafe_puerto_name",
-            textKey: "poi_cafe_puerto_text",
-            type: "cafe",
-            coords: [38.192, 22.206],
-        },
-        {
-            nameKey: "poi_taxi_name",
-            textKey: "poi_taxi_text",
-            type: "taxi",
-            coords: [37.973, 22.114],
-        },
-    ];
-
-    poiStops.forEach(function (poi) {
-        var poiMarker = L.marker(poi.coords, { icon: getPoiIcon(poi.type) }).addTo(mapState.map);
-        mapState.markers.push({ marker: poiMarker, station: poi });
-    });
 
     var fallbackRoute = [
         [38.192, 22.201],
