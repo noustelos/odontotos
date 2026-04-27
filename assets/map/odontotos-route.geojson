@@ -1,0 +1,22 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Odontotos Rack Railway" },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [22.1977184, 38.1918659],
+          [22.1985, 38.1850],
+          [22.1850, 38.1500],
+          [22.1750, 38.1200],
+          [22.1634473, 38.0945110],
+          [22.1485, 38.0615],
+          [22.1320, 38.0465],
+          [22.1103931, 38.0333853]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "odontos-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static landing page build and validation scripts",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "prepare:dist": "mkdir -p dist",
+    "minify:css": "cleancss -O2 styles.css -o dist/styles.css",
+    "minify:js": "terser map.js -c -m -o dist/map.js",
+    "minify:html": "html-minifier-terser --collapse-whitespace --remove-comments --remove-redundant-attributes --remove-script-type-attributes --remove-style-link-type-attributes --minify-css true --minify-js true -o dist/index.html index.html && html-minifier-terser --collapse-whitespace --remove-comments --remove-redundant-attributes --remove-script-type-attributes --remove-style-link-type-attributes --minify-css true --minify-js true -o dist/privacy-policy.html privacy-policy.html",
+    "copy:assets": "cp -R assets dist/assets",
+    "copy:static": "cp robots.txt sitemap.xml dist/",
+    "build": "npm run clean && npm run prepare:dist && npm run minify:css && npm run minify:js && npm run minify:html && npm run copy:assets && npm run copy:static",
+    "link-check": "node scripts/link-check.js",
+    "link-check:dist": "node scripts/link-check.js dist"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "html-minifier-terser": "^7.2.0",
+    "terser": "^5.39.2"
+  }
+}

@@ -1,0 +1,43 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Enforce a single canonical host: https://odontotos.gr
+RewriteCond %{HTTP_HOST} ^www\.odontotos\.gr$ [NC]
+RewriteRule ^(.*)$ https://odontotos.gr/$1 [R=301,L]
+
+# Optional hardening: force HTTPS on the canonical host too.
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP_HOST} ^odontotos\.gr$ [NC]
+RewriteRule ^(.*)$ https://odontotos.gr/$1 [R=301,L]
+</IfModule>
+
+<IfModule mod_mime.c>
+AddType image/webp .webp
+AddType image/jpeg .jpg .jpeg
+AddType image/png .png
+AddType image/svg+xml .svg
+AddType video/mp4 .mp4
+AddType application/geo+json .geojson
+</IfModule>
+
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType text/css "access plus 7 days"
+ExpiresByType application/javascript "access plus 7 days"
+ExpiresByType image/webp "access plus 30 days"
+ExpiresByType image/jpeg "access plus 30 days"
+ExpiresByType image/png "access plus 30 days"
+ExpiresByType video/mp4 "access plus 30 days"
+</IfModule>
+
+<IfModule mod_headers.c>
+<FilesMatch "\.(css|js)$">
+Header set Cache-Control "public, max-age=604800, immutable"
+</FilesMatch>
+<FilesMatch "\.(webp|jpg|jpeg|png|svg|mp4|geojson)$">
+Header set Cache-Control "public, max-age=2592000"
+</FilesMatch>
+<FilesMatch "\.(html)$">
+Header set Cache-Control "no-cache, must-revalidate"
+</FilesMatch>
+</IfModule>
