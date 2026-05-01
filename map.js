@@ -483,6 +483,21 @@ var LEAFLET_CSS_INTEGRITY = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=
 var LEAFLET_JS_INTEGRITY = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=";
 var leafletLoadPromise = null;
 
+function emitAnalyticsEvent(eventName, eventParams) {
+    if (!eventName) {
+        return;
+    }
+
+    document.dispatchEvent(
+        new CustomEvent("odontotos:analytics-event", {
+            detail: {
+                name: eventName,
+                params: eventParams || {},
+            },
+        })
+    );
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     syncHeaderOffset();
     initDesktopPerformanceMode();
@@ -1289,6 +1304,11 @@ function initShareCta() {
 
     shareButtons.forEach(function (shareButton) {
         shareButton.addEventListener("click", function () {
+            emitAnalyticsEvent("cta_share_click", {
+                language: currentLanguage,
+                context: "native_share_button",
+            });
+
             var shareData = {
                 title: document.title,
                 text: (i18n[currentLanguage] && i18n[currentLanguage].nav_share_message) || document.title,
@@ -1415,6 +1435,9 @@ function initSocialSharePanel() {
         buildShareLinks();
         panel.hidden = false;
         document.body.classList.add("social-panel-open");
+        emitAnalyticsEvent("social_share_open", {
+            language: currentLanguage,
+        });
         if (closeButton) {
             closeButton.focus();
         }
@@ -1442,6 +1465,9 @@ function initSocialSharePanel() {
         copyButton.addEventListener("click", function () {
             copyToClipboard(window.location.href)
                 .then(function () {
+                    emitAnalyticsEvent("social_share_copy", {
+                        language: currentLanguage,
+                    });
                     announceShareStatus("nav_share_copied");
                     closePanel();
                 })
@@ -1453,6 +1479,11 @@ function initSocialSharePanel() {
 
     optionLinks.forEach(function (link) {
         link.addEventListener("click", function () {
+            var network = link.getAttribute("data-social-link") || "unknown";
+            emitAnalyticsEvent("social_share_network_click", {
+                language: currentLanguage,
+                network: network,
+            });
             closePanel();
         });
     });
@@ -2002,6 +2033,10 @@ function initContactForm() {
 
         var honeypotValue = (honeypotField && honeypotField.value) || "";
         if (honeypotValue.trim()) {
+            emitAnalyticsEvent("contact_form_blocked", {
+                language: currentLanguage,
+                reason: "honeypot",
+            });
             if (statusNode) {
                 statusNode.textContent = i18n[currentLanguage].contact_status_blocked || "";
             }
@@ -2013,11 +2048,18 @@ function initContactForm() {
         var message = (messageField && messageField.value ? messageField.value : "").trim();
 
         if (!name || !email || !message) {
+            emitAnalyticsEvent("contact_form_validation_error", {
+                language: currentLanguage,
+            });
             if (statusNode) {
                 statusNode.textContent = i18n[currentLanguage].contact_status_required || "";
             }
             return;
         }
+
+        emitAnalyticsEvent("contact_form_submit", {
+            language: currentLanguage,
+        });
 
         var recipient = "info@odontotos.gr";
         var ccRecipients = "info@noustelos.gr,alexandros21bs@gmail.com";
@@ -2054,6 +2096,10 @@ function initContactForm() {
                     throw new Error("Email API error");
                 }
 
+                emitAnalyticsEvent("contact_form_success", {
+                    language: currentLanguage,
+                });
+
                 if (statusNode) {
                     statusNode.textContent = i18n[currentLanguage].contact_status_sent || "";
                 }
@@ -2061,6 +2107,9 @@ function initContactForm() {
                 form.reset();
             })
             .catch(function () {
+                emitAnalyticsEvent("contact_form_error", {
+                    language: currentLanguage,
+                });
                 if (statusNode) {
                     statusNode.textContent = i18n[currentLanguage].contact_status_error || "";
                 }
@@ -2088,11 +2137,18 @@ function initNewsletterForm() {
         var email = (emailField && emailField.value ? emailField.value : "").trim();
 
         if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            emitAnalyticsEvent("newsletter_validation_error", {
+                language: currentLanguage,
+            });
             if (statusNode) {
                 statusNode.textContent = i18n[currentLanguage].newsletter_status_required || "";
             }
             return;
         }
+
+        emitAnalyticsEvent("newsletter_submit", {
+            language: currentLanguage,
+        });
 
         var submitButton = form.querySelector('button[type="submit"]');
         var recipient = "info@odontotos.gr";
@@ -2124,6 +2180,10 @@ function initNewsletterForm() {
                     throw new Error("Newsletter API error");
                 }
 
+                emitAnalyticsEvent("newsletter_success", {
+                    language: currentLanguage,
+                });
+
                 if (statusNode) {
                     statusNode.textContent = i18n[currentLanguage].newsletter_status_success || "";
                 }
@@ -2131,6 +2191,9 @@ function initNewsletterForm() {
                 form.reset();
             })
             .catch(function () {
+                emitAnalyticsEvent("newsletter_error", {
+                    language: currentLanguage,
+                });
                 if (statusNode) {
                     statusNode.textContent = i18n[currentLanguage].newsletter_status_error || "";
                 }
@@ -2158,6 +2221,12 @@ function setCookieConsent(value) {
     } catch (error) {
         // Ignore storage errors and keep banner behavior graceful.
     }
+
+    document.dispatchEvent(
+        new CustomEvent("odontotos:cookie-consent-changed", {
+            detail: { value: value },
+        })
+    );
 }
 
 function showCookieBanner(statusMessage) {
@@ -2189,11 +2258,19 @@ function initCookieConsent() {
 
     acceptButton.addEventListener("click", function () {
         setCookieConsent("accepted");
+        emitAnalyticsEvent("cookie_consent_update", {
+            value: "accepted",
+            language: currentLanguage,
+        });
         banner.hidden = true;
     });
 
     rejectButton.addEventListener("click", function () {
         setCookieConsent("rejected");
+        emitAnalyticsEvent("cookie_consent_update", {
+            value: "rejected",
+            language: currentLanguage,
+        });
         banner.hidden = true;
     });
 }
@@ -2217,6 +2294,10 @@ function initNavActiveState() {
         if (targetId === "#page-top") {
             homeLink = link;
             link.addEventListener("click", function () {
+                emitAnalyticsEvent("nav_section_click", {
+                    language: currentLanguage,
+                    target: "page-top",
+                });
                 setActiveNavLink(link);
             });
             return;
@@ -2233,6 +2314,10 @@ function initNavActiveState() {
         });
 
         link.addEventListener("click", function () {
+            emitAnalyticsEvent("nav_section_click", {
+                language: currentLanguage,
+                target: targetId.replace("#", ""),
+            });
             setActiveNavLink(link);
         });
     });
@@ -2753,6 +2838,10 @@ function initMap() {
                 setMarkerBlink(marker, true);
                 focusStation(stationIndex, false);
                 marker.openPopup();
+                emitAnalyticsEvent("map_station_click", {
+                    language: currentLanguage,
+                    station: station.labelKey,
+                });
             });
 
             marker.on("mouseout", function () {
@@ -2803,6 +2892,10 @@ function initMap() {
 
                     if (manualToggle) {
                         pinnedStoryIndex = stationIndex;
+                        emitAnalyticsEvent("map_story_toggle", {
+                            language: currentLanguage,
+                            station: station.labelKey,
+                        });
                     }
                     openStationStory(stationIndex);
                     setMarkerBlink(marker, true);
@@ -2861,6 +2954,9 @@ function initMap() {
     if (resetMapButton) {
         resetMapButton.addEventListener("click", function () {
             resetMapViewport();
+            emitAnalyticsEvent("map_reset_view", {
+                language: currentLanguage,
+            });
         });
     }
 }
@@ -3009,6 +3105,12 @@ function setLanguage(lang) {
 
     initDynamicFooterMeta();
     updateMapPopups();
+
+    document.dispatchEvent(
+        new CustomEvent("odontotos:language-changed", {
+            detail: { lang: lang },
+        })
+    );
 }
 
 function updatePrivacyPolicyLinks(lang) {

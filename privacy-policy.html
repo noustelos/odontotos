@@ -26,6 +26,117 @@
 <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
 <title>Πολιτική Απορρήτου | Οδοντωτός Διακοπτό-Καλάβρυτα</title>
 <link rel="stylesheet" href="styles.css">
+
+<script>
+(function () {
+  var GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
+  var CONSENT_KEY = "odontos_cookie_consent_v1";
+  var PLACEHOLDER_ID = "G-XXXXXXXXXX";
+  var scriptLoaded = false;
+  var analyticsInitialized = false;
+  var lastTrackedPath = "";
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function () {
+    window.dataLayer.push(arguments);
+  };
+
+  function canTrack() {
+    return GA_MEASUREMENT_ID && GA_MEASUREMENT_ID !== PLACEHOLDER_ID;
+  }
+
+  function loadAnalyticsLibrary() {
+    if (!canTrack() || scriptLoaded) {
+      return;
+    }
+
+    var script = document.createElement("script");
+    script.async = true;
+    script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_MEASUREMENT_ID);
+    document.head.appendChild(script);
+    scriptLoaded = true;
+  }
+
+  function initAnalytics() {
+    if (!canTrack() || analyticsInitialized) {
+      return;
+    }
+
+    window.gtag("js", new Date());
+    window.gtag("config", GA_MEASUREMENT_ID, {
+      anonymize_ip: true,
+      send_page_view: false
+    });
+    analyticsInitialized = true;
+  }
+
+  function trackPageView() {
+    if (!analyticsInitialized) {
+      return;
+    }
+
+    var pagePath = window.location.pathname + window.location.search;
+    if (pagePath === lastTrackedPath) {
+      return;
+    }
+
+    lastTrackedPath = pagePath;
+    window.gtag("event", "page_view", {
+      page_title: document.title,
+      page_location: window.location.href,
+      page_path: pagePath,
+      language: document.documentElement.lang || "el"
+    });
+  }
+
+  function trackCustomEvent(eventName, eventParams) {
+    if (!analyticsInitialized || !eventName) {
+      return;
+    }
+
+    window.gtag("event", eventName, eventParams || {});
+  }
+
+  function getStoredConsent() {
+    try {
+      return localStorage.getItem(CONSENT_KEY);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function applyAnalyticsConsent(consentValue) {
+    if (consentValue !== "accepted") {
+      return;
+    }
+
+    loadAnalyticsLibrary();
+    initAnalytics();
+    trackPageView();
+  }
+
+  document.addEventListener("odontotos:language-changed", function () {
+    trackPageView();
+  });
+
+  document.addEventListener("odontotos:analytics-event", function (event) {
+    var detail = event && event.detail ? event.detail : null;
+    if (!detail || !detail.name) {
+      return;
+    }
+
+    trackCustomEvent(detail.name, detail.params);
+  });
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+      applyAnalyticsConsent(getStoredConsent());
+    });
+  } else {
+    applyAnalyticsConsent(getStoredConsent());
+  }
+})();
+</script>
 </head>
 <body>
 <main id="main-content">
@@ -51,16 +162,16 @@
 <p>Κατά τη χρήση της φόρμας επικοινωνίας, τα πεδία ονοματεπώνυμο, email και μήνυμα χρησιμοποιούνται μόνο για τη δημιουργία email στο πρόγραμμα αλληλογραφίας σας. Το site δεν αποθηκεύει αυτά τα δεδομένα σε server από μόνο του.</p>
 
 <h2>3. Cookies και localStorage</h2>
-<p>Χρησιμοποιείται μόνο τοπική αποθήκευση (localStorage) για την καταγραφή της επιλογής συγκατάθεσης σχετικά με φόρτωση εξωτερικού περιεχομένου (Google Maps). Δεν χρησιμοποιούνται διαφημιστικά ή tracking cookies από το ίδιο το site.</p>
+<p>Χρησιμοποιείται τοπική αποθήκευση (localStorage) για την καταγραφή της επιλογής συγκατάθεσης σχετικά με φόρτωση εξωτερικού περιεχομένου. Μόνο μετά από ρητή αποδοχή ενεργοποιείται Google Analytics 4 για συγκεντρωτικά στατιστικά επισκεψιμότητας (σελίδες, συσκευή, χώρα, χρόνος παραμονής), με ανωνυμοποίηση IP.</p>
 
 <h2>4. Περιεχόμενο τρίτων</h2>
-<p>Με συγκατάθεση χρήστη μπορεί να φορτωθεί ενσωματωμένος χάρτης Google Maps. Η Google ενδέχεται να επεξεργαστεί τεχνικά δεδομένα σύμφωνα με τη δική της πολιτική απορρήτου.</p>
+<p>Με συγκατάθεση χρήστη μπορεί να φορτωθεί ενσωματωμένος χάρτης Google Maps και να ενεργοποιηθεί Google Analytics 4. Η Google ενδέχεται να επεξεργαστεί τεχνικά δεδομένα σύμφωνα με τις δικές της πολιτικές απορρήτου και όρους υπηρεσίας.</p>
 
 <h2>5. Δικαιώματα επισκεπτών</h2>
 <p>Έχετε δικαίωμα ενημέρωσης, πρόσβασης, διόρθωσης και διαγραφής προσωπικών δεδομένων, καθώς και περιορισμού επεξεργασίας, σύμφωνα με τον GDPR.</p>
 
 <h2>6. Ενημερώσεις</h2>
-<p>Η παρούσα πολιτική μπορεί να ανανεώνεται όταν αλλάζουν λειτουργίες του site ή νομικές απαιτήσεις. Τελευταία ενημέρωση: 03/04/2026.</p>
+<p>Η παρούσα πολιτική μπορεί να ανανεώνεται όταν αλλάζουν λειτουργίες του site ή νομικές απαιτήσεις. Τελευταία ενημέρωση: 01/05/2026.</p>
 </article>
 </div>
 
@@ -76,16 +187,16 @@
 <p>When using the contact form, the fields full name, email, and message are used only to submit your request through the contact workflow. The website itself does not maintain its own custom tracking database for these fields.</p>
 
 <h2>3. Cookies and localStorage</h2>
-<p>The site uses localStorage only to remember consent for external content loading (Google Maps). No advertising or tracking cookies are set by the site itself.</p>
+<p>The site uses localStorage to remember your consent preference for external content and analytics. Google Analytics 4 is activated only after explicit consent, for aggregated traffic statistics (pages, device, country, engagement time), with IP anonymization enabled.</p>
 
 <h2>4. Third-party Content</h2>
-<p>With user consent, an embedded Google Maps view may be loaded. Google may process technical data according to its own privacy policy.</p>
+<p>With user consent, an embedded Google Maps view and Google Analytics 4 may be loaded. Google may process technical data according to its own privacy policy and terms.</p>
 
 <h2>5. Visitor Rights</h2>
 <p>You have the right to information, access, rectification, erasure, and restriction of processing under GDPR.</p>
 
 <h2>6. Updates</h2>
-<p>This policy may be updated when website features or legal obligations change. Last update: 03/04/2026.</p>
+<p>This policy may be updated when website features or legal obligations change. Last update: 01/05/2026.</p>
 </article>
 </div>
 
@@ -177,6 +288,10 @@
     if (footerTitle) {
       footerTitle.textContent = translations[safeLang].footerTitle;
     }
+
+    document.dispatchEvent(new CustomEvent("odontotos:language-changed", {
+      detail: { lang: safeLang }
+    }));
   }
 
   var params = new URLSearchParams(window.location.search);
