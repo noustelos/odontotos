@@ -7,4 +7,5 @@ Allow: /
 User-agent: Facebot
 Allow: /
 
+Host: odontotos.gr
 Sitemap: https://odontotos.gr/sitemap.xml

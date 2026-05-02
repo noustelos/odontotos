@@ -3162,8 +3162,23 @@ function updateSeoMetadata(lang) {
         el: "Οδοντωτός Διακοπτό-Καλάβρυτα: δες τη διαδρομή στο Φαράγγι Βουραϊκού, σταθμούς, χάρτη, χρήσιμες πληροφορίες και έμπνευση για οργανωμένη επίσκεψη.",
         en: "Odontotos Diakopto-Kalavryta: explore the Vouraikos Gorge route, stations, interactive map and practical travel information for your visit.",
     };
+    var keywords = {
+        el: "Οδοντωτός,Οδοντωτός Σιδηρόδρομος,Διακοπτό,Καλάβρυτα,Φαράγγι Βουραϊκού,Vouraikos Gorge,UNESCO Geopark,Hellenic Train",
+        en: "Odontotos Railway,Diakopto,Kalavryta,Vouraikos Gorge,rack railway,Greece train travel,UNESCO Geopark,Hellenic Train",
+    };
+    var locales = {
+        el: "el_GR",
+        en: "en_US",
+    };
+    var imageAltText = {
+        el: "Οδοντωτός συρμός στη διαδρομή μέσα στο Φαράγγι του Βουραϊκού.",
+        en: "Odontotos train crossing the Vouraikos Gorge route.",
+    };
 
     var description = descriptions[lang] || descriptions.el;
+    var locale = locales[lang] || locales.el;
+    var keywordSet = keywords[lang] || keywords.el;
+    var imageAlt = imageAltText[lang] || imageAltText.el;
     var title = i18n[lang] && i18n[lang].site_title ? i18n[lang].site_title : document.title;
 
     updateCanonicalAndAlternateLinks(lang);
@@ -3183,6 +3198,16 @@ function updateSeoMetadata(lang) {
         ogDescriptionTag.setAttribute("content", description);
     }
 
+    var ogLocaleTag = document.querySelector('meta[property="og:locale"]');
+    if (ogLocaleTag) {
+        ogLocaleTag.setAttribute("content", locale);
+    }
+
+    var ogImageAltTag = document.querySelector('meta[property="og:image:alt"]');
+    if (ogImageAltTag) {
+        ogImageAltTag.setAttribute("content", imageAlt);
+    }
+
     var twitterTitleTag = document.querySelector('meta[name="twitter:title"]');
     if (twitterTitleTag) {
         twitterTitleTag.setAttribute("content", title);
@@ -3191,6 +3216,16 @@ function updateSeoMetadata(lang) {
     var twitterDescriptionTag = document.querySelector('meta[name="twitter:description"]');
     if (twitterDescriptionTag) {
         twitterDescriptionTag.setAttribute("content", description);
+    }
+
+    var twitterImageAltTag = document.querySelector('meta[name="twitter:image:alt"]');
+    if (twitterImageAltTag) {
+        twitterImageAltTag.setAttribute("content", imageAlt);
+    }
+
+    var keywordsTag = document.querySelector('meta[name="keywords"]');
+    if (keywordsTag) {
+        keywordsTag.setAttribute("content", keywordSet);
     }
 }
 

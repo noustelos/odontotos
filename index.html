@@ -14,6 +14,8 @@
 <meta name="application-name" content="Οδοντωτός Σιδηρόδρομος">
 <meta name="apple-mobile-web-app-title" content="Οδοντωτός Σιδηρόδρομος">
 <meta name="theme-color" content="#1f3d2b">
+<meta name="google-site-verification" content="google92718ef728fae93d">
+<meta name="ga-measurement-id" content="G-XXXXXXXXXX">
 
 <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
 <link rel="shortcut icon" href="assets/favicon.png">
@@ -90,7 +92,8 @@
 
 <script>
 (function () {
-	var GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
+	var measurementMeta = document.querySelector('meta[name="ga-measurement-id"]');
+	var GA_MEASUREMENT_ID = measurementMeta ? measurementMeta.getAttribute("content") : "G-XXXXXXXXXX";
 	var CONSENT_KEY = "odontos_cookie_consent_v1";
 	var PLACEHOLDER_ID = "G-XXXXXXXXXX";
 	var scriptLoaded = false;
@@ -101,6 +104,9 @@
 	window.gtag = window.gtag || function () {
 		window.dataLayer.push(arguments);
 	};
+	window.gtag("consent", "default", {
+		analytics_storage: "denied"
+	});
 
 	function canTrack() {
 		return GA_MEASUREMENT_ID && GA_MEASUREMENT_ID !== PLACEHOLDER_ID;
@@ -160,9 +166,13 @@
 
 	function applyAnalyticsConsent(consentValue) {
 		if (consentValue !== "accepted") {
+			if (analyticsInitialized) {
+				window.gtag("consent", "update", { analytics_storage: "denied" });
+			}
 			return;
 		}
 
+		window.gtag("consent", "update", { analytics_storage: "granted" });
 		loadAnalyticsLibrary();
 		initAnalytics();
 		trackPageView();
@@ -213,6 +223,7 @@
 			"@id": "https://odontotos.gr/#website",
 			"url": "https://odontotos.gr/",
 			"name": "Οδοντωτός Σιδηρόδρομος | Φαράγγι Βουραϊκού",
+			"alternateName": "Odontotos Railway | Vouraikos Gorge",
 			"description": "Πληροφορίες για τη διαδρομή του Οδοντωτού σιδηροδρόμου στο Φαράγγι του Βουραϊκού, με ιστορία, χάρτη και οδηγό επίσκεψης.",
 			"inLanguage": ["el", "en"],
 			"publisher": {
@@ -227,6 +238,12 @@
 			"isPartOf": {
 				"@id": "https://odontotos.gr/#website"
 			},
+			"breadcrumb": {
+				"@id": "https://odontotos.gr/#breadcrumbs"
+			},
+			"mainEntity": {
+				"@id": "https://odontotos.gr/#trip"
+			},
 			"about": {
 				"@id": "https://odontotos.gr/#trip"
 			},
@@ -237,34 +254,120 @@
 				"height": 1920
 			},
 			"description": "Landing page για τη διαδρομή του Οδοντωτού σιδηροδρόμου από το Διακοπτό στα Καλάβρυτα, μέσα στο Φαράγγι του Βουραϊκού.",
-			"inLanguage": "el"
+			"inLanguage": ["el", "en"]
 		},
 		{
 			"@type": "TouristTrip",
 			"@id": "https://odontotos.gr/#trip",
 			"name": "Διαδρομή Οδοντωτού Σιδηροδρόμου Διακοπτό - Καλάβρυτα",
+			"alternateName": "Odontotos Diakopto - Kalavryta Railway Journey",
+			"url": "https://odontotos.gr/",
 			"description": "Σιδηροδρομική διαδρομή 22 χιλιομέτρων μέσα στο Φαράγγι του Βουραϊκού, με ιστορικούς σταθμούς, φυσικό τοπίο και πληροφορίες επίσκεψης.",
 			"touristType": ["Railway enthusiast", "Nature traveler", "Day trip visitor"],
+			"provider": {
+				"@id": "https://odontotos.gr/#publisher"
+			},
+			"hasPart": [
+				{
+					"@id": "https://odontotos.gr/#route"
+				},
+				{
+					"@id": "https://odontotos.gr/#vouraikos-gorge"
+				}
+			],
 			"itinerary": {
 				"@type": "ItemList",
 				"itemListElement": [
 					{
 						"@type": "ListItem",
 						"position": 1,
-						"name": "Διακοπτό"
+						"name": "Διακοπτό",
+						"item": {
+							"@id": "https://odontotos.gr/#station-diakopto"
+						}
 					},
 					{
 						"@type": "ListItem",
 						"position": 2,
-						"name": "Κάτω Ζαχλωρού"
+						"name": "Κάτω Ζαχλωρού",
+						"item": {
+							"@id": "https://odontotos.gr/#station-zachlorou"
+						}
 					},
 					{
 						"@type": "ListItem",
 						"position": 3,
-						"name": "Καλάβρυτα"
+						"name": "Καλάβρυτα",
+						"item": {
+							"@id": "https://odontotos.gr/#station-kalavryta"
+						}
 					}
 				]
 			}
+		},
+		{
+			"@type": "Route",
+			"@id": "https://odontotos.gr/#route",
+			"name": "Γραμμή Οδοντωτού Διακοπτό - Καλάβρυτα",
+			"alternateName": "Odontotos Rack Railway Line",
+			"description": "Η ιστορική ορεινή σιδηροδρομική διαδρομή του Οδοντωτού μέσα στο Φαράγγι του Βουραϊκού.",
+			"distance": {
+				"@type": "QuantitativeValue",
+				"value": 22,
+				"unitCode": "KMT"
+			},
+			"provider": {
+				"@id": "https://odontotos.gr/#publisher"
+			},
+			"fromLocation": {
+				"@id": "https://odontotos.gr/#station-diakopto"
+			},
+			"toLocation": {
+				"@id": "https://odontotos.gr/#station-kalavryta"
+			}
+		},
+		{
+			"@type": "TouristAttraction",
+			"@id": "https://odontotos.gr/#vouraikos-gorge",
+			"name": "Φαράγγι Βουραϊκού",
+			"alternateName": "Vouraikos Gorge",
+			"description": "Φυσικό τοπίο εθνικού πάρκου και UNESCO Geopark που διασχίζει η γραμμή του Οδοντωτού.",
+			"url": "https://odontotos.gr/",
+			"isAccessibleForFree": true,
+			"availableLanguage": ["el", "en"]
+		},
+		{
+			"@type": "Place",
+			"@id": "https://odontotos.gr/#station-diakopto",
+			"name": "Σταθμός Διακοπτού"
+		},
+		{
+			"@type": "Place",
+			"@id": "https://odontotos.gr/#station-zachlorou",
+			"name": "Σταθμός Κάτω Ζαχλωρού"
+		},
+		{
+			"@type": "Place",
+			"@id": "https://odontotos.gr/#station-kalavryta",
+			"name": "Σταθμός Καλαβρύτων"
+		},
+		{
+			"@type": "BreadcrumbList",
+			"@id": "https://odontotos.gr/#breadcrumbs",
+			"itemListElement": [
+				{
+					"@type": "ListItem",
+					"position": 1,
+					"name": "Αρχική",
+					"item": "https://odontotos.gr/"
+				},
+				{
+					"@type": "ListItem",
+					"position": 2,
+					"name": "Πολιτική Απορρήτου",
+					"item": "https://odontotos.gr/privacy-policy.html"
+				}
+			]
 		},
 		{
 			"@type": "Organization",

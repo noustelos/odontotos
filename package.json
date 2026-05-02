@@ -10,7 +10,7 @@
     "minify:js": "terser map.js -c -m -o dist/map.js",
     "minify:html": "html-minifier-terser --collapse-whitespace --remove-comments --remove-redundant-attributes --remove-script-type-attributes --remove-style-link-type-attributes --minify-css true --minify-js true -o dist/index.html index.html && html-minifier-terser --collapse-whitespace --remove-comments --remove-redundant-attributes --remove-script-type-attributes --remove-style-link-type-attributes --minify-css true --minify-js true -o dist/privacy-policy.html privacy-policy.html",
     "copy:assets": "cp -R assets dist/assets",
-    "copy:static": "cp robots.txt sitemap.xml dist/",
+    "copy:static": "cp robots.txt sitemap*.xml dist/",
     "build": "npm run clean && npm run prepare:dist && npm run minify:css && npm run minify:js && npm run minify:html && npm run copy:assets && npm run copy:static",
     "link-check": "node scripts/link-check.js",
     "link-check:dist": "node scripts/link-check.js dist"

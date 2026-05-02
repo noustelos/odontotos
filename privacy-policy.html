@@ -9,8 +9,10 @@
 <meta name="owner" content="WebHostPro">
 <meta name="publisher" content="WebHostPro">
 <meta name="format-detection" content="telephone=no">
+<meta name="google-site-verification" content="google92718ef728fae93d">
+<meta name="ga-measurement-id" content="G-XXXXXXXXXX">
 <link rel="canonical" href="https://odontotos.gr/privacy-policy.html">
-<link rel="alternate" hreflang="el" href="https://odontotos.gr/privacy-policy.html?lang=el">
+<link rel="alternate" hreflang="el" href="https://odontotos.gr/privacy-policy.html">
 <link rel="alternate" hreflang="en" href="https://odontotos.gr/privacy-policy.html?lang=en">
 <link rel="alternate" hreflang="x-default" href="https://odontotos.gr/privacy-policy.html">
 <meta property="og:type" content="article">
@@ -20,16 +22,21 @@
 <meta property="og:description" content="Πολιτική απορρήτου για χρήση φόρμας επικοινωνίας, localStorage consent και δικαιώματα GDPR.">
 <meta property="og:url" content="https://odontotos.gr/privacy-policy.html">
 <meta property="og:site_name" content="Οδοντωτός Σιδηρόδρομος">
+<meta property="og:image" content="https://odontotos.gr/assets/images/trainb1-social.jpg">
+<meta property="og:image:alt" content="Οδοντωτός συρμός στη διαδρομή μέσα στο Φαράγγι του Βουραϊκού.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Πολιτική Απορρήτου | Οδοντωτός Διακοπτό-Καλάβρυτα">
 <meta name="twitter:description" content="Πολιτική απορρήτου για χρήση φόρμας επικοινωνίας, localStorage consent και δικαιώματα GDPR.">
+<meta name="twitter:image" content="https://odontotos.gr/assets/images/trainb1-social.jpg">
+<meta name="twitter:image:alt" content="Οδοντωτός συρμός στη διαδρομή μέσα στο Φαράγγι του Βουραϊκού.">
 <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
 <title>Πολιτική Απορρήτου | Οδοντωτός Διακοπτό-Καλάβρυτα</title>
 <link rel="stylesheet" href="styles.css">
 
 <script>
 (function () {
-  var GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
+  var measurementMeta = document.querySelector('meta[name="ga-measurement-id"]');
+  var GA_MEASUREMENT_ID = measurementMeta ? measurementMeta.getAttribute("content") : "G-XXXXXXXXXX";
   var CONSENT_KEY = "odontos_cookie_consent_v1";
   var PLACEHOLDER_ID = "G-XXXXXXXXXX";
   var scriptLoaded = false;
@@ -40,6 +47,9 @@
   window.gtag = window.gtag || function () {
     window.dataLayer.push(arguments);
   };
+  window.gtag("consent", "default", {
+    analytics_storage: "denied"
+  });
 
   function canTrack() {
     return GA_MEASUREMENT_ID && GA_MEASUREMENT_ID !== PLACEHOLDER_ID;
@@ -107,13 +117,22 @@
 
   function applyAnalyticsConsent(consentValue) {
     if (consentValue !== "accepted") {
+      if (analyticsInitialized) {
+        window.gtag("consent", "update", { analytics_storage: "denied" });
+      }
       return;
     }
 
+    window.gtag("consent", "update", { analytics_storage: "granted" });
     loadAnalyticsLibrary();
     initAnalytics();
     trackPageView();
   }
+
+  document.addEventListener("odontotos:cookie-consent-changed", function (event) {
+    var nextValue = event && event.detail ? event.detail.value : null;
+    applyAnalyticsConsent(nextValue);
+  });
 
   document.addEventListener("odontotos:language-changed", function () {
     trackPageView();
@@ -136,6 +155,22 @@
     applyAnalyticsConsent(getStoredConsent());
   }
 })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://odontotos.gr/privacy-policy.html#webpage",
+  "url": "https://odontotos.gr/privacy-policy.html",
+  "name": "Πολιτική Απορρήτου | Οδοντωτός Διακοπτό-Καλάβρυτα",
+  "alternateName": "Privacy Policy | Odontotos Diakopto-Kalavryta",
+  "description": "Πολιτική απορρήτου για φόρμα επικοινωνίας, consent επιλογές και Google Analytics 4 με σεβασμό GDPR.",
+  "inLanguage": ["el", "en"],
+  "isPartOf": {
+    "@id": "https://odontotos.gr/#website"
+  }
+}
 </script>
 </head>
 <body>
@@ -251,12 +286,32 @@
       descriptionTag.setAttribute("content", translations[safeLang].pageDescription);
     }
 
+    var ogTitleTag = document.querySelector('meta[property="og:title"]');
+    if (ogTitleTag && translations[safeLang].pageTitle) {
+      ogTitleTag.setAttribute("content", translations[safeLang].pageTitle);
+    }
+
+    var ogDescriptionTag = document.querySelector('meta[property="og:description"]');
+    if (ogDescriptionTag && translations[safeLang].pageDescription) {
+      ogDescriptionTag.setAttribute("content", translations[safeLang].pageDescription);
+    }
+
+    var twitterTitleTag = document.querySelector('meta[name="twitter:title"]');
+    if (twitterTitleTag && translations[safeLang].pageTitle) {
+      twitterTitleTag.setAttribute("content", translations[safeLang].pageTitle);
+    }
+
+    var twitterDescriptionTag = document.querySelector('meta[name="twitter:description"]');
+    if (twitterDescriptionTag && translations[safeLang].pageDescription) {
+      twitterDescriptionTag.setAttribute("content", translations[safeLang].pageDescription);
+    }
+
     var canonicalTag = document.querySelector('link[rel="canonical"]');
     var ogUrlTag = document.querySelector('meta[property="og:url"]');
     var hreflangEl = document.querySelector('link[rel="alternate"][hreflang="el"]');
     var hreflangEn = document.querySelector('link[rel="alternate"][hreflang="en"]');
     var hreflangDefault = document.querySelector('link[rel="alternate"][hreflang="x-default"]');
-    var localizedPath = "privacy-policy.html" + (safeLang === "en" ? "?lang=en" : "?lang=el");
+    var localizedPath = "privacy-policy.html" + (safeLang === "en" ? "?lang=en" : "");
 
     if (canonicalTag) {
       canonicalTag.setAttribute("href", "https://odontotos.gr/" + localizedPath);
@@ -267,7 +322,7 @@
     }
 
     if (hreflangEl) {
-      hreflangEl.setAttribute("href", "https://odontotos.gr/privacy-policy.html?lang=el");
+      hreflangEl.setAttribute("href", "https://odontotos.gr/privacy-policy.html");
     }
 
     if (hreflangEn) {
@@ -276,6 +331,25 @@
 
     if (hreflangDefault) {
       hreflangDefault.setAttribute("href", "https://odontotos.gr/privacy-policy.html");
+    }
+
+    var localeTag = document.querySelector('meta[property="og:locale"]');
+    if (localeTag) {
+      localeTag.setAttribute("content", safeLang === "en" ? "en_US" : "el_GR");
+    }
+
+    var imageAltTag = document.querySelector('meta[property="og:image:alt"]');
+    if (imageAltTag) {
+      imageAltTag.setAttribute("content", safeLang === "en"
+        ? "Odontotos train crossing the Vouraikos Gorge route."
+        : "Οδοντωτός συρμός στη διαδρομή μέσα στο Φαράγγι του Βουραϊκού.");
+    }
+
+    var twitterImageAltTag = document.querySelector('meta[name="twitter:image:alt"]');
+    if (twitterImageAltTag) {
+      twitterImageAltTag.setAttribute("content", safeLang === "en"
+        ? "Odontotos train crossing the Vouraikos Gorge route."
+        : "Οδοντωτός συρμός στη διαδρομή μέσα στο Φαράγγι του Βουραϊκού.");
     }
 
     var backLink = document.getElementById("privacy-back-link");
