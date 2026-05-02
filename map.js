@@ -16,6 +16,8 @@ var i18n = {
         nav_history: "Ιστορία",
         nav_starting_point: "Αφετηρία",
         nav_route: "Διαδρομή",
+        nav_gallery: "Photo Gallery",
+        nav_activities: "Δραστηριότητες",
         nav_info: "Πληροφορίες",
         nav_share: "Κοινοποίηση",
         skip_to_content: "Μετάβαση στο κύριο περιεχόμενο",
@@ -32,6 +34,13 @@ var i18n = {
         social_option_email: "Email",
         social_option_copy: "Αντιγραφή συνδέσμου",
         social_close: "Κλείσιμο",
+        announcement_modal_aria_label: "Ανακοίνωση κατάβασης",
+        announcement_close_aria_label: "Κλείσιμο ανακοίνωσης",
+        announcement_badge: "Ανακοίνωση",
+        announcement_title: "46ο Πανελλήνιο Πέρασμα στο φαράγγι του Βουραϊκού",
+        announcement_text: "Η κατάβαση στο φαράγγι του Βουραϊκού πραγματοποιείται την Κυριακή 10 Μαΐου 2026. Δες όλες τις λεπτομέρειες συμμετοχής, οδηγίες και την ενημέρωση του διοργανωτή.",
+        announcement_cta: "Δες την ανακοίνωση",
+        announcement_dismiss: "Κλείσιμο",
         nav_share_message: "Δες τη διαδρομή του Οδοντωτού στο φαράγγι του Βουραϊκού.",
         nav_share_success: "Η σελίδα κοινοποιήθηκε επιτυχώς.",
         nav_share_copied: "Ο σύνδεσμος αντιγράφηκε στο πρόχειρο.",
@@ -44,6 +53,7 @@ var i18n = {
         jt_history: "Ιστορία",
         jt_route: "Διαδρομή",
         jt_starting: "Αφετηρία",
+        jt_gallery: "Gallery",
         jt_info: "Πληροφορίες",
         jt_contact: "Επικοινωνία",
         hero_facts_aria_label: "Βασικά στοιχεία διαδρομής",
@@ -62,6 +72,10 @@ var i18n = {
         slideshow_title: "Η Διαδρομή είναι ο προορισμός",
         slideshow_kicker: "Πρώτες Εικόνες",
         slideshow_intro: "Μια σύντομη οπτική εισαγωγή στο τοπίο του Βουραϊκού, πριν η διαδρομή αποκαλύψει βαθύτερα τον χαρακτήρα του φαραγγιού.",
+        slideshow_gallery_cta: "Επίσκεψη στο Photo Gallery",
+        photo_gallery_title: "ΦΩΤΟ ΓΚΑΛΕΡΙ",
+        photo_gallery_kicker: "ΦΩΤΟ ΓΚΑΛΕΡΙ",
+        photo_gallery_intro: "Εδώ μπορπούμε να θαυμάζουμε τον Οδοντωτό και την ομορφιά ου όταν δεν μπορύμε να ειμασε εκει, φωτογραφίες επισκεπτών, εθελεόντων και απλων πολιτών.",
         slideshow_top_trainv_kicker: "TrainV Showcase",
         slideshow_top_trainv_title: "trainv4 · trainv3 · trainv · trainv2",
         slideshow_top_trainv_meta: "Εναλλαγή ανά λίγα δευτερόλεπτα με hover motion.",
@@ -250,6 +264,8 @@ var i18n = {
         nav_history: "History",
         nav_starting_point: "Starting Point",
         nav_route: "Route",
+        nav_gallery: "Photo Gallery",
+        nav_activities: "Activities",
         nav_info: "Info",
         nav_share: "Share",
         skip_to_content: "Skip to main content",
@@ -266,6 +282,13 @@ var i18n = {
         social_option_email: "Email",
         social_option_copy: "Copy link",
         social_close: "Close",
+        announcement_modal_aria_label: "Descent announcement",
+        announcement_close_aria_label: "Close announcement",
+        announcement_badge: "Announcement",
+        announcement_title: "46th Panhellenic Crossing in Vouraikos Gorge",
+        announcement_text: "The Vouraikos Gorge descent takes place on Sunday, May 10, 2026. See participation details, key tips and the organizer update.",
+        announcement_cta: "View announcement",
+        announcement_dismiss: "Close",
         nav_share_message: "Explore the Odontotos railway journey through the Vouraikos Gorge.",
         nav_share_success: "Page shared successfully.",
         nav_share_copied: "Page link copied to clipboard.",
@@ -278,6 +301,7 @@ var i18n = {
         jt_history: "History",
         jt_route: "Route",
         jt_starting: "Starting Point",
+        jt_gallery: "Gallery",
         jt_info: "Info",
         jt_contact: "Contact",
         hero_facts_aria_label: "Journey highlights",
@@ -296,6 +320,10 @@ var i18n = {
         slideshow_title: "The Journey in Frames",
         slideshow_kicker: "Opening Images",
         slideshow_intro: "A brief visual introduction to the Vouraikos landscape before the route reveals the gorge in greater depth.",
+        slideshow_gallery_cta: "Visit Photo Gallery",
+        photo_gallery_title: "The Journey in Frames",
+        photo_gallery_kicker: "Photo Gallery",
+        photo_gallery_intro: "A visual gallery of the Vouraikos route before continuing to practical visitor information.",
         slideshow_top_trainv_kicker: "TrainV Showcase",
         slideshow_top_trainv_title: "trainv4 · trainv3 · trainv · trainv2",
         slideshow_top_trainv_meta: "Auto-switch every few seconds with hover motion.",
@@ -516,6 +544,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initNewsletterForm();
     initCookieConsent();
     initI18n();
+    initDescentAnnouncement();
     initImageFallbacks();
     initGoogleLocationEmbed();
     initNavActiveState();
@@ -759,10 +788,6 @@ function initImageFallbacks() {
 }
 
 function initScrollTrainProgress() {
-    if (document.documentElement.classList.contains("perf-safe")) {
-        return;
-    }
-
     var railFill = document.querySelector("[data-scroll-rail-fill]");
     var wagon = document.querySelector("[data-scroll-wagon]");
 
@@ -801,7 +826,7 @@ function initScrollTrainProgress() {
 }
 
 function initJourneyTimeline() {
-    if (document.documentElement.classList.contains("perf-safe") || isNarrowViewport()) {
+    if (isNarrowViewport()) {
         return;
     }
 
@@ -3060,8 +3085,17 @@ function setLanguage(lang) {
 
     document.documentElement.lang = lang;
     document.title = i18n[lang].site_title;
+    updateLanguageAwareLinks(lang);
     updateSeoMetadata(lang);
     updatePrivacyPolicyLinks(lang);
+
+    var announcementCta = document.getElementById("announcement-cta");
+    if (announcementCta) {
+        announcementCta.setAttribute(
+            "href",
+            lang === "en" ? "activities.html?lang=en#panhellenic-crossing-section" : "activities.html#panhellenic-crossing-section"
+        );
+    }
 
     var textNodes = document.querySelectorAll("[data-i18n]");
     textNodes.forEach(function (node) {
@@ -3111,6 +3145,114 @@ function setLanguage(lang) {
             detail: { lang: lang },
         })
     );
+}
+
+function initDescentAnnouncement() {
+    var popup = document.getElementById("descent-announcement");
+    var closeButton = document.getElementById("announcement-close");
+    var dismissButton = document.getElementById("announcement-dismiss");
+    var ctaLink = document.getElementById("announcement-cta");
+
+    if (!popup) {
+        return;
+    }
+
+    var storageKey = "odontotos_descent_announcement_v2_dismissed";
+    var activeElementBeforeOpen = null;
+
+    function isDismissed() {
+        try {
+            return localStorage.getItem(storageKey) === "1";
+        } catch (error) {
+            return false;
+        }
+    }
+
+    function persistDismissal() {
+        try {
+            localStorage.setItem(storageKey, "1");
+        } catch (error) {
+            // Ignore storage access errors in private browsing or strict modes.
+        }
+    }
+
+    function closePopup(shouldPersist) {
+        popup.hidden = true;
+        document.body.classList.remove("announcement-open");
+
+        if (shouldPersist) {
+            persistDismissal();
+        }
+
+        if (activeElementBeforeOpen && typeof activeElementBeforeOpen.focus === "function") {
+            activeElementBeforeOpen.focus();
+        }
+    }
+
+    function openPopup() {
+        if (isDismissed()) {
+            return;
+        }
+
+        activeElementBeforeOpen = document.activeElement;
+        popup.hidden = false;
+        document.body.classList.add("announcement-open");
+
+        if (closeButton) {
+            closeButton.focus();
+        }
+
+        emitAnalyticsEvent("descent_announcement_open", {
+            language: currentLanguage,
+        });
+    }
+
+    if (closeButton) {
+        closeButton.addEventListener("click", function () {
+            closePopup(true);
+        });
+    }
+
+    if (dismissButton) {
+        dismissButton.addEventListener("click", function () {
+            closePopup(true);
+        });
+    }
+
+    if (ctaLink) {
+        ctaLink.addEventListener("click", function () {
+            persistDismissal();
+            emitAnalyticsEvent("descent_announcement_cta_click", {
+                language: currentLanguage,
+            });
+        });
+    }
+
+    popup.addEventListener("click", function (event) {
+        if (event.target === popup) {
+            closePopup(true);
+        }
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && !popup.hidden) {
+            closePopup(true);
+        }
+    });
+
+    window.setTimeout(openPopup, 900);
+}
+
+function updateLanguageAwareLinks(lang) {
+    var links = document.querySelectorAll("[data-lang-href-base]");
+    links.forEach(function (link) {
+        var base = link.getAttribute("data-lang-href-base");
+        if (!base) {
+            return;
+        }
+
+        link.setAttribute("href", lang === "en" ? base + "?lang=en" : base);
+    });
 }
 
 function updatePrivacyPolicyLinks(lang) {

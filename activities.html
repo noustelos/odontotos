@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Δραστηριότητες στον Βουραϊκό και τη διαδρομή του Οδοντωτού: πεζοπορία, ποδήλατο, φωτογράφιση και εμπειρίες φύσης.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="WebHostPro">
+<meta name="google-site-verification" content="google92718ef728fae93d">
+<link rel="canonical" href="https://odontotos.gr/activities.html">
+<link rel="alternate" hreflang="el" href="https://odontotos.gr/activities.html">
+<link rel="alternate" hreflang="en" href="https://odontotos.gr/activities.html?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://odontotos.gr/activities.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="el_GR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Δραστηριότητες | Οδοντωτός Διακοπτό-Καλάβρυτα">
+<meta property="og:description" content="Ιδέες για δραστηριότητες στη διαδρομή του Οδοντωτού: πεζοπορία, στάσεις, φωτογράφιση και εξερεύνηση φύσης.">
+<meta property="og:url" content="https://odontotos.gr/activities.html">
+<meta property="og:image" content="https://odontotos.gr/assets/images/traincom.jpeg">
+<meta property="og:image:alt" content="Οδοντωτός στο φαράγγι του Βουραϊκού.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Δραστηριότητες | Οδοντωτός Διακοπτό-Καλάβρυτα">
+<meta name="twitter:description" content="Ιδέες για δραστηριότητες στη διαδρομή του Οδοντωτού: πεζοπορία, στάσεις, φωτογράφιση και εξερεύνηση φύσης.">
+<meta name="twitter:image" content="https://odontotos.gr/assets/images/traincom.jpeg">
+<meta name="twitter:image:alt" content="Οδοντωτός στο φαράγγι του Βουραϊκού.">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+<title>Δραστηριότητες | Οδοντωτός Διακοπτό-Καλάβρυτα</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.activities-back-arrow {
+  position: fixed;
+  left: 14px;
+  top: 86px;
+  z-index: 1001;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(9, 22, 15, 0.78);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.35rem;
+  line-height: 1;
+  box-shadow: 0 8px 26px rgba(7, 14, 11, 0.3);
+}
+
+.activities-back-arrow:hover,
+.activities-back-arrow:focus-visible {
+  transform: translateX(-1px);
+  background: rgba(9, 22, 15, 0.9);
+}
+
+.activities-back-arrow:focus-visible {
+  outline: 2px solid #f5c778;
+  outline-offset: 2px;
+}
+
+.activities-grid {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.activities-card {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid #e8dcc8;
+  border-radius: 12px;
+  background: #fffdf8;
+  box-shadow: 0 8px 22px rgba(17, 24, 20, 0.08);
+}
+.activities-card h3 {
+  margin: 0 0 8px;
+}
+.activities-card p {
+  margin: 0;
+}
+
+.event-passage-section {
+  width: min(1180px, calc(100% - 32px));
+  margin: 20px auto 0;
+  padding: 20px;
+  border: 1px solid #e8dcc8;
+  border-radius: 12px;
+  background: #fffdf8;
+  box-shadow: 0 8px 22px rgba(17, 24, 20, 0.08);
+}
+
+.event-passage-section h2 {
+  margin: 0 0 12px;
+}
+
+.event-passage-section p {
+  margin: 0 0 10px;
+  line-height: 1.62;
+}
+
+.event-passage-section ul {
+  margin: 0 0 12px;
+  padding-left: 20px;
+}
+
+.event-passage-section li {
+  margin: 0 0 8px;
+}
+
+.facebook-embed-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.facebook-embed-card {
+  border: 1px solid #e8dcc8;
+  border-radius: 10px;
+  padding: 12px;
+  background: #ffffff;
+}
+
+.facebook-embed-card h3 {
+  margin: 0 0 8px;
+}
+
+.facebook-embed-card iframe {
+  width: 100%;
+  min-height: 520px;
+  border: 0;
+  border-radius: 8px;
+}
+@media (max-width: 980px) {
+  .activities-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .activities-back-arrow {
+    top: auto;
+    bottom: 14px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .activities-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .facebook-embed-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body id="page-top">
+<a class="skip-link" href="#main-content">Μετάβαση στο κύριο περιεχόμενο</a>
+<div class="scroll-rail" aria-hidden="true">
+<div class="scroll-rail-track">
+<span class="scroll-rail-fill" data-scroll-rail-fill></span>
+<span class="scroll-wagon" data-scroll-wagon></span>
+</div>
+</div>
+<a class="activities-back-arrow" id="activities-back-arrow" href="index.html" aria-label="Επιστροφή">&#8592;</a>
+
+<header class="site-header">
+<div class="site-header-inner">
+<nav class="site-nav" aria-label="Section navigation">
+<a class="site-nav-link site-nav-home" id="activities-home-link" href="index.html" aria-label="Home">
+<span class="site-nav-home-icon" aria-hidden="true">&#8962;</span>
+<span class="sr-only" id="activities-home-sr">Αρχική</span>
+</a>
+<a class="site-nav-link" id="activities-nav-experience" href="index.html#experience-section">Εμπειρία</a>
+<a class="site-nav-link" id="activities-nav-history" href="index.html#history-section">Ιστορία</a>
+<a class="site-nav-link" id="activities-nav-route" href="index.html#railway-route">Διαδρομή</a>
+<a class="site-nav-link" id="activities-nav-starting" href="index.html#starting-point">Αφετηρία</a>
+<a class="site-nav-link" id="activities-nav-gallery" href="photo-gallery.html">Photo Gallery</a>
+<a class="site-nav-link is-active" href="activities.html" aria-current="page" id="activities-nav-activities">Δραστηριότητες</a>
+<a class="site-nav-link" id="activities-nav-info" href="index.html#visitor-section">Πληροφορίες</a>
+</nav>
+
+<div class="header-actions">
+<div class="lang-switcher" role="group" aria-label="Language switcher">
+<button class="lang-btn is-active" data-lang="el" type="button" aria-pressed="true">ΕΛ</button>
+<button class="lang-btn" data-lang="en" type="button" aria-pressed="false">EN</button>
+</div>
+</div>
+</div>
+</header>
+
+<main id="main-content">
+<section>
+<div class="section-intro">
+<span class="section-kicker" id="activities-kicker">Δραστηριότητες</span>
+<h1 id="activities-title">Τι Μπορείς Να Κάνεις Στη Διαδρομή</h1>
+<p id="activities-intro">Επιλεγμένες ιδέες για εμπειρίες στη φύση και στάσεις που συνδυάζονται με το ταξίδι του Οδοντωτού.</p>
+</div>
+
+<div class="activities-grid">
+<article class="activities-card">
+<h3 id="card1-title">Πεζοπορία Στο Μονοπάτι Ε4</h3>
+<p id="card1-text">Ακολούθησε τμήματα της διαδρομής παράλληλα με τις ράγες και ανακάλυψε σημεία θέας μέσα στο φαράγγι.</p>
+</article>
+<article class="activities-card">
+<h3 id="card2-title">Στάση Στη Ζαχλωρού</h3>
+<p id="card2-text">Κατέβα για καφέ ή φαγητό δίπλα στις γραμμές και συνέχισε με επόμενο δρομολόγιο προς Καλάβρυτα.</p>
+</article>
+<article class="activities-card">
+<h3 id="card3-title">Φωτογράφιση Τοπίου</h3>
+<p id="card3-text">Ιδανικά σημεία για φωτογραφία σε γέφυρες, βράχια και φυσικά περάσματα του Βουραϊκού.</p>
+</article>
+<article class="activities-card">
+<h3 id="card4-title">Επίσκεψη Στο Μουσείο</h3>
+<p id="card4-text">Δες την ιστορική ατμομηχανή και στοιχεία της ιστορίας του Οδοντωτού στο Διακοπτό.</p>
+</article>
+<article class="activities-card">
+<h3 id="card5-title">Συνδυασμός Με Καλάβρυτα</h3>
+<p id="card5-text">Οργάνωσε ολοήμερη εκδρομή με βόλτα στην πόλη, τοπικές γεύσεις και επιστροφή με τρένο.</p>
+</article>
+<article class="activities-card">
+<h3 id="card6-title">Παρατήρηση Φύσης</h3>
+<p id="card6-text">Αφιέρωσε χρόνο σε ήσυχα σημεία για παρατήρηση νερού, βλάστησης και εποχικών αλλαγών του τοπίου.</p>
+</article>
+</div>
+
+<section class="event-passage-section" id="panhellenic-crossing-section" aria-labelledby="panhellenic-crossing-title">
+<h2 id="panhellenic-crossing-title">46ο Πανελλήνιο Πέρασμα στο φαράγγι του Βουραϊκού ποταμού στις 10 Μαΐου 2026</h2>
+<p>Ο Σύλλογος Ορειβασίας - Χιονοδρομίας - Αναρρίχησης - Προστασίας περιβάλλοντος Καλαβρύτων από το 1980, και κάθε χρόνο, τη 2η Κυριακή του Μαΐου, οργανώνει το Πανελλήνιο Πέρασμα στο φαράγγι του Βουραϊκού ποταμού.</p>
+<p>Η κατάβαση στο φαράγγι γίνεται από τις γραμμές του Οδοντωτού ξεκινώντας από τα Καλάβρυτα και με τελικό προορισμό το Διακοπτό συνολικής απόστασης 22 χλμ.</p>
+<p>Εναλλακτικά μπορείτε να ξεκινήσετε και από τη Ζαχλωρού, στην οποία φτάνετε με το αυτοκίνητό σας, και να περπατήσετε μόνο τα 10 χλμ μέχρι τη στάση Νιάματα.</p>
+<p>(Ο Οδοντωτός εκείνη την ημέρα δεν πραγματοποιεί δρομολόγια).</p>
+<p>Το πρόγραμμα έχει ως εξής: Ξεκινάτε με τον σύλλογο, την παρέα σας ή μόνοι σας, την Κυριακή 10/5/26 το πρωί στις 7:30 από το σταθμό του Οδοντωτού, στα Καλάβρυτα, ακολουθώντας τις γραμμές του τρένου με προορισμό τον πρώτο μας σταθμό στη Ζαχλωρού. Αν πάλι θέλετε να ξεκινήσετε αργότερα ή από τη Ζαχλωρού, ώστε να διανύσετε μικρότερη απόσταση, μην διστάσετε νομίζοντας ότι θα είστε μόνοι σας! Οι ομάδες και οι παρέες που ξεκινούν ανά διαστήματα είναι πολλές οπότε… ακολουθήστε τους!</p>
+<p><strong>Tips (οδηγίες):</strong></p>
+<ul>
+<li>Φορέστε άνετα ρούχα και παπούτσια για περπάτημα, αν έχετε ορειβατικά είναι ιδανικά ώστε να δένουν τον αστράγαλο για αποφυγή ατυχημάτων.</li>
+<li>Ανάλογα με τις καιρικές συνθήκες καλό θα είναι να έχετε μαζί σας καπέλο, αντηλιακό ή αδιάβροχο.</li>
+<li>Μην φορτωθείτε με περιττά πράγματα. Πάρτε μαζί σας μόνο ένα μπουκάλι νερό ή ένα ισοτονικό αν το προτιμάτε και κάτι ελαφρύ για γεύμα.</li>
+<li>Κατά τη διάρκεια της διαδρομής ο Ορειβατικός Σύλλογος έχει φροντίσει για όλους εσάς ώστε να βρείτε τα απαραίτητα για να ξεκουραστείτε και να πάρετε δύναμη για να συνεχίσετε.</li>
+<li>Δεν χρειάζεται να είστε σε κάποια ιδιαίτερη φυσική κατάσταση, αρκεί η διάθεση για περπάτημα.</li>
+<li>Δεν υπάρχει ηλικιακός περιορισμός για να συμμετάσχετε, η διαδρομή είναι απλή και μπορούν να την ακολουθήσουν όλοι. Να τονιστεί όμως ότι είναι πεζοπορία σχεδόν 5 ωρών από τα Καλάβρυτα έως και το Διακοπτό, 3 ωρών από Ζαχλωρού έως Διακοπτό και 2 ωρών από Ζαχλωρού μέχρι τα Νιάματα όπου θα σας περιμένουμε. Εάν δεν έχετε την αντοχή να περπατήσετε τόσες ώρες (λόγω ηλικίας ή διαφόρων προβλημάτων υγείας), θα ήταν καλύτερα να το αποφύγετε.</li>
+<li>Είναι ΚΑΘΑΡΑ ΟΡΕΙΒΑΤΙΚΗ ΠΕΖΟΠΟΡΙΑ και όχι περίπατος.</li>
+<li>Εάν δεν είστε σε κάποιο σύλλογο ώστε να γνωρίζετε τα βασικά tips, τότε ακολουθήστε τις οδηγίες (tips) που δίνουμε παραπάνω.</li>
+<li>ΠΑΡΑΚΑΛΟΥΜΕ ΠΟΛΥ να τηρήσετε τις παραπάνω οδηγίες σχετικά με το τι να φορέσετε ή να πάρετε μαζί σας.</li>
+</ul>
+<p>* To Πανελλήνιο Πέρασμα στο φαράγγι του Βουραϊκού Ποταμού είναι ΔΩΡΕΑΝ και δεν χρειάζεται να δηλώσετε συμμετοχή.</p>
+<p>* Κατά μήκος του φαραγγιού θα βρείτε εθελοντές της Ελληνικής Ομάδας Διάσωσης οι οποίοι φροντίζουν για την ομαλή διεξαγωγή και θα είναι εκεί για οτιδήποτε χρειαστείτε.</p>
+<p>* Φροντίζετε για την μεταφορά σας από και προς τον τόπο διαμονή σας. Εάν δεν έχετε μεταφορικό, είναι πολλά ταξιδιωτικά γραφεία που θα βάλουν πούλμαν και θα αρχίσουμε να ενημερώνουμε για αυτά στις επόμενες αναρτήσεις μας.</p>
+<p>* Φέτος συμπληρώνονται 95 χρόνια από την ίδρυση του Ορειβατικού (το 1931) και 46 χρόνια (από το 1980), που πραγματοποιεί το Πανελλήνιο Πέρασμα στο Φαράγγι του Βουραϊκού.</p>
+<p>Πρέπει να είμαστε όλοι παρόντες. Σε περιμένουμε όπως πάντα, το δεύτερο Σαββατοκύριακο του Μάη. Καλή αντάμωση.</p>
+<p>(Ο σύλλογος το Σάββατο 9 Μαΐου πραγματοποιεί εκδήλωση με διάφορα θέματα που αφορούν το περιβάλλον, τον τουρισμό, τον Οδοντωτό κτλ και την Κυριακή είναι η πεζοπορία.)</p>
+<p><strong>ΣΥΛΛΟΓΟΣ ΟΡΕΙΒΑΣΙΑΣ – ΧΙΟΝΟΔΡΟΜΙΑΣ - ΑΝΑΡΡΙΧΗΣΗΣ ΠΡΟΣΤΑΣΙΑΣ ΠΕΡΙΒΑΛΛΟΝΤΟΣ ΚΑΛΑΒΡΥΤΩΝ</strong><br>Ο Πρόεδρος: Χαρίλαος Ηλία Ερμείδης</p>
+
+<div class="facebook-embed-grid">
+<article class="facebook-embed-card">
+<h3>Facebook Εκδήλωση</h3>
+<iframe
+  title="Facebook εκδήλωση 46ο Πανελλήνιο Πέρασμα"
+  src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Feoskalavrita%2Fposts%2Fpfbid02LGejxSBaVRkNGKJwfeMAErraTUQMr59rZ6zxzyjGdi5nmKem5d4xKz54o4assAaxl&show_text=true&width=500"
+  width="500"
+  height="654"
+  style="border:none;overflow:hidden"
+  loading="lazy"
+  scrolling="no"
+  frameborder="0"
+  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+  allowfullscreen="true">
+</iframe>
+</article>
+
+<article class="facebook-embed-card">
+<h3>Facebook Διοργανωτή</h3>
+<iframe
+  title="Facebook διοργανωτή"
+  src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Feoskalavrita%2Fposts%2Fpfbid0fFANWhuZGBWjzzsBy8BBTmXmXFEY8e2cwGs8wZNHbYmeSZt52QN5cJ4iomHivM5Fl&show_text=true&width=500"
+  width="500"
+  height="673"
+  style="border:none;overflow:hidden"
+  loading="lazy"
+  scrolling="no"
+  frameborder="0"
+  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+  allowfullscreen="true">
+</iframe>
+</article>
+</div>
+</section>
+
+<p style="margin:22px auto 0;max-width:1100px;padding:0 20px;">
+<a class="button" id="activities-back-link" href="index.html">Επιστροφή στην Αρχική</a>
+</p>
+</section>
+</main>
+
+<footer>
+<section class="newsletter-strip" aria-labelledby="activities-newsletter-title">
+<div class="newsletter-strip-inner">
+<h2 id="activities-newsletter-title">Newsletter</h2>
+<form class="newsletter-form" novalidate>
+<label class="sr-only" for="activities-newsletter-email">Email</label>
+<input id="activities-newsletter-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>
+<button class="button button-secondary" type="button" id="activities-newsletter-btn">Εγγραφή</button>
+</form>
+</div>
+</section>
+
+<p id="activities-footer-title">Οδοντωτός Σιδηρόδρομος - Φαράγγι Βουραϊκού - Με αγάπη για τον τόπο μας!</p>
+<p class="footer-contact-line">
+<span id="activities-footer-contact-label">Επικοινωνία:</span>
+<a class="footer-credit-link" href="mailto:info@webhostpro.gr">info@webhostpro.gr</a>
+<span class="footer-contact-sep" aria-hidden="true">|</span>
+<a class="footer-credit-link" href="mailto:info@odontotos.gr">info@odontotos.gr</a>
+</p>
+<p class="footer-legal-line">
+<a id="activities-privacy-link" class="footer-credit-link" href="privacy-policy.html">Πολιτική Απορρήτου</a>
+</p>
+<p class="footer-credit">
+Designed by <a class="footer-credit-link footer-studio-link" href="https://noustelos.gr" target="_blank" rel="noopener noreferrer">NOUSTELOS_STUDIO /&gt;</a>
+official partner of <a class="footer-credit-link" href="https://webhostpro.gr" target="_blank" rel="noopener noreferrer">WEB HOST PRO Αιγιαλεία</a> | <span id="activities-year">2026</span> © all rights reserved.
+</p>
+</footer>
+
+<script>
+(function () {
+  var translations = {
+    el: {
+      pageTitle: "Δραστηριότητες | Οδοντωτός Διακοπτό-Καλάβρυτα",
+      pageDescription: "Δραστηριότητες στον Βουραϊκό και τη διαδρομή του Οδοντωτού: πεζοπορία, ποδήλατο, φωτογράφιση και εμπειρίες φύσης.",
+      homeSr: "Αρχική",
+      navExperience: "Εμπειρία",
+      navHistory: "Ιστορία",
+      navRoute: "Διαδρομή",
+      navStarting: "Αφετηρία",
+      navGallery: "Photo Gallery",
+      navActivities: "Δραστηριότητες",
+      navInfo: "Πληροφορίες",
+      backArrowAria: "Επιστροφή στην αρχική σελίδα",
+      kicker: "Δραστηριότητες",
+      title: "Τι Μπορείς Να Κάνεις Στη Διαδρομή",
+      intro: "Επιλεγμένες ιδέες για εμπειρίες στη φύση και στάσεις που συνδυάζονται με το ταξίδι του Οδοντωτού.",
+      card1Title: "Πεζοπορία Στο Μονοπάτι Ε4",
+      card1Text: "Ακολούθησε τμήματα της διαδρομής παράλληλα με τις ράγες και ανακάλυψε σημεία θέας μέσα στο φαράγγι.",
+      card2Title: "Στάση Στη Ζαχλωρού",
+      card2Text: "Κατέβα για καφέ ή φαγητό δίπλα στις γραμμές και συνέχισε με επόμενο δρομολόγιο προς Καλάβρυτα.",
+      card3Title: "Φωτογράφιση Τοπίου",
+      card3Text: "Ιδανικά σημεία για φωτογραφία σε γέφυρες, βράχια και φυσικά περάσματα του Βουραϊκού.",
+      card4Title: "Επίσκεψη Στο Μουσείο",
+      card4Text: "Δες την ιστορική ατμομηχανή και στοιχεία της ιστορίας του Οδοντωτού στο Διακοπτό.",
+      card5Title: "Συνδυασμός Με Καλάβρυτα",
+      card5Text: "Οργάνωσε ολοήμερη εκδρομή με βόλτα στην πόλη, τοπικές γεύσεις και επιστροφή με τρένο.",
+      card6Title: "Παρατήρηση Φύσης",
+      card6Text: "Αφιέρωσε χρόνο σε ήσυχα σημεία για παρατήρηση νερού, βλάστησης και εποχικών αλλαγών του τοπίου.",
+      backLabel: "Επιστροφή στην Αρχική",
+      newsletterTitle: "Newsletter",
+      newsletterButton: "Εγγραφή",
+      footerTitle: "Οδοντωτός Σιδηρόδρομος - Φαράγγι Βουραϊκού - Με αγάπη για τον τόπο μας!",
+      footerContact: "Επικοινωνία:",
+      privacyLabel: "Πολιτική Απορρήτου"
+    },
+    en: {
+      pageTitle: "Activities | Odontotos Diakopto-Kalavryta",
+      pageDescription: "Activities around the Odontotos route and Vouraikos Gorge: hiking, stops, photography and nature exploration.",
+      homeSr: "Home",
+      navExperience: "Experience",
+      navHistory: "History",
+      navRoute: "Route",
+      navStarting: "Starting Point",
+      navGallery: "Photo Gallery",
+      navActivities: "Activities",
+      navInfo: "Info",
+      backArrowAria: "Back to home page",
+      kicker: "Activities",
+      title: "What You Can Do Along The Route",
+      intro: "Selected ideas for nature experiences and stops that pair with the Odontotos journey.",
+      card1Title: "Hike The E4 Trail",
+      card1Text: "Follow parts of the route near the tracks and discover scenic points inside the gorge.",
+      card2Title: "Stop At Zachlorou",
+      card2Text: "Get off for coffee or food near the rails and continue later with the next train to Kalavryta.",
+      card3Title: "Landscape Photography",
+      card3Text: "Great spots for photos across bridges, rocks and natural passages of Vouraikos.",
+      card4Title: "Visit The Museum",
+      card4Text: "See the historic steam locomotive and key Odontotos exhibits in Diakopto.",
+      card5Title: "Combine With Kalavryta",
+      card5Text: "Plan a full-day trip with town walk, local flavors and return by train.",
+      card6Title: "Nature Observation",
+      card6Text: "Spend time in quiet points to observe water flow, vegetation and seasonal landscape changes.",
+      backLabel: "Back to Home",
+      newsletterTitle: "Newsletter",
+      newsletterButton: "Subscribe",
+      footerTitle: "Odontotos Railway - Vouraikos Gorge - With love for our place!",
+      footerContact: "Contact:",
+      privacyLabel: "Privacy Policy"
+    }
+  };
+
+  function buildIndexHref(safeLang, hash) {
+    return "index.html" + (safeLang === "en" ? "?lang=en" : "") + (hash || "");
+  }
+
+  function setLanguage(lang) {
+    var safeLang = translations[lang] ? lang : "el";
+    var t = translations[safeLang];
+
+    document.documentElement.lang = safeLang;
+    document.title = t.pageTitle;
+
+    var descriptionTag = document.querySelector('meta[name="description"]');
+    if (descriptionTag) descriptionTag.setAttribute("content", t.pageDescription);
+
+    var localizedPath = "activities.html" + (safeLang === "en" ? "?lang=en" : "");
+    var canonicalTag = document.querySelector('link[rel="canonical"]');
+    var ogUrlTag = document.querySelector('meta[property="og:url"]');
+    if (canonicalTag) canonicalTag.setAttribute("href", "https://odontotos.gr/" + localizedPath);
+    if (ogUrlTag) ogUrlTag.setAttribute("content", "https://odontotos.gr/" + localizedPath);
+
+    var homeSr = document.getElementById("activities-home-sr");
+    var navExperience = document.getElementById("activities-nav-experience");
+    var navHistory = document.getElementById("activities-nav-history");
+    var navRoute = document.getElementById("activities-nav-route");
+    var navStarting = document.getElementById("activities-nav-starting");
+    var navGallery = document.getElementById("activities-nav-gallery");
+    var navActivities = document.getElementById("activities-nav-activities");
+    var navInfo = document.getElementById("activities-nav-info");
+
+    if (homeSr) homeSr.textContent = t.homeSr;
+    if (navExperience) navExperience.textContent = t.navExperience;
+    if (navHistory) navHistory.textContent = t.navHistory;
+    if (navRoute) navRoute.textContent = t.navRoute;
+    if (navStarting) navStarting.textContent = t.navStarting;
+    if (navGallery) navGallery.textContent = t.navGallery;
+    if (navActivities) navActivities.textContent = t.navActivities;
+    if (navInfo) navInfo.textContent = t.navInfo;
+
+    if (navExperience) navExperience.setAttribute("href", buildIndexHref(safeLang, "#experience-section"));
+    if (navHistory) navHistory.setAttribute("href", buildIndexHref(safeLang, "#history-section"));
+    if (navRoute) navRoute.setAttribute("href", buildIndexHref(safeLang, "#railway-route"));
+    if (navStarting) navStarting.setAttribute("href", buildIndexHref(safeLang, "#starting-point"));
+    if (navGallery) navGallery.setAttribute("href", "photo-gallery.html" + (safeLang === "en" ? "?lang=en" : ""));
+    if (navInfo) navInfo.setAttribute("href", buildIndexHref(safeLang, "#visitor-section"));
+
+    var activitiesHomeLink = document.getElementById("activities-home-link");
+    if (activitiesHomeLink) activitiesHomeLink.setAttribute("href", buildIndexHref(safeLang, ""));
+
+    var activitiesBackArrow = document.getElementById("activities-back-arrow");
+    if (activitiesBackArrow) {
+      activitiesBackArrow.setAttribute("href", buildIndexHref(safeLang, ""));
+      activitiesBackArrow.setAttribute("aria-label", t.backArrowAria);
+    }
+
+    var kicker = document.getElementById("activities-kicker");
+    var title = document.getElementById("activities-title");
+    var intro = document.getElementById("activities-intro");
+    if (kicker) kicker.textContent = t.kicker;
+    if (title) title.textContent = t.title;
+    if (intro) intro.textContent = t.intro;
+
+    var ids = [
+      ["card1-title", "card1Title"], ["card1-text", "card1Text"],
+      ["card2-title", "card2Title"], ["card2-text", "card2Text"],
+      ["card3-title", "card3Title"], ["card3-text", "card3Text"],
+      ["card4-title", "card4Title"], ["card4-text", "card4Text"],
+      ["card5-title", "card5Title"], ["card5-text", "card5Text"],
+      ["card6-title", "card6Title"], ["card6-text", "card6Text"]
+    ];
+
+    ids.forEach(function (pair) {
+      var node = document.getElementById(pair[0]);
+      if (node) node.textContent = t[pair[1]];
+    });
+
+    var backLink = document.getElementById("activities-back-link");
+    if (backLink) {
+      backLink.textContent = t.backLabel;
+      backLink.setAttribute("href", buildIndexHref(safeLang, ""));
+    }
+
+    var newsletterTitle = document.getElementById("activities-newsletter-title");
+    var newsletterButton = document.getElementById("activities-newsletter-btn");
+    if (newsletterTitle) newsletterTitle.textContent = t.newsletterTitle;
+    if (newsletterButton) newsletterButton.textContent = t.newsletterButton;
+
+    var footerTitle = document.getElementById("activities-footer-title");
+    var footerContact = document.getElementById("activities-footer-contact-label");
+    var privacyLink = document.getElementById("activities-privacy-link");
+    if (footerTitle) footerTitle.textContent = t.footerTitle;
+    if (footerContact) footerContact.textContent = t.footerContact;
+    if (privacyLink) {
+      privacyLink.textContent = t.privacyLabel;
+      privacyLink.setAttribute("href", "privacy-policy.html" + (safeLang === "en" ? "?lang=en" : ""));
+    }
+
+    var buttons = document.querySelectorAll(".lang-btn");
+    buttons.forEach(function (button) {
+      var isActive = button.getAttribute("data-lang") === safeLang;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+  }
+
+  var params = new URLSearchParams(window.location.search);
+  var initialLang = params.get("lang");
+  if (initialLang !== "en" && initialLang !== "el") {
+    initialLang = "el";
+  }
+
+  var languageButtons = document.querySelectorAll(".lang-btn");
+  languageButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      var selectedLang = button.getAttribute("data-lang");
+      setLanguage(selectedLang);
+      var nextUrl = new URL(window.location.href);
+      nextUrl.searchParams.set("lang", selectedLang);
+      window.history.replaceState({}, "", nextUrl.toString());
+    });
+  });
+
+  setLanguage(initialLang);
+
+  var yearNode = document.getElementById("activities-year");
+  if (yearNode) {
+    yearNode.textContent = String(new Date().getFullYear());
+  }
+})();
+</script>
+</body>
+</html>

@@ -404,6 +404,8 @@
 <a class="site-nav-link" href="#history-section" data-i18n="nav_history">Ιστορία</a>
 <a class="site-nav-link" href="#railway-route" data-i18n="nav_route">Διαδρομή</a>
 <a class="site-nav-link" href="#starting-point" data-i18n="nav_starting_point">Αφετηρία</a>
+<a class="site-nav-link" href="photo-gallery.html" data-lang-href-base="photo-gallery.html" data-i18n="nav_gallery">Photo Gallery</a>
+<a class="site-nav-link" href="activities.html" data-lang-href-base="activities.html" data-i18n="nav_activities">Δραστηριότητες</a>
 <a class="site-nav-link" href="#visitor-section" data-i18n="nav_info">Πληροφορίες</a>
 </nav>
 
@@ -442,6 +444,10 @@
 <button class="journey-step" type="button" data-target="starting-point">
 <span class="journey-step-dot" aria-hidden="true"></span>
 <span class="journey-step-label" data-i18n="jt_starting">Αφετηρία</span>
+</button>
+<button class="journey-step" type="button" data-target="photo-gallery-section">
+<span class="journey-step-dot" aria-hidden="true"></span>
+<span class="journey-step-label" data-i18n="jt_gallery">Gallery</span>
 </button>
 <button class="journey-step" type="button" data-target="visitor-section">
 <span class="journey-step-dot" aria-hidden="true"></span>
@@ -491,18 +497,23 @@
 <!-- CINEMATIC SLIDESHOW SECTION -->
 <!-- rotating gallery above UNESCO banner -->
 <section class="cinematic-slideshow">
-<div class="section-intro">
+<div class="section-intro section-intro-with-cta">
+	<div class="section-intro-copy">
 					<span class="section-kicker" data-i18n="slideshow_kicker">Πρώτες Εικόνες</span>
 					<h2 data-i18n="slideshow_title">Η Διαδρομή είναι ο προορισμός</h2>
 					<p data-i18n="slideshow_intro">Μια σύντομη οπτική εισαγωγή στο τοπίο του Βουραϊκού, πριν η διαδρομή αποκαλύψει βαθύτερα τον χαρακτήρα του φαραγγιού.</p>
 </div>
+<div class="section-intro-actions">
+<a class="button button-secondary" href="#photo-gallery-section" data-i18n="slideshow_gallery_cta">Επίσκεψη στο Photo Gallery</a>
+</div>
+</div>
 
 <div class="first-images-grid first-images-grid--triptych" aria-label="Τρεις στατικές φωτογραφίες από το φαράγγι">
 <figure class="first-image-card">
-<img src="assets/images/gefyra.webp" alt="Γέφυρα στη διαδρομή του Βουραϊκού" loading="eager" fetchpriority="high" decoding="async" width="1100" height="1467" data-fallback-src="assets/images/far1.webp" onerror="this.onerror=null;this.src='assets/images/gefyra.jpg'">
+<img src="assets/images/capt16.jpg" alt="Γέφυρα στη διαδρομή του Βουραϊκού" loading="eager" fetchpriority="high" decoding="async" width="1100" height="1467" data-fallback-src="assets/images/far1.webp" onerror="this.onerror=null;this.src='assets/images/gefyra.jpg'">
 </figure>
 <figure class="first-image-card">
-<img src="assets/images/t-9.webp" alt="Οδοντωτός στη διαδρομή μέσα στο τοπίο του Βουραϊκού" loading="lazy" fetchpriority="low" decoding="async" width="2400" height="3200" data-fallback-src="assets/images/trainB.webp">
+<img src="assets/images/cta2.jpeg" alt="Οδοντωτός στη διαδρομή μέσα στο τοπίο του Βουραϊκού" loading="lazy" fetchpriority="low" decoding="async" width="2400" height="3200" data-fallback-src="assets/images/trainB.webp">
 </figure>
 <figure class="first-image-card">
 <img src="assets/images/far1.webp" alt="Τοπίο στο Φαράγγι του Βουραϊκού" loading="lazy" fetchpriority="low" decoding="async" width="1100" height="1467" data-fallback-src="assets/images/far1.webp">
@@ -537,8 +548,8 @@
 
 <!-- UNESCO GORGE SECTION -->
 <!-- large cinematic photography with minimal overlay text -->
-<section class="image-section">
-<img src="assets/images/image_5.webp" alt="Πανοραμική άποψη του φαραγγιού του Βουραϊκού" loading="lazy" fetchpriority="low" width="2560" height="1920" decoding="async" data-fallback-src="assets/images/farragi1.webp">
+<section class="image-section image-section--unesco">
+<img src="assets/images/george2.jpg" alt="Πανοραμική άποψη του φαραγγιού του Βουραϊκού" loading="lazy" fetchpriority="low" width="2560" height="1920" decoding="async" data-fallback-src="assets/images/farragi1.webp">
 <div class="image-caption">
 <h2 data-i18n="unesco_title">VOURAIKOS UNESCO GLOBAL GEOPARK</h2>
 <p data-i18n="unesco_subtitle">Παγκόσμιο Γεωπάρκο UNESCO Χελμού - Βουραϊκού</p>
@@ -636,13 +647,9 @@
 <figure class="history-smoke-feature" aria-label="Φωτογραφία ιστορικού συρμού στο φαράγγι" data-i18n-aria-label="history_smoke_aria">
 </figure>
 
-<div class="history-video">
-<video id="history-video" muted playsinline webkit-playsinline preload="none" poster="assets/images/train-smoke.webp" aria-label="Φωτογραφία train smoke">
-<source type="video/mp4">
-Ο περιηγητής σας δεν υποστηρίζει αναπαραγωγή βίντεο.
-</video>
-<div class="video-skeleton" data-video-skeleton="history-video" aria-hidden="true"></div>
-</div>
+<figure class="history-secondary-photo" aria-label="Οδοντωτός συρμός σε αστική στάση στο Διακοπτό">
+<img src="giovas_1/dad.jpg" alt="Οδοντωτός συρμός σε αστική στάση στο Διακοπτό" loading="lazy" decoding="async" width="1024" height="768">
+</figure>
 </div>
 
 <div class="history-content">
@@ -856,11 +863,27 @@ data-i18n="google_diakopto_earth"
 <span class="diakopto-photo-placeholder-title" data-i18n="diakopto_photo_start_title">Αφετηρία</span>
 </figure>
 <figure class="diakopto-photo-placeholder diakopto-photo-museum" data-eyebrow="02 / 02" aria-label="Φωτογραφία μουσείου Οδοντωτού" data-i18n-aria-label="diakopto_photo_museum_aria">
-<img class="diakopto-photo-bg" src="assets/images/diakopto-museum.webp" alt="Μουσείο Οδοντωτού Σιδηροδρόμου στο Διακοπτό με ιστορικά εκθέματα συρμών" width="900" height="675" loading="lazy" decoding="async">
+<img class="diakopto-photo-bg" src="assets/images/mouseio.jpg" alt="Μουσείο Οδοντωτού Σιδηροδρόμου στο Διακοπτό με ιστορικά εκθέματα συρμών" width="900" height="675" loading="lazy" decoding="async">
 <span class="diakopto-photo-placeholder-title" data-i18n="diakopto_photo_museum_title">Μουσείο</span>
 </figure>
 </div>
 
+</section>
+
+<section class="photo-gallery-section" id="photo-gallery-section">
+<div class="section-intro">
+					<span class="section-kicker" data-i18n="photo_gallery_kicker">ΦΩΤΟ ΓΚΑΛΕΡΙ</span>
+					<h2 data-i18n="photo_gallery_title">ΦΩΤΟ ΓΚΑΛΕΡΙ</h2>
+					<p data-i18n="photo_gallery_intro">Εδώ μπορπούμε να θαυμάζουμε τον Οδοντωτό και την ομορφιά ου όταν δεν μπορύμε να ειμασε εκει, φωτογραφίες επισκεπτών, εθελεόντων και απλων πολιτών.</p>
+</div>
+<div class="photo-gallery-grid" aria-label="Photo gallery διαδρομής Οδοντωτού">
+<figure class="photo-gallery-item"><img src="assets/images/capt16.jpg" alt="Στιγμιότυπο διαδρομής μέσα στο φαράγγι" loading="lazy" decoding="async"></figure>
+<figure class="photo-gallery-item"><img src="assets/images/cta2.jpeg" alt="Θέα του Οδοντωτού στη διαδρομή" loading="lazy" decoding="async"></figure>
+<figure class="photo-gallery-item"><img src="assets/images/traincom.jpeg" alt="Οδοντωτός συρμός δίπλα στο βραχώδες τοπίο" loading="lazy" decoding="async"></figure>
+<figure class="photo-gallery-item"><img src="assets/images/gefyra.webp" alt="Γέφυρα στη διαδρομή του Βουραϊκού" loading="lazy" decoding="async"></figure>
+<figure class="photo-gallery-item"><img src="assets/images/trainB.webp" alt="Οδοντωτός στο τοπίο του Βουραϊκού" loading="lazy" decoding="async"></figure>
+<figure class="photo-gallery-item"><img src="assets/images/far1.webp" alt="Φυσικό τοπίο του φαραγγιού" loading="lazy" decoding="async"></figure>
+</div>
 </section>
 
 <!-- VISITOR INFO SECTION -->
@@ -1080,6 +1103,19 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
 <button class="social-share-option" type="button" data-social-copy data-i18n="social_option_copy">Copy Link</button>
 </div>
 <button class="social-share-close" type="button" data-social-close data-i18n="social_close">Κλείσιμο</button>
+</div>
+</div>
+
+<div id="descent-announcement" class="announcement-popup" role="dialog" aria-modal="true" aria-label="Ανακοίνωση κατάβασης" data-i18n-aria-label="announcement_modal_aria_label" hidden>
+<div class="announcement-popup-card">
+<button id="announcement-close" class="announcement-close" type="button" aria-label="Κλείσιμο ανακοίνωσης" data-i18n-aria-label="announcement_close_aria_label">×</button>
+<p class="announcement-badge" data-i18n="announcement_badge">Ανακοίνωση</p>
+<h2 class="announcement-title" data-i18n="announcement_title">46ο Πανελλήνιο Πέρασμα στο φαράγγι του Βουραϊκού</h2>
+<p class="announcement-text" data-i18n="announcement_text">Η κατάβαση στο φαράγγι του Βουραϊκού πραγματοποιείται την Κυριακή 10 Μαΐου 2026. Δες όλες τις λεπτομέρειες συμμετοχής, οδηγίες και την ενημέρωση του διοργανωτή.</p>
+<div class="announcement-actions">
+<a id="announcement-cta" class="button" href="activities.html#panhellenic-crossing-section" data-i18n="announcement_cta">Δες την ανακοίνωση</a>
+<button id="announcement-dismiss" class="button button-secondary" type="button" data-i18n="announcement_dismiss">Κλείσιμο</button>
+</div>
 </div>
 </div>
 
