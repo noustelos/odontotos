@@ -3157,8 +3157,13 @@ function initDescentAnnouncement() {
         return;
     }
 
-    var storageKey = "odontotos_descent_announcement_v2_dismissed";
+    var storageKey = "odontotos_descent_announcement_v4_dismissed";
+    var forceOpen = new URLSearchParams(window.location.search).get("popup") === "1";
     var activeElementBeforeOpen = null;
+    var hasOpened = false;
+    var closedByUser = false;
+    var reopenedAfterScroll = false;
+    var reopenScrollThreshold = 420;
 
     function isDismissed() {
         try {
@@ -3182,6 +3187,8 @@ function initDescentAnnouncement() {
 
         if (shouldPersist) {
             persistDismissal();
+        } else {
+            closedByUser = true;
         }
 
         if (activeElementBeforeOpen && typeof activeElementBeforeOpen.focus === "function") {
@@ -3190,9 +3197,16 @@ function initDescentAnnouncement() {
     }
 
     function openPopup() {
-        if (isDismissed()) {
+        if (!forceOpen && isDismissed()) {
             return;
         }
+
+        if (hasOpened) {
+            return;
+        }
+
+        hasOpened = true;
+        closedByUser = false;
 
         activeElementBeforeOpen = document.activeElement;
         popup.hidden = false;
@@ -3209,13 +3223,13 @@ function initDescentAnnouncement() {
 
     if (closeButton) {
         closeButton.addEventListener("click", function () {
-            closePopup(true);
+            closePopup(false);
         });
     }
 
     if (dismissButton) {
         dismissButton.addEventListener("click", function () {
-            closePopup(true);
+            closePopup(false);
         });
     }
 
@@ -3230,17 +3244,42 @@ function initDescentAnnouncement() {
 
     popup.addEventListener("click", function (event) {
         if (event.target === popup) {
-            closePopup(true);
+            closePopup(false);
         }
     });
 
     document.addEventListener("keydown", function (event) {
         if (event.key === "Escape" && !popup.hidden) {
-            closePopup(true);
+            closePopup(false);
         }
     });
 
     window.setTimeout(openPopup, 900);
+
+    // Fallback for cases where initial timeout is skipped by browser throttling.
+    function openOnceAfterInteraction() {
+        openPopup();
+        window.removeEventListener("scroll", openOnceAfterInteraction);
+        window.removeEventListener("pointerdown", openOnceAfterInteraction);
+        window.removeEventListener("keydown", openOnceAfterInteraction);
+    }
+
+    window.addEventListener("scroll", openOnceAfterInteraction, { passive: true, once: true });
+    window.addEventListener("pointerdown", openOnceAfterInteraction, { once: true });
+    window.addEventListener("keydown", openOnceAfterInteraction, { once: true });
+
+    function reopenAfterScrollIfNeeded() {
+        if (reopenedAfterScroll || !closedByUser || !popup.hidden) {
+            return;
+        }
+
+        if (window.scrollY >= reopenScrollThreshold) {
+            reopenedAfterScroll = true;
+            openPopup();
+        }
+    }
+
+    window.addEventListener("scroll", reopenAfterScrollIfNeeded, { passive: true });
 }
 
 function updateLanguageAwareLinks(lang) {
