@@ -129,6 +129,20 @@
 </div>
 </header>
 
+<nav id="journey-timeline" class="journey-timeline" aria-label="Πλοηγός ενοτήτων">
+<div class="journey-line" aria-hidden="true"><span class="journey-line-fill" style="height:100%"></span></div>
+<div class="journey-steps">
+<a class="journey-step" href="index.html#experience-section"><span class="journey-step-dot" aria-hidden="true"></span><span class="journey-step-label">Εμπειρία</span></a>
+<a class="journey-step" href="index.html#history-section"><span class="journey-step-dot" aria-hidden="true"></span><span class="journey-step-label">Ιστορία</span></a>
+<a class="journey-step" href="index.html#railway-route"><span class="journey-step-dot" aria-hidden="true"></span><span class="journey-step-label">Διαδρομή</span></a>
+<a class="journey-step" href="index.html#starting-point"><span class="journey-step-dot" aria-hidden="true"></span><span class="journey-step-label">Αφετηρία</span></a>
+<a class="journey-step is-active" href="photo-gallery.html" aria-current="page"><span class="journey-step-dot" aria-hidden="true"></span><span class="journey-step-label">Gallery</span></a>
+<a class="journey-step" href="activities.html"><span class="journey-step-dot" aria-hidden="true"></span><span class="journey-step-label">Δραστηριότητες</span></a>
+<a class="journey-step" href="index.html#visitor-section"><span class="journey-step-dot" aria-hidden="true"></span><span class="journey-step-label">Πληροφορίες</span></a>
+<a class="journey-step" href="index.html#contact-section"><span class="journey-step-dot" aria-hidden="true"></span><span class="journey-step-label">Επικοινωνία</span></a>
+</div>
+</nav>
+
 <main id="main-content">
 <section class="photo-gallery-section" id="photo-gallery-section">
 <div class="section-intro">
@@ -416,11 +430,81 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
 
   setLanguage(initialLang);
 
+  (function () {
+    var railFill = document.querySelector("[data-scroll-rail-fill]");
+    var wagon = document.querySelector("[data-scroll-wagon]");
+    if (!railFill || !wagon) {
+      return;
+    }
+    var ticking = false;
+    function updateRail() {
+      ticking = false;
+      var doc = document.documentElement;
+      var maxScroll = Math.max(doc.scrollHeight - window.innerHeight, 1);
+      var progress = Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
+      var pad = 2;
+      var pct = (pad + progress * (100 - pad * 2)).toFixed(2) + "%";
+      railFill.style.transform = "scaleX(" + progress + ")";
+      wagon.style.left = pct;
+    }
+    function onRailScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(updateRail);
+    }
+    window.addEventListener("scroll", onRailScroll, { passive: true });
+    window.addEventListener("resize", onRailScroll);
+    updateRail();
+  })();
+
+  function initScrollToTopButton() {
+    var scrollToTopButton = document.getElementById("scroll-to-top");
+    if (!scrollToTopButton) {
+      return;
+    }
+
+    var scrollToTopTicking = false;
+
+    scrollToTopButton.addEventListener("click", function () {
+      var reducedMotion = typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({
+        top: 0,
+        behavior: reducedMotion ? "auto" : "smooth"
+      });
+    });
+
+    function updateScrollToTopState() {
+      scrollToTopTicking = false;
+      scrollToTopButton.classList.toggle("is-visible", window.scrollY > 460);
+    }
+
+    function requestScrollToTopUpdate() {
+      if (scrollToTopTicking) {
+        return;
+      }
+
+      scrollToTopTicking = true;
+      window.requestAnimationFrame(updateScrollToTopState);
+    }
+
+    window.addEventListener("scroll", requestScrollToTopUpdate, { passive: true });
+    window.addEventListener("resize", requestScrollToTopUpdate);
+    updateScrollToTopState();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initScrollToTopButton, { once: true });
+  } else {
+    initScrollToTopButton();
+  }
+
   var yearNode = document.getElementById("gallery-year");
   if (yearNode) {
     yearNode.textContent = String(new Date().getFullYear());
   }
 })();
 </script>
+
+<button id="scroll-to-top" class="scroll-to-top" type="button" aria-label="Επιστροφή στην κορυφή" data-i18n-aria-label="scroll_top_aria_label">↑</button>
 </body>
 </html>

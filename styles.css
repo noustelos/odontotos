@@ -216,6 +216,7 @@ body::before {
     text-align: left;
     padding: 4px 2px;
     border-radius: 8px;
+    text-decoration: none;
     transition: transform 180ms ease, color 180ms ease;
 }
 
