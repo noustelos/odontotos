@@ -210,17 +210,6 @@
 
 <footer>
 
-<section class="newsletter-strip" aria-labelledby="gallery-newsletter-title">
-<div class="newsletter-strip-inner">
-<h2 id="gallery-newsletter-title">Newsletter</h2>
-<form class="newsletter-form" novalidate>
-<label class="sr-only" for="gallery-newsletter-email">Email</label>
-<input id="gallery-newsletter-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>
-<button class="button button-secondary" type="button" id="gallery-newsletter-btn">Εγγραφή</button>
-</form>
-</div>
-</section>
-
 <p id="gallery-footer-title">Οδοντωτός Σιδηρόδρομος - Φαράγγι Βουραϊκού - Με αγάπη για τον τόπο μας!</p>
 <p class="footer-contact-line">
 <span id="gallery-footer-contact-label">Επικοινωνία:</span>
@@ -259,8 +248,6 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
       extraTitle: "Στείλε Και Εσύ Φωτογραφία",
       extraIntro: "Αυτό το gallery μεγαλώνει με τη βοήθεια επισκεπτών, εθελοντών και ανθρώπων που αγαπούν τον τόπο.",
       extraSteps: "Αν θέλεις να προστεθεί υλικό, στείλε μας φωτογραφίες με σύντομη περιγραφή τοποθεσίας και ημερομηνίας.",
-      newsletterTitle: "Newsletter",
-      newsletterButton: "Εγγραφή",
       footerTitle: "Οδοντωτός Σιδηρόδρομος - Φαράγγι Βουραϊκού - Με αγάπη για τον τόπο μας!",
       footerContact: "Επικοινωνία:",
       privacyLabel: "Πολιτική Απορρήτου"
@@ -284,8 +271,6 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
       extraTitle: "Share Your Photo Too",
       extraIntro: "This gallery grows with the help of visitors, volunteers and people who love this place.",
       extraSteps: "If you want your material to be featured, send us photos with a short location and date description.",
-      newsletterTitle: "Newsletter",
-      newsletterButton: "Subscribe",
       footerTitle: "Odontotos Railway - Vouraikos Gorge - With love for our place!",
       footerContact: "Contact:",
       privacyLabel: "Privacy Policy"
@@ -355,8 +340,6 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
     var extraTitle = document.getElementById("gallery-contribute-title");
     var extraIntro = document.getElementById("gallery-contribute-intro");
     var extraSteps = document.getElementById("gallery-contribute-steps");
-    var newsletterTitle = document.getElementById("gallery-newsletter-title");
-    var newsletterButton = document.getElementById("gallery-newsletter-btn");
     var footerContactLabel = document.getElementById("gallery-footer-contact-label");
     var privacyLink = document.getElementById("gallery-privacy-link");
     var footerTitle = document.getElementById("gallery-footer-title");
@@ -394,8 +377,6 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
     if (extraTitle) extraTitle.textContent = t.extraTitle;
     if (extraIntro) extraIntro.textContent = t.extraIntro;
     if (extraSteps) extraSteps.textContent = t.extraSteps;
-    if (newsletterTitle) newsletterTitle.textContent = t.newsletterTitle;
-    if (newsletterButton) newsletterButton.textContent = t.newsletterButton;
     if (footerContactLabel) footerContactLabel.textContent = t.footerContact;
     if (privacyLink) {
       privacyLink.textContent = t.privacyLabel;

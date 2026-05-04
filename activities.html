@@ -311,17 +311,6 @@
 </main>
 
 <footer>
-<section class="newsletter-strip" aria-labelledby="activities-newsletter-title">
-<div class="newsletter-strip-inner">
-<h2 id="activities-newsletter-title">Newsletter</h2>
-<form class="newsletter-form" novalidate>
-<label class="sr-only" for="activities-newsletter-email">Email</label>
-<input id="activities-newsletter-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>
-<button class="button button-secondary" type="button" id="activities-newsletter-btn">Εγγραφή</button>
-</form>
-</div>
-</section>
-
 <p id="activities-footer-title">Οδοντωτός Σιδηρόδρομος - Φαράγγι Βουραϊκού - Με αγάπη για τον τόπο μας!</p>
 <p class="footer-contact-line">
 <span id="activities-footer-contact-label">Επικοινωνία:</span>
@@ -369,8 +358,6 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
       card6Title: "Παρατήρηση Φύσης",
       card6Text: "Αφιέρωσε χρόνο σε ήσυχα σημεία για παρατήρηση νερού, βλάστησης και εποχικών αλλαγών του τοπίου.",
       backLabel: "Επιστροφή στην Αρχική",
-      newsletterTitle: "Newsletter",
-      newsletterButton: "Εγγραφή",
       footerTitle: "Οδοντωτός Σιδηρόδρομος - Φαράγγι Βουραϊκού - Με αγάπη για τον τόπο μας!",
       footerContact: "Επικοινωνία:",
       privacyLabel: "Πολιτική Απορρήτου"
@@ -403,8 +390,6 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
       card6Title: "Nature Observation",
       card6Text: "Spend time in quiet points to observe water flow, vegetation and seasonal landscape changes.",
       backLabel: "Back to Home",
-      newsletterTitle: "Newsletter",
-      newsletterButton: "Subscribe",
       footerTitle: "Odontotos Railway - Vouraikos Gorge - With love for our place!",
       footerContact: "Contact:",
       privacyLabel: "Privacy Policy"
@@ -491,11 +476,6 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
       backLink.textContent = t.backLabel;
       backLink.setAttribute("href", buildIndexHref(safeLang, ""));
     }
-
-    var newsletterTitle = document.getElementById("activities-newsletter-title");
-    var newsletterButton = document.getElementById("activities-newsletter-btn");
-    if (newsletterTitle) newsletterTitle.textContent = t.newsletterTitle;
-    if (newsletterButton) newsletterButton.textContent = t.newsletterButton;
 
     var footerTitle = document.getElementById("activities-footer-title");
     var footerContact = document.getElementById("activities-footer-contact-label");

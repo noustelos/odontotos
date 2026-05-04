@@ -222,15 +222,6 @@ var i18n = {
         contact_email_label: "Email",
         contact_message_label: "Μήνυμα",
         contact_submit: "Αποστολή mail",
-        newsletter_kicker: "Newsletter",
-        newsletter_title: "Newsletter",
-        newsletter_text: "",
-        newsletter_email_label: "Email για newsletter",
-        newsletter_submit: "Εγγραφή",
-        newsletter_status_required: "Συμπλήρωσε έγκυρο email για να συνεχίσεις.",
-        newsletter_status_sending: "Καταχώριση...",
-        newsletter_status_success: "Η εγγραφή ολοκληρώθηκε. Ευχαριστούμε!",
-        newsletter_status_error: "Η εγγραφή δεν ολοκληρώθηκε. Δοκίμασε ξανά σε λίγο.",
         contact_status_sending: "Αποστολή μηνύματος...",
         contact_status_required: "Συμπλήρωσε όλα τα πεδία για να συνεχίσεις.",
         contact_status_sent: "Το μήνυμα στάλθηκε επιτυχώς.",
@@ -470,15 +461,6 @@ var i18n = {
         contact_email_label: "Email",
         contact_message_label: "Message",
         contact_submit: "Send mail",
-        newsletter_kicker: "Newsletter",
-        newsletter_title: "Newsletter",
-        newsletter_text: "",
-        newsletter_email_label: "Newsletter email",
-        newsletter_submit: "Subscribe",
-        newsletter_status_required: "Enter a valid email to continue.",
-        newsletter_status_sending: "Subscribing...",
-        newsletter_status_success: "Subscription completed. Thank you!",
-        newsletter_status_error: "Subscription failed. Please try again shortly.",
         contact_status_sending: "Sending message...",
         contact_status_required: "Please complete all required fields.",
         contact_status_sent: "Your message was sent successfully.",
@@ -541,7 +523,6 @@ document.addEventListener("DOMContentLoaded", function () {
     initAccordionTransitions();
     initDynamicFooterMeta();
     initContactForm();
-    initNewsletterForm();
     initCookieConsent();
     initI18n();
     initDescentAnnouncement();
@@ -2137,90 +2118,6 @@ function initContactForm() {
                 });
                 if (statusNode) {
                     statusNode.textContent = i18n[currentLanguage].contact_status_error || "";
-                }
-            })
-            .finally(function () {
-                if (submitButton) {
-                    submitButton.disabled = false;
-                    submitButton.removeAttribute("aria-busy");
-                }
-            });
-    });
-}
-
-function initNewsletterForm() {
-    var form = document.getElementById("newsletter-form");
-    var statusNode = document.getElementById("newsletter-status");
-    if (!form) {
-        return;
-    }
-
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        var emailField = form.querySelector('input[name="email"]');
-        var email = (emailField && emailField.value ? emailField.value : "").trim();
-
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            emitAnalyticsEvent("newsletter_validation_error", {
-                language: currentLanguage,
-            });
-            if (statusNode) {
-                statusNode.textContent = i18n[currentLanguage].newsletter_status_required || "";
-            }
-            return;
-        }
-
-        emitAnalyticsEvent("newsletter_submit", {
-            language: currentLanguage,
-        });
-
-        var submitButton = form.querySelector('button[type="submit"]');
-        var recipient = "info@odontotos.gr";
-        var ccRecipients = "info@noustelos.gr,alexandros21bs@gmail.com";
-        if (submitButton) {
-            submitButton.disabled = true;
-            submitButton.setAttribute("aria-busy", "true");
-        }
-
-        if (statusNode) {
-            statusNode.textContent = i18n[currentLanguage].newsletter_status_sending || "";
-        }
-
-        var payload = new FormData();
-        payload.append("email", email);
-        payload.append("_subject", currentLanguage === "en" ? "New newsletter subscription" : "Νέα εγγραφή newsletter");
-        payload.append("_cc", ccRecipients);
-        payload.append("_captcha", "false");
-
-        fetch("https://formsubmit.co/ajax/" + encodeURIComponent(recipient), {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-            },
-            body: payload,
-        })
-            .then(function (response) {
-                if (!response.ok) {
-                    throw new Error("Newsletter API error");
-                }
-
-                emitAnalyticsEvent("newsletter_success", {
-                    language: currentLanguage,
-                });
-
-                if (statusNode) {
-                    statusNode.textContent = i18n[currentLanguage].newsletter_status_success || "";
-                }
-
-                form.reset();
-            })
-            .catch(function () {
-                emitAnalyticsEvent("newsletter_error", {
-                    language: currentLanguage,
-                });
-                if (statusNode) {
-                    statusNode.textContent = i18n[currentLanguage].newsletter_status_error || "";
                 }
             })
             .finally(function () {

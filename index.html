@@ -26,7 +26,6 @@
 <link rel="alternate" hreflang="x-default" href="https://odontotos.gr/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="dns-prefetch" href="https://formsubmit.co">
 
 <meta property="og:type" content="website">
@@ -55,6 +54,7 @@
 <title>Οδοντωτός Σιδηρόδρομος | Διακοπτό-Καλάβρυτα | Φαράγγι Βουραϊκού</title>
 
 <link rel="preload" as="image" href="assets/images/hero-poster.webp" fetchpriority="high">
+<link rel="stylesheet" href="styles.css">
 
 <script>
 (function () {
@@ -85,8 +85,19 @@
 	var fontLink = document.createElement("link");
 	fontLink.rel = "stylesheet";
 	fontLink.href = fontHrefByLang[lang];
+	fontLink.media = "print";
+	fontLink.onload = function () {
+		fontLink.media = "all";
+		fontLink.onload = null;
+	};
 	fontLink.setAttribute("data-fonts-lang", lang);
 	document.head.appendChild(fontLink);
+
+	window.setTimeout(function () {
+		if (fontLink.media === "print") {
+			fontLink.media = "all";
+		}
+	}, 3000);
 })();
 </script>
 
@@ -378,8 +389,6 @@
 	]
 }
 </script>
-
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body id="page-top">
@@ -510,7 +519,7 @@
 
 <div class="first-images-grid first-images-grid--triptych" aria-label="Τρεις στατικές φωτογραφίες από το φαράγγι">
 <figure class="first-image-card">
-<img src="assets/images/capt16.jpg" alt="Γέφυρα στη διαδρομή του Βουραϊκού" loading="eager" fetchpriority="high" decoding="async" width="1100" height="1467" data-fallback-src="assets/images/far1.webp" onerror="this.onerror=null;this.src='assets/images/gefyra.jpg'">
+<img src="assets/images/capt16.jpg" alt="Γέφυρα στη διαδρομή του Βουραϊκού" loading="lazy" fetchpriority="low" decoding="async" width="1100" height="1467" data-fallback-src="assets/images/far1.webp" onerror="this.onerror=null;this.src='assets/images/gefyra.jpg'">
 </figure>
 <figure class="first-image-card">
 <img src="assets/images/cta2.jpeg" alt="Οδοντωτός στη διαδρομή μέσα στο τοπίο του Βουραϊκού" loading="lazy" fetchpriority="low" decoding="async" width="2400" height="3200" data-fallback-src="assets/images/trainB.webp">
@@ -1041,18 +1050,6 @@ data-i18n="google_diakopto_earth"
 </main>
 
 <footer>
-
-<section class="newsletter-strip" aria-labelledby="newsletter-title">
-<div class="newsletter-strip-inner">
-<h2 id="newsletter-title" data-i18n="newsletter_title">Μείνε ενημερωμένος</h2>
-<form id="newsletter-form" class="newsletter-form" novalidate>
-<label class="sr-only" for="newsletter-email" data-i18n="newsletter_email_label">Email</label>
-<input id="newsletter-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required aria-label="Email" data-i18n-aria-label="newsletter_email_label">
-<button class="button button-secondary" type="submit" data-i18n="newsletter_submit">Εγγραφή</button>
-</form>
-<p id="newsletter-status" class="newsletter-status" aria-live="polite"></p>
-</div>
-</section>
 
 <p data-i18n="footer_title">Οδοντωτός Σιδηρόδρομος - Φαράγγι Βουραϊκού - Με αγάπη για τον τόπο μας!</p>
 <p class="footer-contact-line">
