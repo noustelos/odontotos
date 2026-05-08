@@ -2259,6 +2259,10 @@ main > section.ai-chat-section {
     isolation: isolate;
 }
 
+.ai-chat-mobile-intro {
+    display: none;
+}
+
 .ai-chat-frame {
     position: relative;
     z-index: 1;
@@ -4498,9 +4502,35 @@ footer p[data-i18n="footer_title"] {
         box-shadow: 0 14px 34px rgba(18, 28, 22, 0.14);
     }
 
+    .ai-chat-mobile-intro {
+        position: relative;
+        z-index: 3;
+        display: grid;
+        gap: 6px;
+        padding: 18px 18px 14px;
+        border-bottom: 1px solid rgba(31, 61, 43, 0.12);
+        background: linear-gradient(180deg, #ffffff 0%, #fbfcfa 100%);
+    }
+
+    .ai-chat-mobile-title {
+        margin: 0;
+        color: var(--forest);
+        font-family: var(--font-display);
+        font-size: 1.28rem;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    .ai-chat-mobile-text {
+        margin: 0;
+        color: #405548;
+        font-size: 0.96rem;
+        line-height: 1.48;
+    }
+
     .ai-chat-frame {
-        height: min(72vh, 620px);
-        height: min(72svh, 620px);
+        height: min(64vh, 560px);
+        height: min(64svh, 560px);
         min-height: 420px;
     }
 
