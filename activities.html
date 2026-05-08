@@ -183,6 +183,7 @@
 <a class="site-nav-link" id="activities-nav-gallery" href="photo-gallery.html#photo-gallery-slideshow">Φωτογραφίες</a>
 <a class="site-nav-link is-active" href="activities.html" aria-current="page" id="activities-nav-activities">Δραστηριότητες</a>
 <a class="site-nav-link" id="activities-nav-info" href="index.html#visitor-section">Πληροφορίες</a>
+<a class="site-nav-link" id="activities-nav-ai-chat" href="index.html#ai-chat-section">AI CHAT</a>
 </nav>
 
 <div class="header-actions">
@@ -342,6 +343,7 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
       navGallery: "Φωτογραφίες",
       navActivities: "Δραστηριότητες",
       navInfo: "Πληροφορίες",
+      navAiChat: "AI CHAT",
       backArrowAria: "Επιστροφή στην αρχική σελίδα",
       kicker: "Δραστηριότητες",
       title: "Τι Μπορείς Να Κάνεις Στη Διαδρομή",
@@ -407,6 +409,7 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
       navGallery: "Photos",
       navActivities: "Activities",
       navInfo: "Info",
+      navAiChat: "AI CHAT",
       backArrowAria: "Back to home page",
       kicker: "Activities",
       title: "What You Can Do Along The Route",
@@ -491,6 +494,7 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
     var navGallery = document.getElementById("activities-nav-gallery");
     var navActivities = document.getElementById("activities-nav-activities");
     var navInfo = document.getElementById("activities-nav-info");
+    var navAiChat = document.getElementById("activities-nav-ai-chat");
 
     if (homeSr) homeSr.textContent = t.homeSr;
     if (navExperience) navExperience.textContent = t.navExperience;
@@ -500,6 +504,7 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
     if (navGallery) navGallery.textContent = t.navGallery;
     if (navActivities) navActivities.textContent = t.navActivities;
     if (navInfo) navInfo.textContent = t.navInfo;
+    if (navAiChat) navAiChat.textContent = t.navAiChat;
 
     if (navExperience) navExperience.setAttribute("href", buildIndexHref(safeLang, "#experience-section"));
     if (navHistory) navHistory.setAttribute("href", buildIndexHref(safeLang, "#history-section"));
@@ -507,6 +512,7 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
     if (navStarting) navStarting.setAttribute("href", buildIndexHref(safeLang, "#starting-point"));
     if (navGallery) navGallery.setAttribute("href", "photo-gallery.html" + (safeLang === "en" ? "?lang=en" : "") + "#photo-gallery-slideshow");
     if (navInfo) navInfo.setAttribute("href", buildIndexHref(safeLang, "#visitor-section"));
+    if (navAiChat) navAiChat.setAttribute("href", buildIndexHref(safeLang, "#ai-chat-section"));
 
     var activitiesHomeLink = document.getElementById("activities-home-link");
     if (activitiesHomeLink) activitiesHomeLink.setAttribute("href", buildIndexHref(safeLang, ""));

@@ -225,6 +225,7 @@
 <a class="site-nav-link" id="privacy-nav-gallery" href="photo-gallery.html#photo-gallery-slideshow">Φωτογραφίες</a>
 <a class="site-nav-link" id="privacy-nav-activities" href="activities.html">Δραστηριότητες</a>
 <a class="site-nav-link" href="index.html#visitor-section">Πληροφορίες</a>
+<a class="site-nav-link" id="privacy-nav-ai-chat" href="index.html#ai-chat-section">AI CHAT</a>
 </nav>
 
 <div class="header-actions">
@@ -386,6 +387,7 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
     var hreflangEn = document.querySelector('link[rel="alternate"][hreflang="en"]');
     var hreflangDefault = document.querySelector('link[rel="alternate"][hreflang="x-default"]');
     var localizedPath = "privacy-policy.html" + (safeLang === "en" ? "?lang=en" : "");
+    var indexPath = "index.html" + (safeLang === "en" ? "?lang=en" : "");
 
     if (canonicalTag) {
       canonicalTag.setAttribute("href", "https://odontotos.gr/" + localizedPath);
@@ -405,6 +407,11 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
 
     if (hreflangDefault) {
       hreflangDefault.setAttribute("href", "https://odontotos.gr/privacy-policy.html");
+    }
+
+    var aiChatLink = document.getElementById("privacy-nav-ai-chat");
+    if (aiChatLink) {
+      aiChatLink.setAttribute("href", indexPath + "#ai-chat-section");
     }
 
     var localeTag = document.querySelector('meta[property="og:locale"]');

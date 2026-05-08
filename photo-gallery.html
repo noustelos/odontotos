@@ -112,6 +112,7 @@
 <a class="site-nav-link is-active" href="photo-gallery.html#photo-gallery-slideshow" aria-current="page">Φωτογραφίες</a>
 <a class="site-nav-link" id="gallery-nav-activities" href="activities.html">Δραστηριότητες</a>
 <a class="site-nav-link" id="gallery-nav-info" href="index.html#visitor-section">Πληροφορίες</a>
+<a class="site-nav-link" id="gallery-nav-ai-chat" href="index.html#ai-chat-section">AI CHAT</a>
 </nav>
 
 <div class="header-actions">
@@ -322,6 +323,7 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
       navGallery: "Φωτογραφίες",
       navActivities: "Δραστηριότητες",
       navInfo: "Πληροφορίες",
+      navAiChat: "AI CHAT",
       photoGallerySlideshowAria: "Slideshow με όλες τις φωτογραφίες της διαδρομής Οδοντωτού",
       photoGalleryControlsAria: "Έλεγχοι slideshow φωτογραφιών",
       photoGalleryThumbsAria: "Μικρογραφίες φωτογραφιών",
@@ -367,6 +369,7 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
       navGallery: "Photos",
       navActivities: "Activities",
       navInfo: "Info",
+      navAiChat: "AI CHAT",
       photoGallerySlideshowAria: "Slideshow with all photos from the Odontotos route",
       photoGalleryControlsAria: "Photo slideshow controls",
       photoGalleryThumbsAria: "Photo thumbnails",
@@ -458,6 +461,7 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
     var navStarting = document.getElementById("gallery-nav-starting");
     var navInfo = document.getElementById("gallery-nav-info");
     var navActivities = document.getElementById("gallery-nav-activities");
+    var navAiChat = document.getElementById("gallery-nav-ai-chat");
     var backLink = document.getElementById("gallery-back-link");
     var homeLink = document.getElementById("gallery-home-link");
     var backArrow = document.getElementById("gallery-back-arrow");
@@ -479,6 +483,7 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
     if (navGallery) navGallery.textContent = t.navGallery;
     if (navActivities) navActivities.textContent = t.navActivities;
     if (navInfo) navInfo.textContent = t.navInfo;
+    if (navAiChat) navAiChat.textContent = t.navAiChat;
 
     document.querySelectorAll("[data-gallery-i18n]").forEach(function (node) {
       var key = node.getAttribute("data-gallery-i18n");
@@ -507,6 +512,7 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
     if (navStarting) navStarting.setAttribute("href", buildIndexHref(safeLang, "#starting-point"));
     if (navActivities) navActivities.setAttribute("href", "activities.html" + (safeLang === "en" ? "?lang=en" : ""));
     if (navInfo) navInfo.setAttribute("href", buildIndexHref(safeLang, "#visitor-section"));
+    if (navAiChat) navAiChat.setAttribute("href", buildIndexHref(safeLang, "#ai-chat-section"));
     if (navGallery) navGallery.setAttribute("href", localizedPath + "#photo-gallery-slideshow");
 
     if (backLink) {

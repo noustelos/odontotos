@@ -19,6 +19,8 @@ var i18n = {
         nav_gallery: "Φωτογραφίες",
         nav_activities: "Δραστηριότητες",
         nav_info: "Πληροφορίες",
+        nav_ai_chat: "AI CHAT",
+        ai_chat_title: "AI CHAT",
         nav_share: "Κοινοποίηση",
         skip_to_content: "Μετάβαση στο κύριο περιεχόμενο",
         nav_aria_label: "Πλοήγηση ενοτήτων",
@@ -272,6 +274,8 @@ var i18n = {
         nav_gallery: "Photos",
         nav_activities: "Activities",
         nav_info: "Info",
+        nav_ai_chat: "AI CHAT",
+        ai_chat_title: "AI CHAT",
         nav_share: "Share",
         skip_to_content: "Skip to main content",
         nav_aria_label: "Section navigation",
@@ -554,6 +558,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initDescentAnnouncement();
     initImageFallbacks();
     initGoogleLocationEmbed();
+    initAiChatFrame();
     initNavActiveState();
 
     initRevealAnimations();
@@ -1887,6 +1892,26 @@ function initGoogleLocationEmbed() {
         rejectButton.dataset.googleMapBound = "true";
         rejectButton.addEventListener("click", syncEmbedWithConsent);
     }
+}
+
+function initAiChatFrame() {
+    var shell = document.querySelector("[data-ai-chat-shell]");
+    var frame = shell ? shell.querySelector(".ai-chat-frame") : null;
+
+    if (!shell || !frame) {
+        return;
+    }
+
+    function revealFrame() {
+        shell.classList.add("is-loaded");
+        shell.setAttribute("aria-busy", "false");
+    }
+
+    frame.addEventListener("load", function () {
+        window.setTimeout(revealFrame, 900);
+    }, { once: true });
+
+    window.setTimeout(revealFrame, 9000);
 }
 
 function initDynamicFooterMeta() {
