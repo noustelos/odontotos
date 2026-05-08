@@ -395,13 +395,6 @@
 
 <a class="skip-link" href="#main-content" data-i18n="skip_to_content">Μετάβαση στο κύριο περιεχόμενο</a>
 
-<div class="scroll-rail" aria-hidden="true">
-<div class="scroll-rail-track">
-<span class="scroll-rail-fill" data-scroll-rail-fill></span>
-<span class="scroll-wagon" data-scroll-wagon></span>
-</div>
-</div>
-
 <header class="site-header">
 <div class="site-header-inner">
 <nav class="site-nav" id="site-nav-menu" aria-label="Section navigation" data-i18n-aria-label="nav_aria_label">
@@ -413,7 +406,7 @@
 <a class="site-nav-link" href="#history-section" data-i18n="nav_history">Ιστορία</a>
 <a class="site-nav-link" href="#railway-route" data-i18n="nav_route">Διαδρομή</a>
 <a class="site-nav-link" href="#starting-point" data-i18n="nav_starting_point">Αφετηρία</a>
-<a class="site-nav-link" href="photo-gallery.html" data-lang-href-base="photo-gallery.html" data-i18n="nav_gallery">Photo Gallery</a>
+<a class="site-nav-link" href="photo-gallery.html#photo-gallery-slideshow" data-lang-href-base="photo-gallery.html#photo-gallery-slideshow" data-i18n="nav_gallery">Φωτογραφίες</a>
 <a class="site-nav-link" href="activities.html" data-lang-href-base="activities.html" data-i18n="nav_activities">Δραστηριότητες</a>
 <a class="site-nav-link" href="#visitor-section" data-i18n="nav_info">Πληροφορίες</a>
 </nav>
@@ -432,42 +425,6 @@
 </header>
 
 <div id="language-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
-
-<nav id="journey-timeline" class="journey-timeline" aria-label="Πλοηγός ενοτήτων" data-i18n-aria-label="journey_timeline_aria_label">
-<div class="journey-line" aria-hidden="true">
-<span class="journey-line-fill" data-journey-progress></span>
-</div>
-<div class="journey-steps">
-<button class="journey-step" type="button" data-target="experience-section">
-<span class="journey-step-dot" aria-hidden="true"></span>
-<span class="journey-step-label" data-i18n="jt_experience">Εμπειρία</span>
-</button>
-<button class="journey-step" type="button" data-target="history-section">
-<span class="journey-step-dot" aria-hidden="true"></span>
-<span class="journey-step-label" data-i18n="jt_history">Ιστορία</span>
-</button>
-<button class="journey-step" type="button" data-target="railway-route">
-<span class="journey-step-dot" aria-hidden="true"></span>
-<span class="journey-step-label" data-i18n="jt_route">Διαδρομή</span>
-</button>
-<button class="journey-step" type="button" data-target="starting-point">
-<span class="journey-step-dot" aria-hidden="true"></span>
-<span class="journey-step-label" data-i18n="jt_starting">Αφετηρία</span>
-</button>
-<button class="journey-step" type="button" data-target="photo-gallery-section">
-<span class="journey-step-dot" aria-hidden="true"></span>
-<span class="journey-step-label" data-i18n="jt_gallery">Gallery</span>
-</button>
-<button class="journey-step" type="button" data-target="visitor-section">
-<span class="journey-step-dot" aria-hidden="true"></span>
-<span class="journey-step-label" data-i18n="jt_info">Πληροφορίες</span>
-</button>
-<button class="journey-step" type="button" data-target="contact-section">
-<span class="journey-step-dot" aria-hidden="true"></span>
-<span class="journey-step-label" data-i18n="jt_contact">Επικοινωνία</span>
-</button>
-</div>
-</nav>
 
 <!-- HERO SECTION -->
 <!-- cinematic portrait video from the Vouraikos gorge -->
@@ -513,7 +470,7 @@
 					<p data-i18n="slideshow_intro">Μια σύντομη οπτική εισαγωγή στο τοπίο του Βουραϊκού, πριν η διαδρομή αποκαλύψει βαθύτερα τον χαρακτήρα του φαραγγιού.</p>
 </div>
 <div class="section-intro-actions">
-<a class="button button-secondary" href="#photo-gallery-section" data-i18n="slideshow_gallery_cta">Επίσκεψη στο Photo Gallery</a>
+<a class="button button-secondary" href="photo-gallery.html#photo-gallery-slideshow" data-lang-href-base="photo-gallery.html#photo-gallery-slideshow" data-i18n="slideshow_gallery_cta">Δες τις Φωτογραφίες</a>
 </div>
 </div>
 
@@ -881,17 +838,12 @@ data-i18n="google_diakopto_earth"
 
 <section class="photo-gallery-section" id="photo-gallery-section">
 <div class="section-intro">
-					<span class="section-kicker" data-i18n="photo_gallery_kicker">ΦΩΤΟ ΓΚΑΛΕΡΙ</span>
-					<h2 data-i18n="photo_gallery_title">ΦΩΤΟ ΓΚΑΛΕΡΙ</h2>
-					<p data-i18n="photo_gallery_intro">Εδώ μπορπούμε να θαυμάζουμε τον Οδοντωτό και την ομορφιά ου όταν δεν μπορύμε να ειμασε εκει, φωτογραφίες επισκεπτών, εθελεόντων και απλων πολιτών.</p>
+					<span class="section-kicker" data-i18n="photo_gallery_kicker">Φωτογραφίες</span>
+					<h2 data-i18n="photo_gallery_title">Εικόνες από τη Διαδρομή</h2>
+					<p data-i18n="photo_gallery_intro">Μέσα από φωτογραφίες επισκεπτών, εθελοντών και φίλων του τόπου, ανακαλύπτουμε ξανά τον Οδοντωτό και την ομορφιά της διαδρομής, ακόμη κι όταν δεν μπορούμε να είμαστε εκεί.</p>
+<div class="premium-gallery-actions">
+<a class="button button-secondary" href="photo-gallery.html#photo-gallery-slideshow" data-lang-href-base="photo-gallery.html#photo-gallery-slideshow" data-i18n="photo_gallery_full_cta">Άνοιξε το slideshow φωτογραφιών</a>
 </div>
-<div class="photo-gallery-grid" aria-label="Photo gallery διαδρομής Οδοντωτού">
-<figure class="photo-gallery-item"><img src="assets/images/capt16.jpg" alt="Στιγμιότυπο διαδρομής μέσα στο φαράγγι" loading="lazy" decoding="async"></figure>
-<figure class="photo-gallery-item"><img src="assets/images/cta2.jpeg" alt="Θέα του Οδοντωτού στη διαδρομή" loading="lazy" decoding="async"></figure>
-<figure class="photo-gallery-item"><img src="assets/images/traincom.jpeg" alt="Οδοντωτός συρμός δίπλα στο βραχώδες τοπίο" loading="lazy" decoding="async"></figure>
-<figure class="photo-gallery-item"><img src="assets/images/gefyra.webp" alt="Γέφυρα στη διαδρομή του Βουραϊκού" loading="lazy" decoding="async"></figure>
-<figure class="photo-gallery-item"><img src="assets/images/trainB.webp" alt="Οδοντωτός στο τοπίο του Βουραϊκού" loading="lazy" decoding="async"></figure>
-<figure class="photo-gallery-item"><img src="assets/images/far1.webp" alt="Φυσικό τοπίο του φαραγγιού" loading="lazy" decoding="async"></figure>
 </div>
 </section>
 

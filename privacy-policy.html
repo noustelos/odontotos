@@ -36,7 +36,7 @@
 .privacy-back-arrow {
   position: fixed;
   left: 14px;
-  top: 86px;
+  top: 91px;
   z-index: 1001;
   width: 44px;
   height: 44px;
@@ -59,7 +59,7 @@
 }
 @media (max-width: 680px) {
   .privacy-back-arrow {
-    top: 72px;
+    top: 77px;
     left: 10px;
     width: 40px;
     height: 40px;
@@ -209,12 +209,6 @@
 </head>
 <body id="page-top">
 <a class="skip-link" href="#main-content">Μετάβαση στο κύριο περιεχόμενο</a>
-<div class="scroll-rail" aria-hidden="true">
-<div class="scroll-rail-track">
-<span class="scroll-rail-fill" data-scroll-rail-fill></span>
-<span class="scroll-wagon" data-scroll-wagon></span>
-</div>
-</div>
 <a class="privacy-back-arrow" id="privacy-back-arrow" href="index.html" aria-label="Επιστροφή">&#8592;</a>
 
 <header class="site-header">
@@ -228,7 +222,7 @@
 <a class="site-nav-link" href="index.html#history-section">Ιστορία</a>
 <a class="site-nav-link" href="index.html#railway-route">Διαδρομή</a>
 <a class="site-nav-link" href="index.html#starting-point">Αφετηρία</a>
-<a class="site-nav-link" id="privacy-nav-gallery" href="photo-gallery.html">Photo Gallery</a>
+<a class="site-nav-link" id="privacy-nav-gallery" href="photo-gallery.html#photo-gallery-slideshow">Φωτογραφίες</a>
 <a class="site-nav-link" id="privacy-nav-activities" href="activities.html">Δραστηριότητες</a>
 <a class="site-nav-link" href="index.html#visitor-section">Πληροφορίες</a>
 </nav>
@@ -241,20 +235,6 @@
 </div>
 </div>
 </header>
-
-<nav id="journey-timeline" class="journey-timeline" aria-label="Πλοηγός ενοτήτων">
-<div class="journey-line" aria-hidden="true"><span class="journey-line-fill" style="height:100%"></span></div>
-<div class="journey-steps">
-<a class="journey-step" href="index.html#experience-section"><span class="journey-step-dot" aria-hidden="true"></span><span class="journey-step-label">Εμπειρία</span></a>
-<a class="journey-step" href="index.html#history-section"><span class="journey-step-dot" aria-hidden="true"></span><span class="journey-step-label">Ιστορία</span></a>
-<a class="journey-step" href="index.html#railway-route"><span class="journey-step-dot" aria-hidden="true"></span><span class="journey-step-label">Διαδρομή</span></a>
-<a class="journey-step" href="index.html#starting-point"><span class="journey-step-dot" aria-hidden="true"></span><span class="journey-step-label">Αφετηρία</span></a>
-<a class="journey-step" href="photo-gallery.html"><span class="journey-step-dot" aria-hidden="true"></span><span class="journey-step-label">Gallery</span></a>
-<a class="journey-step" href="activities.html"><span class="journey-step-dot" aria-hidden="true"></span><span class="journey-step-label">Δραστηριότητες</span></a>
-<a class="journey-step" href="index.html#visitor-section"><span class="journey-step-dot" aria-hidden="true"></span><span class="journey-step-label">Πληροφορίες</span></a>
-<a class="journey-step" href="index.html#contact-section"><span class="journey-step-dot" aria-hidden="true"></span><span class="journey-step-label">Επικοινωνία</span></a>
-</div>
-</nav>
 
 <main id="main-content">
 <section style="width:min(1100px, calc(100% - 32px));margin:0 auto;">
@@ -480,33 +460,6 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
   });
 
   setLanguage(initialLang);
-
-  (function () {
-    var railFill = document.querySelector("[data-scroll-rail-fill]");
-    var wagon = document.querySelector("[data-scroll-wagon]");
-    if (!railFill || !wagon) {
-      return;
-    }
-    var ticking = false;
-    function updateRail() {
-      ticking = false;
-      var doc = document.documentElement;
-      var maxScroll = Math.max(doc.scrollHeight - window.innerHeight, 1);
-      var progress = Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
-      var pad = 2;
-      var pct = (pad + progress * (100 - pad * 2)).toFixed(2) + "%";
-      railFill.style.transform = "scaleX(" + progress + ")";
-      wagon.style.left = pct;
-    }
-    function onRailScroll() {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(updateRail);
-    }
-    window.addEventListener("scroll", onRailScroll, { passive: true });
-    window.addEventListener("resize", onRailScroll);
-    updateRail();
-  })();
 
   function initScrollToTopButton() {
     var scrollToTopButton = document.getElementById("scroll-to-top");

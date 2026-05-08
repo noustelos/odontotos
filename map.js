@@ -16,7 +16,7 @@ var i18n = {
         nav_history: "Ιστορία",
         nav_starting_point: "Αφετηρία",
         nav_route: "Διαδρομή",
-        nav_gallery: "Photo Gallery",
+        nav_gallery: "Φωτογραφίες",
         nav_activities: "Δραστηριότητες",
         nav_info: "Πληροφορίες",
         nav_share: "Κοινοποίηση",
@@ -45,17 +45,9 @@ var i18n = {
         nav_share_success: "Η σελίδα κοινοποιήθηκε επιτυχώς.",
         nav_share_copied: "Ο σύνδεσμος αντιγράφηκε στο πρόχειρο.",
         nav_share_error: "Δεν ήταν δυνατή η κοινοποίηση αυτή τη στιγμή.",
-        journey_timeline_aria_label: "Timeline διαδρομής σελίδας",
         scroll_top_aria_label: "Επιστροφή στην κορυφή",
         menu_toggle_aria_label: "Εναλλαγή μενού πλοήγησης",
         language_switcher_aria_label: "Εναλλαγή γλώσσας",
-        jt_experience: "Εμπειρία",
-        jt_history: "Ιστορία",
-        jt_route: "Διαδρομή",
-        jt_starting: "Αφετηρία",
-        jt_gallery: "Gallery",
-        jt_info: "Πληροφορίες",
-        jt_contact: "Επικοινωνία",
         hero_facts_aria_label: "Βασικά στοιχεία διαδρομής",
         slideshow_aria_label: "Slideshow εικόνων της διαδρομής",
         language_status: "Η γλώσσα άλλαξε σε Ελληνικά",
@@ -72,10 +64,32 @@ var i18n = {
         slideshow_title: "Η Διαδρομή είναι ο προορισμός",
         slideshow_kicker: "Πρώτες Εικόνες",
         slideshow_intro: "Μια σύντομη οπτική εισαγωγή στο τοπίο του Βουραϊκού, πριν η διαδρομή αποκαλύψει βαθύτερα τον χαρακτήρα του φαραγγιού.",
-        slideshow_gallery_cta: "Επίσκεψη στο Photo Gallery",
-        photo_gallery_title: "ΦΩΤΟ ΓΚΑΛΕΡΙ",
-        photo_gallery_kicker: "ΦΩΤΟ ΓΚΑΛΕΡΙ",
-        photo_gallery_intro: "Εδώ μπορπούμε να θαυμάζουμε τον Οδοντωτό και την ομορφιά ου όταν δεν μπορύμε να ειμασε εκει, φωτογραφίες επισκεπτών, εθελεόντων και απλων πολιτών.",
+        slideshow_gallery_cta: "Δες τις Φωτογραφίες",
+        photo_gallery_title: "Εικόνες από τη Διαδρομή",
+        photo_gallery_kicker: "Φωτογραφίες",
+        photo_gallery_intro: "Μέσα από φωτογραφίες επισκεπτών, εθελοντών και φίλων του τόπου, ανακαλύπτουμε ξανά τον Οδοντωτό και την ομορφιά της διαδρομής, ακόμη κι όταν δεν μπορούμε να είμαστε εκεί.",
+        photo_gallery_slideshow_aria: "Slideshow με όλες τις φωτογραφίες της διαδρομής Οδοντωτού",
+        photo_gallery_controls_aria: "Έλεγχοι slideshow φωτογραφιών",
+        photo_gallery_thumbs_aria: "Μικρογραφίες φωτογραφιών",
+        photo_gallery_prev_aria: "Προηγούμενη φωτογραφία",
+        photo_gallery_next_aria: "Επόμενη φωτογραφία",
+        photo_gallery_pause_aria: "Παύση slideshow",
+        photo_gallery_play_aria: "Συνέχιση slideshow",
+        photo_gallery_pause: "Παύση",
+        photo_gallery_play: "Συνέχεια",
+        photo_gallery_caption_1: "Το φαράγγι ανοίγει τη διαδρομή",
+        photo_gallery_caption_2: "Ο συρμός μέσα στο ανάγλυφο",
+        photo_gallery_caption_3: "Βράχος, νερό και σιδηροτροχιά",
+        photo_gallery_caption_4: "Γέφυρες πάνω από τον Βουραϊκό",
+        photo_gallery_caption_5: "Η διαδρομή προς το βουνό",
+        photo_gallery_caption_6: "Στιγμές φυσικής ησυχίας",
+        photo_gallery_thumb_1_aria: "Προβολή φωτογραφίας 1",
+        photo_gallery_thumb_2_aria: "Προβολή φωτογραφίας 2",
+        photo_gallery_thumb_3_aria: "Προβολή φωτογραφίας 3",
+        photo_gallery_thumb_4_aria: "Προβολή φωτογραφίας 4",
+        photo_gallery_thumb_5_aria: "Προβολή φωτογραφίας 5",
+        photo_gallery_thumb_6_aria: "Προβολή φωτογραφίας 6",
+        photo_gallery_full_cta: "Άνοιξε το slideshow φωτογραφιών",
         slideshow_top_trainv_kicker: "TrainV Showcase",
         slideshow_top_trainv_title: "trainv4 · trainv3 · trainv · trainv2",
         slideshow_top_trainv_meta: "Εναλλαγή ανά λίγα δευτερόλεπτα με hover motion.",
@@ -255,7 +269,7 @@ var i18n = {
         nav_history: "History",
         nav_starting_point: "Starting Point",
         nav_route: "Route",
-        nav_gallery: "Photo Gallery",
+        nav_gallery: "Photos",
         nav_activities: "Activities",
         nav_info: "Info",
         nav_share: "Share",
@@ -284,17 +298,9 @@ var i18n = {
         nav_share_success: "Page shared successfully.",
         nav_share_copied: "Page link copied to clipboard.",
         nav_share_error: "Unable to share the page right now.",
-        journey_timeline_aria_label: "Journey timeline",
         scroll_top_aria_label: "Scroll to top",
         menu_toggle_aria_label: "Toggle navigation menu",
         language_switcher_aria_label: "Language switcher",
-        jt_experience: "Experience",
-        jt_history: "History",
-        jt_route: "Route",
-        jt_starting: "Starting Point",
-        jt_gallery: "Gallery",
-        jt_info: "Info",
-        jt_contact: "Contact",
         hero_facts_aria_label: "Journey highlights",
         slideshow_aria_label: "Simple crossfade slideshow",
         language_status: "Language changed to English",
@@ -311,10 +317,32 @@ var i18n = {
         slideshow_title: "The Journey in Frames",
         slideshow_kicker: "Opening Images",
         slideshow_intro: "A brief visual introduction to the Vouraikos landscape before the route reveals the gorge in greater depth.",
-        slideshow_gallery_cta: "Visit Photo Gallery",
-        photo_gallery_title: "The Journey in Frames",
-        photo_gallery_kicker: "Photo Gallery",
+        slideshow_gallery_cta: "View Photos",
+        photo_gallery_title: "Images from the Route",
+        photo_gallery_kicker: "Photos",
         photo_gallery_intro: "A visual gallery of the Vouraikos route before continuing to practical visitor information.",
+        photo_gallery_slideshow_aria: "Slideshow with all photos from the Odontotos route",
+        photo_gallery_controls_aria: "Photo slideshow controls",
+        photo_gallery_thumbs_aria: "Photo thumbnails",
+        photo_gallery_prev_aria: "Previous photo",
+        photo_gallery_next_aria: "Next photo",
+        photo_gallery_pause_aria: "Pause slideshow",
+        photo_gallery_play_aria: "Resume slideshow",
+        photo_gallery_pause: "Pause",
+        photo_gallery_play: "Resume",
+        photo_gallery_caption_1: "The gorge opens the route",
+        photo_gallery_caption_2: "The train inside the terrain",
+        photo_gallery_caption_3: "Rock, water and railway",
+        photo_gallery_caption_4: "Bridges over Vouraikos",
+        photo_gallery_caption_5: "The route toward the mountain",
+        photo_gallery_caption_6: "Quiet moments in nature",
+        photo_gallery_thumb_1_aria: "View photo 1",
+        photo_gallery_thumb_2_aria: "View photo 2",
+        photo_gallery_thumb_3_aria: "View photo 3",
+        photo_gallery_thumb_4_aria: "View photo 4",
+        photo_gallery_thumb_5_aria: "View photo 5",
+        photo_gallery_thumb_6_aria: "View photo 6",
+        photo_gallery_full_cta: "Open the photo slideshow",
         slideshow_top_trainv_kicker: "TrainV Showcase",
         slideshow_top_trainv_title: "trainv4 · trainv3 · trainv · trainv2",
         slideshow_top_trainv_meta: "Auto-switch every few seconds with hover motion.",
@@ -511,8 +539,6 @@ function emitAnalyticsEvent(eventName, eventParams) {
 document.addEventListener("DOMContentLoaded", function () {
     syncHeaderOffset();
     initDesktopPerformanceMode();
-    initScrollTrainProgress();
-    initJourneyTimeline();
     initScrollToTop();
     initHeroParallax();
     initHeroVideo();
@@ -766,141 +792,6 @@ function initImageFallbacks() {
             { once: true }
         );
     });
-}
-
-function initScrollTrainProgress() {
-    var railFill = document.querySelector("[data-scroll-rail-fill]");
-    var wagon = document.querySelector("[data-scroll-wagon]");
-
-    if (!railFill || !wagon) {
-        return;
-    }
-
-    var ticking = false;
-
-    function updateProgress() {
-        ticking = false;
-
-        var doc = document.documentElement;
-        var maxScroll = Math.max(doc.scrollHeight - window.innerHeight, 1);
-        var progress = Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
-        var wagonEdgePadding = 2;
-        var wagonProgress = wagonEdgePadding + progress * (100 - wagonEdgePadding * 2);
-        var progressPercent = wagonProgress.toFixed(2) + "%";
-
-        railFill.style.transform = "scaleX(" + progress + ")";
-        wagon.style.left = progressPercent;
-    }
-
-    function onScrollOrResize() {
-        if (ticking) {
-            return;
-        }
-
-        ticking = true;
-        window.requestAnimationFrame(updateProgress);
-    }
-
-    window.addEventListener("scroll", onScrollOrResize, { passive: true });
-    window.addEventListener("resize", onScrollOrResize);
-    updateProgress();
-}
-
-function initJourneyTimeline() {
-    if (isNarrowViewport()) {
-        return;
-    }
-
-    var timeline = document.getElementById("journey-timeline");
-    if (!timeline) {
-        return;
-    }
-
-    var progressFill = timeline.querySelector("[data-journey-progress]");
-    var stepNodes = Array.prototype.slice.call(timeline.querySelectorAll(".journey-step"));
-    if (!stepNodes.length) {
-        return;
-    }
-
-    var steps = stepNodes
-        .map(function (node) {
-            var targetId = node.getAttribute("data-target");
-            var section = targetId ? document.getElementById(targetId) : null;
-            if (!section) {
-                return null;
-            }
-
-            node.addEventListener("click", function () {
-                var offset = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue("--header-offset")) || 72;
-                var top = section.getBoundingClientRect().top + window.scrollY - offset - 8;
-                window.scrollTo({
-                    top: Math.max(top, 0),
-                    behavior: prefersReducedMotion() ? "auto" : "smooth",
-                });
-            });
-
-            return {
-                node: node,
-                section: section,
-            };
-        })
-        .filter(Boolean);
-
-    if (!steps.length) {
-        return;
-    }
-
-    function setActive(index) {
-        var safeIndex = Math.max(0, Math.min(index, steps.length - 1));
-
-        steps.forEach(function (entry, entryIndex) {
-            var isActive = entryIndex === safeIndex;
-            entry.node.classList.toggle("is-active", isActive);
-            if (isActive) {
-                entry.node.setAttribute("aria-current", "step");
-            } else {
-                entry.node.removeAttribute("aria-current");
-            }
-        });
-
-        if (progressFill) {
-            var pct = steps.length > 1 ? (safeIndex / (steps.length - 1)) * 100 : 0;
-            progressFill.style.setProperty("--journey-progress-pct", pct.toFixed(2) + "%");
-        }
-    }
-
-    var ticking = false;
-
-    function updateActiveByScroll() {
-        ticking = false;
-
-        var offset = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue("--header-offset")) || 72;
-        var probeY = window.scrollY + offset + 48;
-        var activeIndex = 0;
-
-        steps.forEach(function (entry, index) {
-            if (entry.section.offsetTop <= probeY) {
-                activeIndex = index;
-            }
-        });
-
-        setActive(activeIndex);
-    }
-
-    function requestUpdate() {
-        if (ticking) {
-            return;
-        }
-
-        ticking = true;
-        window.requestAnimationFrame(updateActiveByScroll);
-    }
-
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-
-    setActive(0);
-    requestUpdate();
 }
 
 function initScrollToTop() {
@@ -1202,6 +1093,8 @@ function initMobileMenu() {
         return;
     }
 
+    var mobileMenuQuery = window.matchMedia("(max-width: 767px), (min-width: 768px) and (max-width: 1024px) and (orientation: portrait)");
+
     function setMenuOpen(isOpen) {
         header.classList.toggle("is-menu-open", isOpen);
         if (document.body) {
@@ -1240,7 +1133,7 @@ function initMobileMenu() {
     });
 
     window.addEventListener("resize", function () {
-        if (window.innerWidth > 767) {
+        if (!mobileMenuQuery.matches) {
             setMenuOpen(false);
         }
     });
@@ -3187,7 +3080,10 @@ function updateLanguageAwareLinks(lang) {
             return;
         }
 
-        link.setAttribute("href", lang === "en" ? base + "?lang=en" : base);
+        var hashIndex = base.indexOf("#");
+        var path = hashIndex >= 0 ? base.slice(0, hashIndex) : base;
+        var hash = hashIndex >= 0 ? base.slice(hashIndex) : "";
+        link.setAttribute("href", lang === "en" ? path + "?lang=en" + hash : path + hash);
     });
 }
 
