@@ -26,6 +26,10 @@ var i18n = {
         ai_chat_fab_label: "Odontotos Guide Ai Assistant (BETA)",
         ai_chat_open_aria: "Άνοιγμα συνομιλίας Odontotos Guide Ai Assistant (BETA)",
         ai_chat_minimize_aria: "Ελαχιστοποίηση συνομιλίας",
+        ai_chat_fallback_title: "Το AI chat δεν φόρτωσε ακόμη.",
+        ai_chat_fallback_text: "Δοκιμάστε ξανά ή ανοίξτε το chat σε νέο παράθυρο.",
+        ai_chat_retry: "Δοκιμή ξανά",
+        ai_chat_open_external: "Άνοιγμα σε νέο παράθυρο",
         nav_share: "Κοινοποίηση",
         skip_to_content: "Μετάβαση στο κύριο περιεχόμενο",
         nav_aria_label: "Πλοήγηση ενοτήτων",
@@ -287,6 +291,10 @@ var i18n = {
         ai_chat_fab_label: "Odontotos Guide Ai Assistant (BETA)",
         ai_chat_open_aria: "Open Odontotos Guide Ai Assistant (BETA) chat",
         ai_chat_minimize_aria: "Minimize chat",
+        ai_chat_fallback_title: "The AI chat has not loaded yet.",
+        ai_chat_fallback_text: "Try again or open the chat in a new window.",
+        ai_chat_retry: "Try again",
+        ai_chat_open_external: "Open in a new window",
         nav_share: "Share",
         skip_to_content: "Skip to main content",
         nav_aria_label: "Section navigation",
@@ -1911,9 +1919,15 @@ function initAiChatFrame() {
     var widget = floatingRoot ? floatingRoot.querySelector("#ai-chat-widget") : null;
     var shell = floatingRoot ? floatingRoot.querySelector("[data-ai-chat-shell]") : null;
     var frame = shell ? shell.querySelector(".ai-chat-frame") : null;
+    var fallback = shell ? shell.querySelector("[data-ai-chat-fallback]") : null;
     var toggleButton = floatingRoot ? floatingRoot.querySelector("[data-ai-chat-toggle]") : null;
     var minimizeButton = floatingRoot ? floatingRoot.querySelector("[data-ai-chat-minimize]") : null;
+    var retryButton = shell ? shell.querySelector("[data-ai-chat-retry]") : null;
+    var externalTriggers = document.querySelectorAll('a[href="#ai-chat-section"]');
     var hasRequestedFrame = false;
+    var lastTrigger = toggleButton;
+    var sourceUrl = frame ? (frame.getAttribute("data-src") || frame.getAttribute("src") || "") : "";
+    var loadTimeoutId = null;
 
     if (!floatingRoot || !widget || !shell || !frame || !toggleButton || !minimizeButton) {
         return;
@@ -1921,9 +1935,43 @@ function initAiChatFrame() {
 
     document.body.classList.add("has-floating-chat");
 
+    function clearLoadTimeout() {
+        if (loadTimeoutId) {
+            window.clearTimeout(loadTimeoutId);
+            loadTimeoutId = null;
+        }
+    }
+
+    function setLoadingState() {
+        clearLoadTimeout();
+        shell.classList.remove("is-loaded", "is-failed");
+        shell.setAttribute("aria-busy", "true");
+        if (fallback) {
+            fallback.hidden = true;
+        }
+        loadTimeoutId = window.setTimeout(function () {
+            showFallback();
+        }, 12000);
+    }
+
     function revealFrame() {
+        clearLoadTimeout();
+        shell.classList.remove("is-failed");
         shell.classList.add("is-loaded");
         shell.setAttribute("aria-busy", "false");
+        if (fallback) {
+            fallback.hidden = true;
+        }
+    }
+
+    function showFallback() {
+        clearLoadTimeout();
+        shell.classList.remove("is-loaded");
+        shell.classList.add("is-failed");
+        shell.setAttribute("aria-busy", "false");
+        if (fallback) {
+            fallback.hidden = false;
+        }
     }
 
     function loadFrameIfNeeded() {
@@ -1931,13 +1979,24 @@ function initAiChatFrame() {
             return;
         }
 
-        var sourceUrl = frame.getAttribute("data-src") || frame.getAttribute("src") || "";
+        setLoadingState();
+
         if (sourceUrl && !frame.getAttribute("src")) {
             frame.setAttribute("src", sourceUrl);
         }
 
         hasRequestedFrame = true;
-        window.setTimeout(revealFrame, 9000);
+    }
+
+    function reloadFrame() {
+        if (!sourceUrl) {
+            showFallback();
+            return;
+        }
+
+        setLoadingState();
+        frame.setAttribute("src", sourceUrl + (sourceUrl.indexOf("?") === -1 ? "?" : "&") + "retry=" + Date.now());
+        hasRequestedFrame = true;
     }
 
     function setChatOpen(isOpen) {
@@ -1946,21 +2005,43 @@ function initAiChatFrame() {
             floatingRoot.classList.add("is-open");
             toggleButton.setAttribute("aria-expanded", "true");
             loadFrameIfNeeded();
+            window.setTimeout(function () {
+                minimizeButton.focus({ preventScroll: true });
+            }, 20);
             return;
         }
 
         floatingRoot.classList.remove("is-open");
         toggleButton.setAttribute("aria-expanded", "false");
         widget.hidden = true;
+
+        if (lastTrigger && typeof lastTrigger.focus === "function") {
+            lastTrigger.focus({ preventScroll: true });
+        }
     }
 
     toggleButton.addEventListener("click", function () {
         var isOpen = toggleButton.getAttribute("aria-expanded") === "true";
+        lastTrigger = toggleButton;
         setChatOpen(!isOpen);
     });
 
     minimizeButton.addEventListener("click", function () {
         setChatOpen(false);
+    });
+
+    if (retryButton) {
+        retryButton.addEventListener("click", function () {
+            reloadFrame();
+        });
+    }
+
+    externalTriggers.forEach(function (trigger) {
+        trigger.addEventListener("click", function (event) {
+            event.preventDefault();
+            lastTrigger = trigger;
+            setChatOpen(true);
+        });
     });
 
     document.addEventListener("keydown", function (event) {
@@ -1971,7 +2052,11 @@ function initAiChatFrame() {
 
     frame.addEventListener("load", function () {
         window.setTimeout(revealFrame, 900);
-    }, { once: true });
+    });
+
+    frame.addEventListener("error", function () {
+        showFallback();
+    });
 
     setChatOpen(false);
 }

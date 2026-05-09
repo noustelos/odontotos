@@ -2235,6 +2235,7 @@ section[id] {
     box-shadow: var(--media-glass-shadow);
     background: #0f1713;
     isolation: isolate;
+    transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
 }
 
 .history-secondary-photo img {
@@ -2243,11 +2244,6 @@ section[id] {
     aspect-ratio: 4 / 3;
     object-fit: cover;
     transition: transform 360ms ease, filter 360ms ease;
-}
-
-.history-secondary-photo:hover img {
-    transform: scale(1.02);
-    filter: saturate(1.06) contrast(1.04);
 }
 
 /* TIMELINE */
@@ -2468,6 +2464,7 @@ main > section.ai-chat-section {
     border: 0;
     background: #ffffff;
     color-scheme: light;
+    transition: opacity 220ms ease;
 }
 
 .ai-chat-loading-mask {
@@ -2484,6 +2481,78 @@ main > section.ai-chat-section {
 .ai-chat-shell.is-loaded .ai-chat-loading-mask {
     opacity: 0;
     visibility: hidden;
+}
+
+.ai-chat-shell.is-failed .ai-chat-loading-mask {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.ai-chat-shell.is-failed .ai-chat-frame {
+    opacity: 0;
+}
+
+.ai-chat-fallback {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: grid;
+    align-content: center;
+    gap: 12px;
+    padding: 18px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(245, 248, 244, 0.98) 100%);
+    text-align: center;
+}
+
+.ai-chat-fallback-title,
+.ai-chat-fallback-text {
+    margin: 0;
+}
+
+.ai-chat-fallback-title {
+    color: var(--forest);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.ai-chat-fallback-text {
+    color: #4f5f57;
+    line-height: 1.6;
+    font-size: 0.92rem;
+}
+
+.ai-chat-fallback-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.ai-chat-fallback-button,
+.ai-chat-fallback-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    text-decoration: none;
+}
+
+.ai-chat-fallback-button {
+    border: 1px solid rgba(31, 61, 43, 0.2);
+    background: #ffffff;
+    color: var(--forest);
+    cursor: pointer;
+}
+
+.ai-chat-fallback-link {
+    border: 1px solid transparent;
+    background: var(--forest);
+    color: #ffffff;
 }
 
 .final-cta-chat-slot {
@@ -2770,11 +2839,7 @@ footer {
     height: 100%;
     display: block;
     object-fit: cover;
-    transition: transform 360ms ease;
-}
-
-.photo-gallery-item:hover img {
-    transform: scale(1.03);
+    transition: transform 360ms ease, filter 360ms ease;
 }
 
 .timeline-item {
@@ -2959,10 +3024,9 @@ footer {
 }
 
 .diakopto-photo-placeholder:hover {
-    transform: translateY(-5px) rotateX(1.2deg);
-    filter: saturate(1.08) contrast(1.05);
+    transform: translateY(-3px);
     border-color: rgba(207, 224, 213, 0.62);
-    box-shadow: 0 26px 42px rgba(15, 24, 19, 0.22);
+    box-shadow: 0 22px 40px rgba(15, 24, 19, 0.2);
 }
 
 
@@ -2977,6 +3041,25 @@ footer {
     z-index: 0;
     pointer-events: none;
     border-radius: inherit;
+    transition: transform 360ms ease, filter 360ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .first-image-card:hover,
+    .history-secondary-photo:hover,
+    .photo-gallery-item:hover,
+    .diakopto-photo-placeholder:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 22px 40px rgba(15, 24, 19, 0.2);
+    }
+
+    .first-image-card:hover img,
+    .history-secondary-photo:hover img,
+    .photo-gallery-item:hover img,
+    .diakopto-photo-placeholder:hover .diakopto-photo-bg {
+        transform: scale(1.018);
+        filter: saturate(1.06) contrast(1.04);
+    }
 }
 
 .diakopto-photo-placeholder-title {
@@ -5013,6 +5096,17 @@ footer p[data-i18n="footer_title"] {
 
     .ai-chat-frame {
         height: min(54vh, 390px);
+    }
+}
+
+@media (max-width: 767px) and (max-height: 760px) {
+    .ai-chat-widget {
+        width: min(360px, calc(100vw - 20px));
+        max-height: min(72svh, 460px);
+    }
+
+    .ai-chat-frame {
+        height: min(58svh, 330px);
     }
 }
 
