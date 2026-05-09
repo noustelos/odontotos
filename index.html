@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+a<!DOCTYPE html>
 <html lang="el">
 <head>
 <meta charset="UTF-8">
@@ -375,7 +375,6 @@
 </button>
 
 <div class="header-actions">
-<a class="site-nav-link header-ai-chat-link" href="#ai-chat-section" data-i18n="nav_ai_chat">AI CHAT</a>
 <div class="lang-switcher" role="group" aria-label="Language switcher" data-i18n-aria-label="language_switcher_aria_label">
 <button class="lang-btn is-active" data-lang="el" type="button">ΕΛ</button>
 <button class="lang-btn" data-lang="en" type="button">EN</button>
@@ -1005,53 +1004,30 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
 </div>
 </footer>
 
-<section class="ai-chat-section final-cta-chat-slot" id="ai-chat-section" aria-labelledby="ai-chat-title">
-<h2 class="sr-only" id="ai-chat-title" data-i18n="ai_chat_title">AI CHAT</h2>
-<div class="ai-chat-floating" data-ai-chat-floating>
-<button
-	class="ai-chat-fab"
-	type="button"
-	data-ai-chat-toggle
-	aria-expanded="false"
-	aria-controls="ai-chat-widget"
-	aria-label="Άνοιγμα συνομιλίας Odontotos Guide Ai Assistant (BETA)"
-	data-i18n-aria-label="ai_chat_open_aria"
->
-<span class="ai-chat-fab-icon" aria-hidden="true">✦</span>
-<span class="ai-chat-fab-label" data-i18n="ai_chat_fab_label">Odontotos Guide Ai Assistant (BETA)</span>
-</button>
-<div class="ai-chat-widget" id="ai-chat-widget" role="dialog" aria-modal="false" aria-labelledby="ai-chat-widget-title" hidden>
-<div class="ai-chat-widget-header">
-<p class="ai-chat-widget-title" id="ai-chat-widget-title" data-i18n="ai_chat_mobile_title">Odontotos AI Guide</p>
-<button
-	class="ai-chat-minimize"
-	type="button"
-	data-ai-chat-minimize
-	aria-label="Ελαχιστοποίηση συνομιλίας"
-	data-i18n-aria-label="ai_chat_minimize_aria"
->−</button>
+<section class="final-cta-chat-slot floating-ai-assistant" data-floating-ai-assistant aria-label="Hercules Ai Guide (Beta)">
+<div class="floating-ai-panel" id="floating-ai-panel" role="dialog" aria-modal="false" aria-labelledby="floating-ai-title" data-ai-assistant-panel hidden>
+<div class="floating-ai-header">
+<p class="floating-ai-title" id="floating-ai-title"><span class="floating-ai-blink-icon" aria-hidden="true">🏛</span><span>Hercules Ai Guide (Beta)</span></p>
+<div class="floating-ai-controls">
+<button class="floating-ai-control" type="button" data-ai-assistant-minimize aria-label="Minimize">−</button>
+<button class="floating-ai-control floating-ai-control-close" type="button" data-ai-assistant-close aria-label="Close">×</button>
 </div>
-<div class="ai-chat-shell" data-ai-chat-shell aria-busy="true">
+</div>
+<p class="floating-ai-intro">Γειά σας είμαι ο Hercules Smart Assistant, είμαι εδώ για να σας βοηθήσω με ότι πληροφορία χρειάζεστε.</p>
 <iframe
-	class="ai-chat-frame"
+	class="floating-ai-frame"
 	title="Odontotos AI Chat"
-	data-src="https://nik-greek-odontotos-ai-guide.hf.space?__theme=light"
+	src="https://nik-greek-odontotos-ai-guide.hf.space?__theme=light"
 	frameborder="0"
-	scrolling="no"
-	loading="lazy"
+	width="850"
+	height="450"
+	loading="eager"
 ></iframe>
-<div class="ai-chat-loading-mask" aria-hidden="true"></div>
-<div class="ai-chat-fallback" data-ai-chat-fallback hidden>
-<p class="ai-chat-fallback-title" data-i18n="ai_chat_fallback_title">Το AI chat δεν φόρτωσε ακόμη.</p>
-<p class="ai-chat-fallback-text" data-i18n="ai_chat_fallback_text">Δοκιμάστε ξανά ή ανοίξτε το chat σε νέο παράθυρο.</p>
-<div class="ai-chat-fallback-actions">
-<button class="ai-chat-fallback-button" type="button" data-ai-chat-retry data-i18n="ai_chat_retry">Δοκιμή ξανά</button>
-<a class="ai-chat-fallback-link" href="https://nik-greek-odontotos-ai-guide.hf.space?__theme=light" target="_blank" rel="noopener noreferrer" data-i18n="ai_chat_open_external">Άνοιγμα σε νέο παράθυρο</a>
 </div>
-</div>
-</div>
-</div>
-</div>
+<button class="floating-ai-trigger" type="button" data-ai-assistant-toggle aria-expanded="false" aria-controls="floating-ai-panel">
+<span class="floating-ai-blink-icon" aria-hidden="true">🏛</span>
+<span>Hercules Ai Guide (Beta)</span>
+</button>
 </section>
 
 <div id="social-share-panel" class="social-share-panel" role="dialog" aria-modal="true" aria-label="Επιλογές κοινοποίησης" data-i18n-aria-label="social_panel_aria_label" hidden>
