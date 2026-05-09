@@ -64,47 +64,6 @@
 		el: "https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&family=Noto+Sans:wght@400;600;700&display=swap",
 		en: "https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&family=Philosopher:wght@400;700&display=swap"
 	};
-
-	if (params.get("lang") === "en") {
-		lang = "en";
-	} else {
-		try {
-			var savedLang = localStorage.getItem("odontotos_lang");
-			if (savedLang === "en" || savedLang === "el") {
-				lang = savedLang;
-			}
-		} catch (error) {
-			// Ignore storage errors and keep the default language path.
-		}
-	}
-
-	document.documentElement.lang = lang;
-	window.__odontotosInitialLang = lang;
-	window.__odontotosFontHrefByLang = fontHrefByLang;
-
-	var fontLink = document.createElement("link");
-	fontLink.rel = "stylesheet";
-	fontLink.href = fontHrefByLang[lang];
-	fontLink.media = "print";
-	fontLink.onload = function () {
-		fontLink.media = "all";
-		fontLink.onload = null;
-	};
-	fontLink.setAttribute("data-fonts-lang", lang);
-	document.head.appendChild(fontLink);
-
-	window.setTimeout(function () {
-		if (fontLink.media === "print") {
-			fontLink.media = "all";
-		}
-	}, 3000);
-})();
-</script>
-
-<script>
-(function () {
-	var measurementMeta = document.querySelector('meta[name="ga-measurement-id"]');
-	var GA_MEASUREMENT_ID = measurementMeta ? measurementMeta.getAttribute("content") : "G-XXXXXXXXXX";
 	var CONSENT_KEY = "odontos_cookie_consent_v1";
 	var PLACEHOLDER_ID = "G-XXXXXXXXXX";
 	var scriptLoaded = false;
@@ -409,7 +368,6 @@
 <a class="site-nav-link" href="photo-gallery.html#photo-gallery-slideshow" data-lang-href-base="photo-gallery.html#photo-gallery-slideshow" data-i18n="nav_gallery">Φωτογραφίες</a>
 <a class="site-nav-link" href="activities.html" data-lang-href-base="activities.html" data-i18n="nav_activities">Δραστηριότητες</a>
 <a class="site-nav-link" href="#visitor-section" data-i18n="nav_info">Πληροφορίες</a>
-<a class="site-nav-link" href="#ai-chat-section" data-i18n="nav_ai_chat">AI CHAT</a>
 </nav>
 
 <button id="site-menu-toggle" class="site-menu-toggle" type="button" aria-controls="site-nav-menu" aria-expanded="false" aria-label="Toggle navigation menu" data-i18n-aria-label="menu_toggle_aria_label">
@@ -417,6 +375,7 @@
 </button>
 
 <div class="header-actions">
+<a class="site-nav-link header-ai-chat-link" href="#ai-chat-section" data-i18n="nav_ai_chat">AI CHAT</a>
 <div class="lang-switcher" role="group" aria-label="Language switcher" data-i18n-aria-label="language_switcher_aria_label">
 <button class="lang-btn is-active" data-lang="el" type="button">ΕΛ</button>
 <button class="lang-btn" data-lang="en" type="button">EN</button>
@@ -948,11 +907,15 @@ data-i18n="google_diakopto_earth"
 </section>
 
 <section class="contact-section" id="contact-section" aria-labelledby="contact-section-title">
-<div class="section-intro">
+<details class="contact-collapse">
+<summary class="contact-collapse-toggle">
+<div class="section-intro contact-section-intro">
 <span class="section-kicker" data-i18n="contact_kicker">Επικοινωνία</span>
 <h2 id="contact-section-title" data-i18n="contact_title">Στείλε Μήνυμα για Πληροφορίες</h2>
 </div>
-
+<span class="contact-collapse-chevron" aria-hidden="true">▾</span>
+</summary>
+<div class="contact-collapse-panel">
 <form id="contact-form" class="contact-form card" novalidate>
 <div class="contact-form-grid">
 <label class="contact-form-field" for="contact-name">
@@ -979,6 +942,8 @@ data-i18n="google_diakopto_earth"
 </div>
 <p id="contact-form-status" class="contact-form-status" aria-live="polite"></p>
 </form>
+</div>
+</details>
 </section>
 
 <div class="rail-divider" role="presentation" aria-hidden="true"><span></span></div>
@@ -998,27 +963,6 @@ data-i18n="google_diakopto_earth"
 					</div>
 	</div>
 
-</section>
-
-<section class="ai-chat-section" id="ai-chat-section" aria-labelledby="ai-chat-title">
-<h2 class="sr-only" id="ai-chat-title" data-i18n="ai_chat_title">AI CHAT</h2>
-<div class="ai-chat-shell" data-ai-chat-shell aria-busy="true">
-<div class="ai-chat-mobile-intro">
-<p class="ai-chat-mobile-title" data-i18n="ai_chat_mobile_title">Odontotos AI Guide</p>
-<p class="ai-chat-mobile-text" data-i18n="ai_chat_mobile_text">Καλώς ορίσατε στον ψηφιακό οδηγό του Οδοντωτού. Ρωτήστε με για δρομολόγια, ιστορία και εισιτήρια.</p>
-</div>
-<iframe
-	class="ai-chat-frame"
-	title="Odontotos AI Chat"
-	src="https://nik-greek-odontotos-ai-guide.hf.space?__theme=light"
-	frameborder="0"
-	scrolling="no"
-	width="850"
-	height="450"
-	loading="lazy"
-></iframe>
-<div class="ai-chat-loading-mask" aria-hidden="true"></div>
-</div>
 </section>
 
 </main>
@@ -1061,6 +1005,47 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
 </div>
 </footer>
 
+<section class="ai-chat-section final-cta-chat-slot" id="ai-chat-section" aria-labelledby="ai-chat-title">
+<h2 class="sr-only" id="ai-chat-title" data-i18n="ai_chat_title">AI CHAT</h2>
+<div class="ai-chat-floating" data-ai-chat-floating>
+<button
+	class="ai-chat-fab"
+	type="button"
+	data-ai-chat-toggle
+	aria-expanded="false"
+	aria-controls="ai-chat-widget"
+	aria-label="Άνοιγμα συνομιλίας Odontotos Guide Ai Assistant (BETA)"
+	data-i18n-aria-label="ai_chat_open_aria"
+>
+<span class="ai-chat-fab-icon" aria-hidden="true">✦</span>
+<span class="ai-chat-fab-label" data-i18n="ai_chat_fab_label">Odontotos Guide Ai Assistant (BETA)</span>
+</button>
+<div class="ai-chat-widget" id="ai-chat-widget" role="dialog" aria-modal="false" aria-labelledby="ai-chat-widget-title" hidden>
+<div class="ai-chat-widget-header">
+<p class="ai-chat-widget-title" id="ai-chat-widget-title" data-i18n="ai_chat_mobile_title">Odontotos AI Guide</p>
+<button
+	class="ai-chat-minimize"
+	type="button"
+	data-ai-chat-minimize
+	aria-label="Ελαχιστοποίηση συνομιλίας"
+	data-i18n-aria-label="ai_chat_minimize_aria"
+>−</button>
+</div>
+<div class="ai-chat-shell" data-ai-chat-shell aria-busy="true">
+<iframe
+	class="ai-chat-frame"
+	title="Odontotos AI Chat"
+	data-src="https://nik-greek-odontotos-ai-guide.hf.space?__theme=light"
+	frameborder="0"
+	scrolling="no"
+	loading="lazy"
+></iframe>
+<div class="ai-chat-loading-mask" aria-hidden="true"></div>
+</div>
+</div>
+</div>
+</section>
+
 <div id="social-share-panel" class="social-share-panel" role="dialog" aria-modal="true" aria-label="Επιλογές κοινοποίησης" data-i18n-aria-label="social_panel_aria_label" hidden>
 <div class="social-share-card">
 <p class="social-share-title" data-i18n="social_panel_title">Κοινοποίηση σε</p>
@@ -1085,6 +1070,10 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
 <div class="announcement-text" data-i18n-html="announcement_text"><p><strong>Ημερομηνία:</strong> Κυριακή 10 Μαΐου 2026.</p><p><strong>Διαδρομή:</strong> κατάβαση στο φαράγγι του Βουραϊκού, από τα Καλάβρυτα προς το Διακοπτό.</p><p>Άνοιξε την ανακοίνωση για λεπτομέρειες συμμετοχής, οδηγίες και την ενημέρωση του διοργανωτή.</p></div>
 <div class="announcement-actions">
 <a id="announcement-cta" class="button" href="activities.html#panhellenic-crossing-section" data-i18n="announcement_cta">Δες την ανακοίνωση</a>
+<div class="announcement-countdown" aria-live="polite">
+<span class="announcement-countdown-label" data-i18n="announcement_countdown_label">Λήγει σε</span>
+<strong id="announcement-countdown-value">24:00:00</strong>
+</div>
 <button id="announcement-dismiss" class="button button-secondary" type="button" data-i18n="announcement_dismiss">Κλείσιμο</button>
 </div>
 </div>

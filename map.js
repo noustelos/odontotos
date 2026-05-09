@@ -23,6 +23,9 @@ var i18n = {
         ai_chat_title: "AI CHAT",
         ai_chat_mobile_title: "Odontotos AI Guide",
         ai_chat_mobile_text: "Καλώς ορίσατε στον ψηφιακό οδηγό του Οδοντωτού. Ρωτήστε με για δρομολόγια, ιστορία και εισιτήρια.",
+        ai_chat_fab_label: "Odontotos Guide Ai Assistant (BETA)",
+        ai_chat_open_aria: "Άνοιγμα συνομιλίας Odontotos Guide Ai Assistant (BETA)",
+        ai_chat_minimize_aria: "Ελαχιστοποίηση συνομιλίας",
         nav_share: "Κοινοποίηση",
         skip_to_content: "Μετάβαση στο κύριο περιεχόμενο",
         nav_aria_label: "Πλοήγηση ενοτήτων",
@@ -44,6 +47,7 @@ var i18n = {
         announcement_title: "46ο Πανελλήνιο Πέρασμα στο φαράγγι του Βουραϊκού",
         announcement_text: "<p><strong>Ημερομηνία:</strong> Κυριακή 10 Μαΐου 2026.</p><p><strong>Διαδρομή:</strong> κατάβαση στο φαράγγι του Βουραϊκού, από τα Καλάβρυτα προς το Διακοπτό.</p><p>Άνοιξε την ανακοίνωση για λεπτομέρειες συμμετοχής, οδηγίες και την ενημέρωση του διοργανωτή.</p>",
         announcement_cta: "Δες την ανακοίνωση",
+        announcement_countdown_label: "Λήγει σε",
         announcement_dismiss: "Κλείσιμο",
         nav_share_message: "Δες τη διαδρομή του Οδοντωτού στο φαράγγι του Βουραϊκού.",
         nav_share_success: "Η σελίδα κοινοποιήθηκε επιτυχώς.",
@@ -280,6 +284,9 @@ var i18n = {
         ai_chat_title: "AI CHAT",
         ai_chat_mobile_title: "Odontotos AI Guide",
         ai_chat_mobile_text: "Welcome to the Odontotos digital guide. Ask me about timetables, history and tickets.",
+        ai_chat_fab_label: "Odontotos Guide Ai Assistant (BETA)",
+        ai_chat_open_aria: "Open Odontotos Guide Ai Assistant (BETA) chat",
+        ai_chat_minimize_aria: "Minimize chat",
         nav_share: "Share",
         skip_to_content: "Skip to main content",
         nav_aria_label: "Section navigation",
@@ -301,6 +308,7 @@ var i18n = {
         announcement_title: "46th Panhellenic Crossing in Vouraikos Gorge",
         announcement_text: "<p><strong>Date:</strong> Sunday, May 10, 2026.</p><p><strong>Route:</strong> descent through Vouraikos Gorge, from Kalavryta toward Diakopto.</p><p>Open the announcement for participation details, key tips and the organizer update.</p>",
         announcement_cta: "View announcement",
+        announcement_countdown_label: "Ends in",
         announcement_dismiss: "Close",
         nav_share_message: "Explore the Odontotos railway journey through the Vouraikos Gorge.",
         nav_share_success: "Page shared successfully.",
@@ -1899,23 +1907,73 @@ function initGoogleLocationEmbed() {
 }
 
 function initAiChatFrame() {
-    var shell = document.querySelector("[data-ai-chat-shell]");
+    var floatingRoot = document.querySelector("[data-ai-chat-floating]");
+    var widget = floatingRoot ? floatingRoot.querySelector("#ai-chat-widget") : null;
+    var shell = floatingRoot ? floatingRoot.querySelector("[data-ai-chat-shell]") : null;
     var frame = shell ? shell.querySelector(".ai-chat-frame") : null;
+    var toggleButton = floatingRoot ? floatingRoot.querySelector("[data-ai-chat-toggle]") : null;
+    var minimizeButton = floatingRoot ? floatingRoot.querySelector("[data-ai-chat-minimize]") : null;
+    var hasRequestedFrame = false;
 
-    if (!shell || !frame) {
+    if (!floatingRoot || !widget || !shell || !frame || !toggleButton || !minimizeButton) {
         return;
     }
+
+    document.body.classList.add("has-floating-chat");
 
     function revealFrame() {
         shell.classList.add("is-loaded");
         shell.setAttribute("aria-busy", "false");
     }
 
+    function loadFrameIfNeeded() {
+        if (hasRequestedFrame) {
+            return;
+        }
+
+        var sourceUrl = frame.getAttribute("data-src") || frame.getAttribute("src") || "";
+        if (sourceUrl && !frame.getAttribute("src")) {
+            frame.setAttribute("src", sourceUrl);
+        }
+
+        hasRequestedFrame = true;
+        window.setTimeout(revealFrame, 9000);
+    }
+
+    function setChatOpen(isOpen) {
+        if (isOpen) {
+            widget.hidden = false;
+            floatingRoot.classList.add("is-open");
+            toggleButton.setAttribute("aria-expanded", "true");
+            loadFrameIfNeeded();
+            return;
+        }
+
+        floatingRoot.classList.remove("is-open");
+        toggleButton.setAttribute("aria-expanded", "false");
+        widget.hidden = true;
+    }
+
+    toggleButton.addEventListener("click", function () {
+        var isOpen = toggleButton.getAttribute("aria-expanded") === "true";
+        setChatOpen(!isOpen);
+    });
+
+    minimizeButton.addEventListener("click", function () {
+        setChatOpen(false);
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            setChatOpen(false);
+        }
+    });
+
     frame.addEventListener("load", function () {
         window.setTimeout(revealFrame, 900);
     }, { once: true });
 
-    window.setTimeout(revealFrame, 9000);
+    setChatOpen(false);
 }
 
 function initDynamicFooterMeta() {
@@ -2971,6 +3029,7 @@ function initDescentAnnouncement() {
     var closeButton = document.getElementById("announcement-close");
     var dismissButton = document.getElementById("announcement-dismiss");
     var ctaLink = document.getElementById("announcement-cta");
+    var countdownValue = document.getElementById("announcement-countdown-value");
 
     if (!popup) {
         return;
@@ -2983,6 +3042,57 @@ function initDescentAnnouncement() {
     var closedByUser = false;
     var reopenedAfterScroll = false;
     var reopenScrollThreshold = 420;
+    var countdownDurationMs = 24 * 60 * 60 * 1000;
+    var countdownDeadline = Date.now() + countdownDurationMs;
+    var countdownTimerId = null;
+
+    function formatCountdown(remainingMs) {
+        var totalSeconds = Math.max(0, Math.floor(remainingMs / 1000));
+        var hours = Math.floor(totalSeconds / 3600);
+        var minutes = Math.floor((totalSeconds % 3600) / 60);
+        var seconds = totalSeconds % 60;
+
+        return [hours, minutes, seconds]
+            .map(function (value) {
+                return String(value).padStart(2, "0");
+            })
+            .join(":");
+    }
+
+    function renderCountdown() {
+        if (!countdownValue) {
+            return;
+        }
+
+        if (!countdownDeadline) {
+            countdownValue.textContent = formatCountdown(countdownDurationMs);
+            return;
+        }
+
+        countdownValue.textContent = formatCountdown(countdownDeadline - Date.now());
+    }
+
+    function stopCountdown() {
+        if (countdownTimerId) {
+            window.clearInterval(countdownTimerId);
+            countdownTimerId = null;
+        }
+    }
+
+    function startCountdown() {
+        if (!countdownValue) {
+            return;
+        }
+
+        renderCountdown();
+        stopCountdown();
+        countdownTimerId = window.setInterval(function () {
+            renderCountdown();
+            if (countdownDeadline && Date.now() >= countdownDeadline) {
+                stopCountdown();
+            }
+        }, 1000);
+    }
 
     function isDismissed() {
         try {
@@ -3039,6 +3149,8 @@ function initDescentAnnouncement() {
             language: currentLanguage,
         });
     }
+
+    startCountdown();
 
     if (closeButton) {
         closeButton.addEventListener("click", function () {
