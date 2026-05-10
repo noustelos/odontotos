@@ -34,14 +34,6 @@ var i18n = {
         social_option_email: "Email",
         social_option_copy: "Αντιγραφή συνδέσμου",
         social_close: "Κλείσιμο",
-        announcement_modal_aria_label: "Ανακοίνωση κατάβασης",
-        announcement_close_aria_label: "Κλείσιμο ανακοίνωσης",
-        announcement_badge: "Ανακοίνωση",
-        announcement_title: "46ο Πανελλήνιο Πέρασμα στο φαράγγι του Βουραϊκού",
-        announcement_text: "<p><strong>Ημερομηνία:</strong> Κυριακή 10 Μαΐου 2026.</p><p><strong>Διαδρομή:</strong> κατάβαση στο φαράγγι του Βουραϊκού, από τα Καλάβρυτα προς το Διακοπτό.</p><p>Άνοιξε την ανακοίνωση για λεπτομέρειες συμμετοχής, οδηγίες και την ενημέρωση του διοργανωτή.</p>",
-        announcement_cta: "Δες την ανακοίνωση",
-        announcement_countdown_label: "Λήγει σε",
-        announcement_dismiss: "Κλείσιμο",
         nav_share_message: "Δες τη διαδρομή του Οδοντωτού στο φαράγγι του Βουραϊκού.",
         nav_share_success: "Η σελίδα κοινοποιήθηκε επιτυχώς.",
         nav_share_copied: "Ο σύνδεσμος αντιγράφηκε στο πρόχειρο.",
@@ -288,14 +280,6 @@ var i18n = {
         social_option_email: "Email",
         social_option_copy: "Copy link",
         social_close: "Close",
-        announcement_modal_aria_label: "Descent announcement",
-        announcement_close_aria_label: "Close announcement",
-        announcement_badge: "Announcement",
-        announcement_title: "46th Panhellenic Crossing in Vouraikos Gorge",
-        announcement_text: "<p><strong>Date:</strong> Sunday, May 10, 2026.</p><p><strong>Route:</strong> descent through Vouraikos Gorge, from Kalavryta toward Diakopto.</p><p>Open the announcement for participation details, key tips and the organizer update.</p>",
-        announcement_cta: "View announcement",
-        announcement_countdown_label: "Ends in",
-        announcement_dismiss: "Close",
         nav_share_message: "Explore the Odontotos railway journey through the Vouraikos Gorge.",
         nav_share_success: "Page shared successfully.",
         nav_share_copied: "Page link copied to clipboard.",
@@ -553,7 +537,6 @@ document.addEventListener("DOMContentLoaded", function () {
     initContactForm();
     initCookieConsent();
     initI18n();
-    initDescentAnnouncement();
     initImageFallbacks();
     initGoogleLocationEmbed();
     initFloatingAiAssistant();
@@ -2945,14 +2928,6 @@ function setLanguage(lang) {
     updateSeoMetadata(lang);
     updatePrivacyPolicyLinks(lang);
 
-    var announcementCta = document.getElementById("announcement-cta");
-    if (announcementCta) {
-        announcementCta.setAttribute(
-            "href",
-            lang === "en" ? "activities.html?lang=en#panhellenic-crossing-section" : "activities.html#panhellenic-crossing-section"
-        );
-    }
-
     var textNodes = document.querySelectorAll("[data-i18n]");
     textNodes.forEach(function (node) {
         var key = node.getAttribute("data-i18n");
@@ -3001,195 +2976,6 @@ function setLanguage(lang) {
             detail: { lang: lang },
         })
     );
-}
-
-function initDescentAnnouncement() {
-    var popup = document.getElementById("descent-announcement");
-    var closeButton = document.getElementById("announcement-close");
-    var dismissButton = document.getElementById("announcement-dismiss");
-    var ctaLink = document.getElementById("announcement-cta");
-    var countdownValue = document.getElementById("announcement-countdown-value");
-
-    if (!popup) {
-        return;
-    }
-
-    var storageKey = "odontotos_descent_announcement_v4_dismissed";
-    var forceOpen = new URLSearchParams(window.location.search).get("popup") === "1";
-    var activeElementBeforeOpen = null;
-    var hasOpened = false;
-    var closedByUser = false;
-    var reopenedAfterScroll = false;
-    var reopenScrollThreshold = 420;
-    var countdownDurationMs = 24 * 60 * 60 * 1000;
-    var countdownDeadline = Date.now() + countdownDurationMs;
-    var countdownTimerId = null;
-
-    function formatCountdown(remainingMs) {
-        var totalSeconds = Math.max(0, Math.floor(remainingMs / 1000));
-        var hours = Math.floor(totalSeconds / 3600);
-        var minutes = Math.floor((totalSeconds % 3600) / 60);
-        var seconds = totalSeconds % 60;
-
-        return [hours, minutes, seconds]
-            .map(function (value) {
-                return String(value).padStart(2, "0");
-            })
-            .join(":");
-    }
-
-    function renderCountdown() {
-        if (!countdownValue) {
-            return;
-        }
-
-        if (!countdownDeadline) {
-            countdownValue.textContent = formatCountdown(countdownDurationMs);
-            return;
-        }
-
-        countdownValue.textContent = formatCountdown(countdownDeadline - Date.now());
-    }
-
-    function stopCountdown() {
-        if (countdownTimerId) {
-            window.clearInterval(countdownTimerId);
-            countdownTimerId = null;
-        }
-    }
-
-    function startCountdown() {
-        if (!countdownValue) {
-            return;
-        }
-
-        renderCountdown();
-        stopCountdown();
-        countdownTimerId = window.setInterval(function () {
-            renderCountdown();
-            if (countdownDeadline && Date.now() >= countdownDeadline) {
-                stopCountdown();
-            }
-        }, 1000);
-    }
-
-    function isDismissed() {
-        try {
-            return localStorage.getItem(storageKey) === "1";
-        } catch (error) {
-            return false;
-        }
-    }
-
-    function persistDismissal() {
-        try {
-            localStorage.setItem(storageKey, "1");
-        } catch (error) {
-            // Ignore storage access errors in private browsing or strict modes.
-        }
-    }
-
-    function closePopup(shouldPersist) {
-        popup.hidden = true;
-        document.body.classList.remove("announcement-open");
-
-        if (shouldPersist) {
-            persistDismissal();
-        } else {
-            closedByUser = true;
-        }
-
-        if (activeElementBeforeOpen && typeof activeElementBeforeOpen.focus === "function") {
-            activeElementBeforeOpen.focus();
-        }
-    }
-
-    function openPopup() {
-        if (!forceOpen && isDismissed()) {
-            return;
-        }
-
-        if (hasOpened) {
-            return;
-        }
-
-        hasOpened = true;
-        closedByUser = false;
-
-        activeElementBeforeOpen = document.activeElement;
-        popup.hidden = false;
-        document.body.classList.add("announcement-open");
-
-        if (closeButton) {
-            closeButton.focus();
-        }
-
-        emitAnalyticsEvent("descent_announcement_open", {
-            language: currentLanguage,
-        });
-    }
-
-    startCountdown();
-
-    if (closeButton) {
-        closeButton.addEventListener("click", function () {
-            closePopup(false);
-        });
-    }
-
-    if (dismissButton) {
-        dismissButton.addEventListener("click", function () {
-            closePopup(false);
-        });
-    }
-
-    if (ctaLink) {
-        ctaLink.addEventListener("click", function () {
-            persistDismissal();
-            emitAnalyticsEvent("descent_announcement_cta_click", {
-                language: currentLanguage,
-            });
-        });
-    }
-
-    popup.addEventListener("click", function (event) {
-        if (event.target === popup) {
-            closePopup(false);
-        }
-    });
-
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape" && !popup.hidden) {
-            closePopup(false);
-        }
-    });
-
-    window.setTimeout(openPopup, 900);
-
-    // Fallback for cases where initial timeout is skipped by browser throttling.
-    function openOnceAfterInteraction() {
-        openPopup();
-        window.removeEventListener("scroll", openOnceAfterInteraction);
-        window.removeEventListener("pointerdown", openOnceAfterInteraction);
-        window.removeEventListener("keydown", openOnceAfterInteraction);
-    }
-
-    window.addEventListener("scroll", openOnceAfterInteraction, { passive: true, once: true });
-    window.addEventListener("pointerdown", openOnceAfterInteraction, { once: true });
-    window.addEventListener("keydown", openOnceAfterInteraction, { once: true });
-
-    function reopenAfterScrollIfNeeded() {
-        if (reopenedAfterScroll || !closedByUser || !popup.hidden) {
-            return;
-        }
-
-        if (window.scrollY >= reopenScrollThreshold) {
-            reopenedAfterScroll = true;
-            openPopup();
-        }
-    }
-
-    window.addEventListener("scroll", reopenAfterScrollIfNeeded, { passive: true });
 }
 
 function updateLanguageAwareLinks(lang) {
