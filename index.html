@@ -1,4 +1,4 @@
-a<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="el">
 <head>
 <meta charset="UTF-8">
@@ -66,6 +66,8 @@ a<!DOCTYPE html>
 	};
 	var CONSENT_KEY = "odontos_cookie_consent_v1";
 	var PLACEHOLDER_ID = "G-XXXXXXXXXX";
+	var measurementMeta = document.querySelector('meta[name="ga-measurement-id"]');
+	var GA_MEASUREMENT_ID = measurementMeta && measurementMeta.content ? measurementMeta.content.trim() : "";
 	var scriptLoaded = false;
 	var analyticsInitialized = false;
 	var lastTrackedPath = "";
@@ -1017,11 +1019,11 @@ official partner of <a class="footer-credit-link" href="https://webhostpro.gr" t
 <iframe
 	class="floating-ai-frame"
 	title="Odontotos AI Chat"
-	src="https://nik-greek-odontotos-ai-guide.hf.space?__theme=light"
+	data-src="https://nik-greek-odontotos-ai-guide.hf.space?__theme=light"
 	frameborder="0"
 	width="850"
 	height="450"
-	loading="eager"
+	loading="lazy"
 ></iframe>
 </div>
 <button class="floating-ai-trigger" type="button" data-ai-assistant-toggle aria-expanded="false" aria-controls="floating-ai-panel">

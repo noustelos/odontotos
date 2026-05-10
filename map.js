@@ -1898,12 +1898,29 @@ function initFloatingAiAssistant() {
     var toggleButton = root ? root.querySelector("[data-ai-assistant-toggle]") : null;
     var closeButton = root ? root.querySelector("[data-ai-assistant-close]") : null;
     var minimizeButton = root ? root.querySelector("[data-ai-assistant-minimize]") : null;
+    var frame = root ? root.querySelector(".floating-ai-frame") : null;
+    var frameLoaded = frame ? Boolean(frame.getAttribute("src")) : false;
 
     if (!root || !panel || !toggleButton || !closeButton || !minimizeButton) {
         return;
     }
 
+    function ensureFrameLoaded() {
+        if (!frame || frameLoaded) {
+            return;
+        }
+
+        var src = frame.getAttribute("data-src") || "";
+        if (!src) {
+            return;
+        }
+
+        frame.setAttribute("src", src);
+        frameLoaded = true;
+    }
+
     function openPanel() {
+        ensureFrameLoaded();
         panel.hidden = false;
         root.classList.add("is-open");
         toggleButton.setAttribute("aria-expanded", "true");
