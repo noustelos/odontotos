@@ -34,6 +34,9 @@ ExpiresByType video/mp4 "access plus 30 days"
 <FilesMatch "\.(css|js)$">
 Header set Cache-Control "public, max-age=604800, immutable"
 </FilesMatch>
+<Files "map.js">
+Header set Cache-Control "public, max-age=0, must-revalidate"
+</Files>
 <FilesMatch "\.(webp|jpg|jpeg|png|svg|mp4|geojson)$">
 Header set Cache-Control "public, max-age=2592000"
 </FilesMatch>
